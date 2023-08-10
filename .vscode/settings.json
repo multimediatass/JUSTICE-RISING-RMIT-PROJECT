@@ -52,5 +52,6 @@
         "temp/":true,
         "Temp/":true
     },
-    "dotnet.defaultSolution": "JUSTICE-RISING-RMIT-PROJECT.sln"
+    "dotnet.defaultSolution": "JUSTICE-RISING-RMIT-PROJECT.sln",
+    "git.ignoreLimitWarning": true
 }

@@ -19,12 +19,17 @@ namespace JusticeRising
         public UnityEvent GamepauseState;
         public UnityEvent GameplayState;
 
-        private void Start()
+        private void Awake()
         {
             if (instance == null)
                 instance = this;
             else
                 Destroy(gameObject);
+        }
+
+        private void Start()
+        {
+            ChangeGameState(GameState.Play);
         }
 
         public void ChangeGameState(GameState state)
@@ -52,7 +57,9 @@ namespace JusticeRising
         public void CursorMode(bool state)
         {
             Cursor.visible = state;
-            Cursor.lockState = CursorLockMode.Locked;
+
+            if (state == false)
+                Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void PlayGame()
