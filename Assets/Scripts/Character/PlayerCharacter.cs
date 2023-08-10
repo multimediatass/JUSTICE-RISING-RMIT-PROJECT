@@ -72,7 +72,7 @@ namespace JusticeRising
                 maxAnimMoveSpeed = 0.5f;
 
                 if (move != Vector3.zero && animMoveSpeed > 0.6f)
-                    animMoveSpeed -= 0.02f;
+                    animMoveSpeed -= 0.05f;
             }
 
             if (move != Vector3.zero)
