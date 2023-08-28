@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.tsk.ide.vscode": "https://github.com/Chizaruu/com.tsk.ide.vscode.git#upm",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.0.5",
     "com.unity.connect.share": "4.2.3",

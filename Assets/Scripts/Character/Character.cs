@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace JusticeRising
 {
     public class Character : MonoBehaviour
     {
+        [Serializable]
         public enum GenderType
         {
             Male,
@@ -13,14 +15,8 @@ namespace JusticeRising
             Intersex
         }
 
-        public enum CharacterTpye
-        {
-            Player, NPC
-        }
-
+        // public GenderType gender;
         public string characterName;
-        public GenderType gender;
-        public CharacterTpye type;
 
         [Header("Character Controller")]
         public AnimController anim;
@@ -40,12 +36,14 @@ namespace JusticeRising
 
         public string GetCharacterInfo()
         {
-            return $"Name: {characterName}, {gender}, is {type}";
+            return $"Name: {characterName}";
         }
 
         public void SetCanMove(bool canMove)
         {
             characterCanMove = canMove;
+
+            if (canMove) anim.SetBoolIsPlaying(true);
         }
     }
 }

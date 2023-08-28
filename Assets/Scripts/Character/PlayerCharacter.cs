@@ -14,10 +14,46 @@ namespace JusticeRising
         [Header("Camera Controller")]
         [SerializeField] Transform _mainCamera;
 
+        [Header("Character Group")]
+        [SerializeField] private GameObject[] charactersPrefabs;
+        // [SerializeField] private int charIndex;
+
 
         private void Awake()
         {
             _playerActionAsset = new PlayerActions();
+
+            SetUpCharacter();
+        }
+
+        private int GetGenderType(string type)
+        {
+            string a = type;
+
+            return a switch
+            {
+                "Male" => 0,
+                "Female" => 1,
+                "Nonbinary" => 2,
+                _ => -1
+            };
+        }
+
+        private void SetUpCharacter()
+        {
+            int charIndex = -1;
+            charIndex = GetGenderType(GameManager.instance.currentPlayerData.dataMap.selectedCharacter);
+
+            anim.charAnimIndex = charIndex;
+
+            for (int i = charactersPrefabs.Length - 1; i >= 0; i--)
+            {
+                if (i == charIndex)
+                    charactersPrefabs[i].SetActive(true);
+                else charactersPrefabs[i].SetActive(false);
+            }
+
+            LoadingManager.instance.CloseLoadingPanel();
         }
 
         private void OnEnable()
@@ -33,6 +69,8 @@ namespace JusticeRising
         private void Start()
         {
             _speed = normalSpeed;
+
+            if (!characterCanMove) anim.SetBoolIsSitting(true);
         }
 
         private void Update()
@@ -47,7 +85,7 @@ namespace JusticeRising
             {
                 Move();
                 Jump();
-                anim.SetBoolIsPlaying(true);
+                // anim.SetBoolIsPlaying(true);
             }
         }
 
@@ -57,7 +95,7 @@ namespace JusticeRising
         {
             Vector2 moveVal = _playerActionAsset.PlayerControls.Movement.ReadValue<Vector2>();
 
-            Vector3 move = (_mainCamera.forward * moveVal.y + _mainCamera.right * moveVal.x);
+            Vector3 move = _mainCamera.forward * moveVal.y + _mainCamera.right * moveVal.x;
             move.y = 0f;
             charController.Move(_speed * Time.deltaTime * move);
 

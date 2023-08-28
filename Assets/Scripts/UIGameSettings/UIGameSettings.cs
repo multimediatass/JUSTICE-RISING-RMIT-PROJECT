@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace JusticeRising.UIGameSetting
 {
-    using JusticeRising.AudioManager;
+    using Tproject.AudioManager;
 
     public class UIGameSettings : MonoBehaviour
     {

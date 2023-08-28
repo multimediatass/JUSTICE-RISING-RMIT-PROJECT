@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2319645137171189902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2319645137171189898}
+  - component: {fileID: 2319645137171189897}
+  m_Layer: 0
+  m_Name: Dialog Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2319645137171189898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319645137171189902}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2319645137171189897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319645137171189902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2556d63274494a848b62079e573ef55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogsController: {fileID: 0}
+  myDialogScript:
+    PlayerOpportunity: 3
+    npcName: Vallen S.Tr.Kom (Ahli Multimedia)
+    sectionList:
+    - Question: Can you tell about this game?
+      Answer: Sure! In this game, you will play as a lawyer in the field of law and
+        business. Your objective is to find witnesses and evidence that can help
+        you win the trial. You will need to use your thinking skills to gather information
+        and build a strong case for your client. There is no winning or losing in
+        this game, just collect the witnesses and evidence that you will bring to
+        the trial. Make sure all witnesses and evidence do not make your client lose
+        the lawsuit.
+      SFX: {fileID: 8300000, guid: d9372fcd8922732418c17650684bbd0e, type: 3}
+    - Question: How about the gameplay mechanics of this game?
+      Answer: The gameplay mechanics of this game are centered around investigation
+        and strategy. You will need to explore different locations, talk to people,
+        and gather information to build your case. You will also need to manage your
+        time and resources carefully, as you only have a limited amount of time to
+        prepare for the trial.
+      SFX: {fileID: 8300000, guid: 73b1afd0591cfb641a35510062de2910, type: 3}
+    - Question: how can i win this game?
+      Answer: There is no winning or losing in this game. As you progress through
+        the game, you will encounter different challenges and obstacles that will
+        test your skills as a lawyer. You will need to use your creativity and problem-solving
+        skills to overcome these challenges and build a strong case for your client.
+      SFX: {fileID: 8300000, guid: 232ce26cb8d32eb41977db5cf89e034c, type: 3}
+  instructionPrefab: {fileID: 434770068252583160, guid: 818754fc161042644ab207da7f7cdc1a,
+    type: 3}

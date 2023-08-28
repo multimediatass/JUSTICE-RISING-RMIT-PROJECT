@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.tsk.ide.vscode": {
-      "version": "https://github.com/Chizaruu/com.tsk.ide.vscode.git#upm",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "48c53edea7eb365bb4253ba6d258d7867add485a"
-    },
     "com.unity.burst": {
       "version": "1.8.7",
       "depth": 1,
