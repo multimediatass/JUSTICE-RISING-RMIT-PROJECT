@@ -16,7 +16,8 @@ namespace JusticeRising
 
         [Header("Character Group")]
         [SerializeField] private GameObject[] charactersPrefabs;
-        // [SerializeField] private int charIndex;
+
+        private bool isTeleport = false;
 
 
         private void Awake()
@@ -75,6 +76,8 @@ namespace JusticeRising
 
         private void Update()
         {
+            if (isTeleport) return;
+
             groundedPlayer = charController.isGrounded;
             if (groundedPlayer && playerVelocity.y < 0)
             {
@@ -150,6 +153,23 @@ namespace JusticeRising
             {
                 anim.SetBoolFalling(true);
             }
+        }
+
+        public void TeleportToDestination(Transform destination)
+        {
+            StartCoroutine("Teleport", destination);
+        }
+
+        IEnumerator Teleport(Transform destination)
+        {
+            LoadingManager.instance.StartLoading();
+            isTeleport = true;
+            yield return new WaitForSeconds(0.5f);
+            this.transform.position = destination.position;
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log($"Player has been Teleport");
+            LoadingManager.instance.CloseLoadingPanel();
+            isTeleport = false;
         }
     }
 }

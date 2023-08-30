@@ -499,8 +499,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8adf896a72adb094aa8bb21d9d3c267a, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: b2ea766a452b94645b9cd945723fb62a, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -635,8 +635,8 @@ MonoBehaviour:
   m_text: Commodo odio aenean sed adipiscing. Sit amet facilisis magna etiam tempor
     orci eu lobortis !
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 505e4d34a7db1bc46a5d7d15af2a29e2, type: 2}
-  m_sharedMaterial: {fileID: 1653631458307283989, guid: 505e4d34a7db1bc46a5d7d15af2a29e2,
+  m_fontAsset: {fileID: 11400000, guid: e4fe0450e359dbc4db97ca8609d86a21, type: 2}
+  m_sharedMaterial: {fileID: 2269793554123077917, guid: e4fe0450e359dbc4db97ca8609d86a21,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

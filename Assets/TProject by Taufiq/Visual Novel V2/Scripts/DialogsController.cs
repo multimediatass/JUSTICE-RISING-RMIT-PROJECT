@@ -244,7 +244,7 @@ namespace Tproject.VisualNovelV2
             if (GOMod.RemoveGOChildren(contentParent)) pannelUI.SetActive(false);
             SetUpPlayerOpt(DialogScripts.PlayerOpportunity);
 
-            LevelManager.instance.ChangeGameState(LevelManager.GameState.Play);
+            // LevelManager.instance.ChangeGameState(LevelManager.GameState.Play);
 
             AudioManager.Instance.StopSFX();
 
