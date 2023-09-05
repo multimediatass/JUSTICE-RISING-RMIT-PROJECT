@@ -3935,10 +3935,6 @@ GameObject:
   - component: {fileID: 4006170671592924220}
   - component: {fileID: 7045890610572436589}
   - component: {fileID: 630324210268506664}
-  - component: {fileID: 4020291326591362673}
-  - component: {fileID: 5559375378953514677}
-  - component: {fileID: 3113194431986540206}
-  - component: {fileID: 1217802527300805213}
   m_Layer: 0
   m_Name: SM_Props_Interior_House_Room_Shelf_Decorative_02 (3)
   m_TagString: Untagged
@@ -4012,90 +4008,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4020291326591362673
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4366833055072855655}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.36860025, y: 1.4699998, z: 0.30000007}
-  m_Center: {x: 0.5156999, y: 0.7349999, z: 0.15}
---- !u!65 &5559375378953514677
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4366833055072855655}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.35401636, y: 1.1236302, z: 0.30000007}
-  m_Center: {x: 0.1583927, y: 0.5618151, z: 0.15}
---- !u!65 &3113194431986540206
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4366833055072855655}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.3503701, y: 0.7626771, z: 0.30000007}
-  m_Center: {x: -0.1897997, y: 0.38133854, z: 0.15}
---- !u!65 &1217802527300805213
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4366833055072855655}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.35037005, y: 0.4126618, z: 0.30000007}
-  m_Center: {x: -0.53252286, y: 0.2063309, z: 0.15}
 --- !u!1 &4644660908913659748
 GameObject:
   m_ObjectHideFlags: 0
@@ -4873,7 +4785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6674495799618749566}
   m_Layer: 0
-  m_Name: GameObject Rumah
+  m_Name: Rumah Ahli Hukum dan Property
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

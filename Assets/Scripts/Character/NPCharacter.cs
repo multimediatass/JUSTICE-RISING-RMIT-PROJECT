@@ -35,6 +35,11 @@ namespace JusticeRising
             FindPlayer();
         }
 
+        public void SetActiveNpc(bool state)
+        {
+            isTalkative = state;
+        }
+
         private void IntractiveImageAnimate()
         {
             if (intractiveImage.activeSelf == false) return;
@@ -60,7 +65,9 @@ namespace JusticeRising
                 if (checkPosition < rangeAttact)
                 {
                     // Debug.Log("Show popup Intraction");
-                    dialogHandler.ToggleInstructionPopUp(true);
+
+                    if (isTalkative && LevelManager.instance.CurrentGameState == LevelManager.GameState.Play)
+                        dialogHandler.ToggleInstructionPopUp(true);
                 }
             }
             else

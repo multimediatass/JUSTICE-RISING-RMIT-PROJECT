@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System;
 
 namespace JusticeRising
 {
@@ -155,21 +155,26 @@ namespace JusticeRising
             }
         }
 
-        public void TeleportToDestination(Transform destination)
+        public void TeleportToDestination(Transform destination, Action afterTeleFunct)
         {
-            StartCoroutine("Teleport", destination);
+            object[] arg = new object[2] { destination.position, afterTeleFunct };
+
+            StartCoroutine(nameof(Teleport), arg);
         }
 
-        IEnumerator Teleport(Transform destination)
+        IEnumerator Teleport(object[] parms)
         {
+            Action af = (Action)parms[1];
+
             LoadingManager.instance.StartLoading();
             isTeleport = true;
             yield return new WaitForSeconds(0.5f);
-            this.transform.position = destination.position;
+            this.transform.position = (Vector3)parms[0];
             yield return new WaitForSeconds(0.5f);
-            Debug.Log($"Player has been Teleport");
+            // Debug.Log($"Player has been teleport {(Vector3)parms[0]}");
             LoadingManager.instance.CloseLoadingPanel();
             isTeleport = false;
+            af.Invoke();
         }
     }
 }

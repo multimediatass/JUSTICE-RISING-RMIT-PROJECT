@@ -394,4 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35314a6daff3b1d4890ba0f18add4b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Textfield: {fileID: 976540074037355853}
+  image: {fileID: 0}
+  title: {fileID: 0}
+  description: {fileID: 0}
+  instruction: {fileID: 976540074037355853}

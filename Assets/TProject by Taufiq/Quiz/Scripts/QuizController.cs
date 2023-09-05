@@ -10,29 +10,45 @@ namespace Tproject.Quiz
     public class QuizController : MonoBehaviour
     {
         public List<MQuizContent> contensStaging;
-
         [System.Serializable]
         public struct MQuizContent
         {
             public string Question;
+            public Sprite illustrationSprite;
             public List<string> Option;
             public string CorrectAnswer;
         }
 
+        [Header("Score UI")]
+        public GameObject panelScore;
+        public TextMeshProUGUI trueResultText;
+        public TextMeshProUGUI falseResultText;
+        private int scoreTrue;
+        private int scoreFalse;
+
+
         [Header("Quiz UI")]
         public GameObject QuizPanel;
-        [SerializeField] TextMeshProUGUI questionUI;
-        [SerializeField] List<GameObject> optionBtn;
+        public GameObject validationPanel;
+        public Image imgValidationProgress;
+        public TextMeshProUGUI questionUI;
+        public Image ilustrationImage;
+        public List<GameObject> optionBtn;
 
         int _currentIndex = 0;
 
         // Handler action
-        Action quizFinishToHander;
+        Action quizFinishToHandler;
 
-        public void StartQuiz(List<MQuizContent> quizConten, Action act)
+        public bool StartQuiz(List<MQuizContent> quizConten, Action act)
         {
-            quizFinishToHander = act;
+            if (_currentIndex == quizConten.Count - 1)
+            {
+                Debug.Log($"Player has been answerd this question section");
+                return false;
+            }
 
+            quizFinishToHandler = act;
             foreach (var item in quizConten)
             {
                 contensStaging.Add(item);
@@ -40,11 +56,20 @@ namespace Tproject.Quiz
 
             QuizPanel.SetActive(true);
             SetUpQuestionAndAnswers(_currentIndex);
+
+            return true;
         }
 
         private void SetUpQuestionAndAnswers(int targetQuestion)
         {
             questionUI.text = contensStaging[targetQuestion].Question;
+
+            if (contensStaging[targetQuestion].illustrationSprite != null)
+            {
+                ilustrationImage.gameObject.SetActive(true);
+                ilustrationImage.sprite = contensStaging[targetQuestion].illustrationSprite;
+            }
+            else ilustrationImage.gameObject.SetActive(false);
 
             for (int i = 0; i < optionBtn.Count; i++)
             {
@@ -55,16 +80,43 @@ namespace Tproject.Quiz
 
         public void Answer(Button btnAnswerd)
         {
-            if (btnAnswerd.name == contensStaging[_currentIndex].CorrectAnswer)
+            StartCoroutine(nameof(CheckingAnswer), btnAnswerd);
+        }
+
+        IEnumerator CheckingAnswer(Button btnAnswerd)
+        {
+            validationPanel.SetActive(true);
+
+            bool isChecking = false;
+
+            float i = 0;
+            while (i < 1f)
             {
-                Debug.Log($"The answer is correct");
-            }
-            else
-            {
-                Debug.Log($"Sorry the answer is Worng");
+                i += Mathf.Clamp01(1f * Time.deltaTime);
+                imgValidationProgress.fillAmount = i;
+
+                if (!isChecking)
+                {
+                    if (btnAnswerd.name == contensStaging[_currentIndex].CorrectAnswer)
+                    {
+                        scoreTrue++;
+                        Debug.Log($"the answer is: true | current score {scoreTrue} / {scoreFalse}");
+                    }
+                    else
+                    {
+                        scoreFalse++;
+                        Debug.Log($"the answer is: false | current score {scoreTrue} / {scoreFalse}");
+                    }
+
+                    isChecking = true;
+                }
+
+                yield return null;
             }
 
-            if (_currentIndex < optionBtn.Count - 1)
+            validationPanel.SetActive(false);
+
+            if (_currentIndex < contensStaging.Count - 1)
             {
                 _currentIndex++;
                 SetUpQuestionAndAnswers(_currentIndex);
@@ -73,8 +125,21 @@ namespace Tproject.Quiz
             {
                 QuizPanel.SetActive(false);
                 contensStaging.Clear();
-                quizFinishToHander?.Invoke();
+                quizFinishToHandler?.Invoke();
+
+                StartCoroutine(nameof(ShowScore));
             }
+        }
+
+        IEnumerator ShowScore()
+        {
+            panelScore.SetActive(true);
+            trueResultText.text = scoreTrue.ToString();
+            falseResultText.text = scoreFalse.ToString();
+
+            yield return new WaitForSeconds(3f);
+
+            panelScore.SetActive(false);
         }
     }
 }

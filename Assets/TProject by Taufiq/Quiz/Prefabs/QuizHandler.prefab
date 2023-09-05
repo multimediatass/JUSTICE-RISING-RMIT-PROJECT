@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3034147408944714046
+--- !u!1 &5873532077603794023
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3034147408944714047}
-  - component: {fileID: 3034147408944714040}
+  - component: {fileID: 5235761887606471480}
+  - component: {fileID: 673613691304718797}
   m_Layer: 0
   m_Name: QuizHandler
   m_TagString: Untagged
@@ -17,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3034147408944714047
+--- !u!4 &5235761887606471480
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3034147408944714046}
+  m_GameObject: {fileID: 5873532077603794023}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3034147408944714040
+--- !u!114 &673613691304718797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3034147408944714046}
+  m_GameObject: {fileID: 5873532077603794023}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eaf3c94c477f0594ca65a3c7e0fc338b, type: 3}
@@ -46,22 +46,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quizController: {fileID: 0}
   mQuizContentList:
-  - Question: Siapakah bapak matalabs Indonesia?
+  - Question: In general, intellectual property rights are divided into two categories,
+      i.e.
+    illustrationSprite: {fileID: 21300000, guid: 4b02d9060dbfcce4fb0b932a8c518697,
+      type: 3}
     Option:
-    - Wardah
-    - Rickman
-    - Rio
-    CorrectAnswer: Rickman
-  - Question: Berapakah umur oca saat ini?
+    - Inheritance and trade rights
+    - Legal rights and illegal rights
+    - Copyright and copyright holders
+    - Copyright and industrial property rights
+    CorrectAnswer: Copyright and industrial property rights
+  - Question: Benefit to the licensor, i.e. acceptance of a performance contract
+      in the form of payment....
+    illustrationSprite: {fileID: 0}
     Option:
-    - 69 Tahun
-    - 11 Tahun
-    - 21 Tahun
-    CorrectAnswer: 21 Tahun
-  - Question: Apa warna identik dari Metalabs?
+    - Commission
+    - Royalti
+    - Flowers
+    - Return
+    CorrectAnswer: Royalti
+  - Question: The result of someone's idea or idea, which has value, either in concrete
+      or abstract form, is called...
+    illustrationSprite: {fileID: 21300000, guid: 4b02d9060dbfcce4fb0b932a8c518697,
+      type: 3}
     Option:
-    - Golden
-    - Merah
-    - Hitam
-    CorrectAnswer: Merah
-  isMine: 1
+    - Description
+    - Copyright
+    - Creator
+    - Creation
+    CorrectAnswer: Creation
+  playOnStart: 0
+  AfterDialogFinish:
+    m_PersistentCalls:
+      m_Calls: []

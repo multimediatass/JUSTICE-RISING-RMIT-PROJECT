@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using JusticeRising.Canvas;
 
 namespace JusticeRising
 {
@@ -10,12 +11,11 @@ namespace JusticeRising
         public static LevelManager instance;
         public enum GameState
         {
-            Pause, Play, VisualNovel, GameMenu, CutScene
+            Pause, Play, VisualNovel, CutScene
         }
 
         public GameState CurrentGameState;
 
-        public UnityEvent GamemenuState;
         public UnityEvent GamepauseState;
         public UnityEvent GameplayState;
         public UnityEvent VisualNovelState;
@@ -30,16 +30,15 @@ namespace JusticeRising
 
         private void Start()
         {
-            ChangeGameState(GameState.Play);
+            // ChangeGameState(GameState.Play);
+
+            UIManager.instance.ShowTutorial(() => ChangeGameState(GameState.Play));
         }
 
         public void ChangeGameState(GameState state)
         {
             switch (state)
             {
-                case GameState.GameMenu:
-                    GamemenuState.Invoke();
-                    break;
                 case GameState.Pause:
                     GamepauseState.Invoke();
                     break;
@@ -66,12 +65,12 @@ namespace JusticeRising
 
         public void PlayGame()
         {
-            GameplayState?.Invoke();
+            ChangeGameState(GameState.Play);
         }
 
         public void PauseGame()
         {
-            CursorMode(true);
+            ChangeGameState(GameState.Pause);
         }
     }
 }

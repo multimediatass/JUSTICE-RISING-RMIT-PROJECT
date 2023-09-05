@@ -26,7 +26,7 @@ namespace Tproject.VisualNovelV2
                 uiTemp = Instantiate(instructionPrefab, dialogsController.transform);
             else if (uiTemp != null && state == false)
             {
-                Debug.Log("destroy");
+                // Debug.Log("destroy");
                 Destroy(uiTemp);
                 uiTemp = null;
             }

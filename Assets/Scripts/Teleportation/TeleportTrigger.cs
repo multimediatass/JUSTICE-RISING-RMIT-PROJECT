@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using JusticeRising.Canvas;
+using UnityEngine.Events;
 
 namespace JusticeRising
 {
@@ -9,14 +10,24 @@ namespace JusticeRising
     {
         public Transform teleportDestination;
         public PlayerCharacter character;
-        [SerializeField] string actionName;
         GameObject popUpTemp;
+        public PopUpItem.InspectFormat inspectFormat;
+
+        public UnityEvent afterTelerport;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player") && popUpTemp == null)
             {
-                popUpTemp = UIManager.instance.ShowInstructionPopUp("[G] Get in office");
+
+                if (inspectFormat.isBuildingInspect)
+                {
+                    popUpTemp = UIManager.instance.ShowBuildingInspector(inspectFormat);
+                }
+                else
+                {
+                    popUpTemp = UIManager.instance.ShowInstructionPopUp(inspectFormat.instruction);
+                }
             }
         }
 
@@ -35,11 +46,23 @@ namespace JusticeRising
             {
                 if (Input.GetKeyDown(KeyCode.G))
                 {
-                    character.TeleportToDestination(teleportDestination);
+                    character.TeleportToDestination(teleportDestination, () => afterTelerport.Invoke());
                     Destroy(popUpTemp);
                     popUpTemp = null;
                 }
             }
+        }
+
+        public void CheckGameFinish()
+        {
+
+            LevelManager.instance.ChangeGameState(LevelManager.GameState.Pause);
+            PopUpItem.InspectFormat msg = new PopUpItem.InspectFormat();
+            msg.title = "CAN'T WAIT TO SEE YOU!";
+            msg.description = "Please be patient, we're still on our development";
+            msg.instruction = "[G] Back to Main Menu";
+
+            popUpTemp = UIManager.instance.ShowPopUpModal(msg, () => LoadingManager.instance.ChangeScene("GameMenu"));
         }
     }
 }

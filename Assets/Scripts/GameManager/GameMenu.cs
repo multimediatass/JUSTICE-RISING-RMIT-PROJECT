@@ -8,6 +8,11 @@ namespace JusticeRising
     {
         public string genderSelected;
 
+        private void Start()
+        {
+            LoadingManager.instance.CloseLoadingPanel();
+        }
+
         public void SelectGenderType(string type)
         {
             genderSelected = type;

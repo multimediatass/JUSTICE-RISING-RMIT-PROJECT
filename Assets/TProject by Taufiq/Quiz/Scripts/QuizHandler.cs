@@ -8,21 +8,22 @@ namespace Tproject.Quiz
 {
     public class QuizHandler : MonoBehaviour
     {
-        [SerializeField] QuizController quizController;
+        public QuizController quizController;
         public List<QuizController.MQuizContent> mQuizContentList;
-        // [SerializeField] bool isMine = false;
 
+        [SerializeField] bool playOnStart = false;
         public UnityEvent AfterDialogFinish;
 
-        private void Update()
+        private void Start()
         {
-            // if (Input.GetKeyDown(KeyCode.G) && isMine) ShowQuiz();
+            if (playOnStart) ShowQuiz();
         }
 
         public void ShowQuiz()
         {
-            quizController.StartQuiz(mQuizContentList, QuizIsDone);
-            // isMine = false;
+            bool checkquestion = quizController.StartQuiz(mQuizContentList, QuizIsDone);
+
+            if (!checkquestion) AfterDialogFinish?.Invoke();
         }
 
         public void QuizIsDone()

@@ -12,6 +12,7 @@ namespace JusticeRising.Canvas
         // Update is called once per frame
         void Update()
         {
+            // transform.rotation = Quaternion.LookRotation(transform.position - _targetCam.transform.position);
             transform.rotation = Quaternion.LookRotation(transform.position - _targetCam.transform.position);
         }
     }
