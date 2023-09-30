@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JusticeRising.GameData;
 
 namespace JusticeRising
 {
@@ -20,11 +21,11 @@ namespace JusticeRising
 
         public void SelectCharacter()
         {
-            PlayerDataReference pd = new PlayerDataReference();
+            PlayerData pd = new PlayerData();
             pd.playerName = "Taufiq";
             pd.selectedCharacter = genderSelected;
 
-            GameManager.instance.currentPlayerData.dataMap = pd;
+            GameManager.instance.currentPlayerData = pd;
 
             LoadingManager.instance.ChangeScene("GamePlay");
         }

@@ -5,6 +5,7 @@ using System;
 
 namespace JusticeRising.Canvas
 {
+
     public class UIManager : MonoBehaviour
     {
         public static UIManager instance;

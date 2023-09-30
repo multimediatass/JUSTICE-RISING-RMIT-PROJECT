@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using Tproject.Tools;
-
+using UnityEngine.UI;
 
 namespace Tproject.VisualNovelV2
 {
@@ -36,6 +36,7 @@ namespace Tproject.VisualNovelV2
                 [TextArea]
                 public string Answer;
                 public AudioClip SFX;
+                public Sprite npcImage;
             }
         }
 
