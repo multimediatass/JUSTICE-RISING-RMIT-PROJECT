@@ -61,18 +61,22 @@ public class RestAPI : MonoBehaviour
             case UnityWebRequest.Result.InProgress:
                 break;
             case UnityWebRequest.Result.Success:
-                string response = webRequest.downloadHandler.text;
-                JObject dataScript = JObject.Parse(response);
-                // resultText.text = dataScript.ToString();
-                Debug.Log(dataScript);
+                string responseSuccess = webRequest.downloadHandler.text;
+                JObject dataSuccess = JObject.Parse(responseSuccess);
+
+                // IList<Msg> returnData = dataSuccess.ToObject<IList<Msg>>();
+
+                Debug.Log(dataSuccess);
                 break;
             case UnityWebRequest.Result.ProtocolError:
-                string responseerr = webRequest.downloadHandler.text;
-                JObject dataScripterr = JObject.Parse(responseerr);
-                // resultText.text = dataScript.ToString();
-                Debug.LogError(dataScripterr);
+                string responseProtocolError = webRequest.downloadHandler.text;
+                JObject dataResponseProtocolError = JObject.Parse(responseProtocolError);
+                Debug.LogError(dataResponseProtocolError);
                 break;
             case UnityWebRequest.Result.DataProcessingError:
+                string responseDataProcessingError = webRequest.downloadHandler.text;
+                JObject dataDataProcessingError = JObject.Parse(responseDataProcessingError);
+                Debug.LogError(dataDataProcessingError);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -90,4 +94,10 @@ public class RowData
     {
         baseData = _baseData;
     }
+}
+
+public class Msg
+{
+    string status { get; set; }
+    string message { get; set; }
 }

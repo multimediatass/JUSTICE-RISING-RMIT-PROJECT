@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636ff13570ed5d34bb9117a6116a2701, type: 3}
   m_Name: New Player Data
   m_EditorClassIdentifier: 
-  playerName: 
-  selectedCharacter: 
-  npcCards: []
+  playerName: gfdsgfd
+  selectedCharacter: fdgfdgfd
+  npcResumeActivity:
+  - {fileID: 11400000, guid: 68783f571fde92d44a2076eb1395b0ff, type: 2}
+  - {fileID: 11400000, guid: 70b1c091a848bc149866f81684067095, type: 2}
