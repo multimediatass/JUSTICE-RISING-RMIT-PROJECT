@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636ff13570ed5d34bb9117a6116a2701, type: 3}
   m_Name: New Player Data
   m_EditorClassIdentifier: 
-  playerName: gfdsgfd
-  selectedCharacter: fdgfdgfd
+  playerName: 
+  selectedCharacter: 
+  playerToken: 7ec8bc8338512561876d98a7e207cf6aeafe75e9f4be30b1fe473b1f6edfe00b
   npcResumeActivity:
   - {fileID: 11400000, guid: 68783f571fde92d44a2076eb1395b0ff, type: 2}
   - {fileID: 11400000, guid: 70b1c091a848bc149866f81684067095, type: 2}
+  - {fileID: 11400000, guid: 6927f5081ad7a1840810cf47087cfa79, type: 2}
+  - {fileID: 11400000, guid: 67e23c2629279b0498910dce06749287, type: 2}
+  - {fileID: 11400000, guid: 2b81af152afe3c34fbf75d48b42a0833, type: 2}
+  - {fileID: 11400000, guid: 4b04a1974d6bf3342b4c60b6f00ed7da, type: 2}

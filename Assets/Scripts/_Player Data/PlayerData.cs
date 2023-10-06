@@ -9,6 +9,7 @@ namespace JusticeRising.GameData
     {
         public string playerName;
         public string selectedCharacter;
+        public string playerToken;
         public List<NpcCard> npcResumeActivity;
     }
 }

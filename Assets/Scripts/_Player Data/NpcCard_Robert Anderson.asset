@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e157dbeeb1b9b5f4281e076eeb5ebe2c, type: 3}
   m_Name: NpcCard_Robert Anderson
   m_EditorClassIdentifier: 
-  npcName: Robert Anderson
+  npcName: Robert Anderson,S.J.D.
   npcRole: Saksi Ahli Hukum Properti Intelektual
   npcImages:
   - {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}

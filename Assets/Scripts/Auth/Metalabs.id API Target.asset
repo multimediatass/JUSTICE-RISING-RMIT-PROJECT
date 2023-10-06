@@ -18,3 +18,7 @@ MonoBehaviour:
     targetEndpoint: login
   - title: register
     targetEndpoint: register
+  - title: playerProgress
+    targetEndpoint: save_progress
+  - title: finalDecision
+    targetEndpoint: 

@@ -16,15 +16,16 @@ public class RestAPI : MonoBehaviour
     string tempDataJson;
 
     #region RestAPI
-    public void PostAction(Dictionary<string, string> _data, string _endpointTitle)
+    public void PostAction(Dictionary<string, string> _data, string _endpointTitle, Action<JObject> success, Action<JObject> err, Action<JObject> dataErr)
     {
         endpointTitle = _endpointTitle;
         var jsonDataToSend = JsonConvert.SerializeObject(_data);
 
         tempDataJson = jsonDataToSend;
-        // Debug.Log(tempDataJson);
 
-        StartCoroutine(nameof(Post));
+        object[] callbacks = new object[3] { success, err, dataErr };
+
+        StartCoroutine(nameof(Post), callbacks);
     }
 
     IEnumerator Get()
@@ -44,8 +45,12 @@ public class RestAPI : MonoBehaviour
         }
     }
 
-    IEnumerator Post()
+    IEnumerator Post(object[] callback)
     {
+        Action<JObject> successCallback = (Action<JObject>)callback[0];
+        Action<JObject> errCallback = (Action<JObject>)callback[1];
+        Action<JObject> dataErrCallback = (Action<JObject>)callback[2];
+
         string uri = targetAPIConfig.url + targetAPIConfig.GetEndpoint(endpointTitle);
         Debug.Log($"Start post request to: {uri}");
 
@@ -64,40 +69,28 @@ public class RestAPI : MonoBehaviour
                 string responseSuccess = webRequest.downloadHandler.text;
                 JObject dataSuccess = JObject.Parse(responseSuccess);
 
-                // IList<Msg> returnData = dataSuccess.ToObject<IList<Msg>>();
+                // RootLogin returnData = dataSuccess.ToObject<RootLogin>();
+                // Debug.Log($"{returnData.message}. player token: {returnData.token}");
 
-                Debug.Log(dataSuccess);
+                successCallback?.Invoke(dataSuccess);
                 break;
             case UnityWebRequest.Result.ProtocolError:
                 string responseProtocolError = webRequest.downloadHandler.text;
                 JObject dataResponseProtocolError = JObject.Parse(responseProtocolError);
-                Debug.LogError(dataResponseProtocolError);
+                // Debug.LogError(dataResponseProtocolError);
+
+                errCallback?.Invoke(dataResponseProtocolError);
                 break;
             case UnityWebRequest.Result.DataProcessingError:
                 string responseDataProcessingError = webRequest.downloadHandler.text;
                 JObject dataDataProcessingError = JObject.Parse(responseDataProcessingError);
-                Debug.LogError(dataDataProcessingError);
+                // Debug.LogError(dataDataProcessingError);
+
+                dataErrCallback?.Invoke(dataDataProcessingError);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
     }
     #endregion
-}
-
-[Serializable]
-public class RowData
-{
-    public Dictionary<string, string> baseData;
-
-    public RowData(Dictionary<string, string> _baseData)
-    {
-        baseData = _baseData;
-    }
-}
-
-public class Msg
-{
-    string status { get; set; }
-    string message { get; set; }
 }

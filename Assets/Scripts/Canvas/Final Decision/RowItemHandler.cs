@@ -13,7 +13,7 @@ namespace JusticeRising.Canvas
         public Dictionary<string, object> rowData = new Dictionary<string, object>();
         public Image Image;
         public List<TextField> textFields;
-        public bool isButton;
+        public bool isButton, destroyOnClick;
         private Action onClickAction;
 
         [Serializable]
@@ -55,6 +55,8 @@ namespace JusticeRising.Canvas
             if (!isButton) return;
 
             onClickAction?.Invoke();
+
+            // if (destroyOnClick) Destroy(this.gameObject);
         }
     }
 

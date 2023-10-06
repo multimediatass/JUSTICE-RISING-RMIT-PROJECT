@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using JusticeRising.GameData;
 using System;
+using UnityEditor;
 
 namespace JusticeRising.Canvas
 {
@@ -10,16 +13,14 @@ namespace JusticeRising.Canvas
     {
         public static FinalDecisionController Instance;
         public PlayerData playerData;
-        public List<NpcCard> npcList;
+        public List<NpcCard> witnessList;
 
         [Header("UI Components")]
         public GameObject Panel;
         public Transform contentParent;
         public RowItemHandler rowPrefab;
-
-        // [Header("UI Components")]
-        // public List<
-
+        public Button btnSubmitDecision;
+        public List<SelectedCard> UI_selectedCard;
 
         private void Awake()
         {
@@ -30,7 +31,7 @@ namespace JusticeRising.Canvas
         {
             foreach (var item in playerData.npcResumeActivity)
             {
-                npcList.Add(item);
+                witnessList.Add(item);
             }
 
             StartCoroutine(PrintRowItem());
@@ -38,7 +39,7 @@ namespace JusticeRising.Canvas
 
         private IEnumerator PrintRowItem()
         {
-            yield return new WaitUntil(() => npcList.Count == playerData.npcResumeActivity.Count);
+            // yield return new WaitUntil(() => witnessList.Count == playerData.npcResumeActivity.Count);
             Panel.SetActive(true);
 
             for (int child = 0; child < contentParent.childCount; child++)
@@ -46,31 +47,34 @@ namespace JusticeRising.Canvas
                 Destroy(contentParent.transform.GetChild(child).gameObject);
             }
 
+            var submitState = UI_selectedCard.Exists((x) => x.isAdded == false);
+            btnSubmitDecision.interactable = !submitState;
+
             yield return new WaitUntil(() => contentParent.childCount == 0);
 
             int i = 0;
-            while (i < npcList.Count + 1)
+            while (i < witnessList.Count + 1)
             {
-                if (i == npcList.Count)
+                if (i == witnessList.Count)
                 {
                     // bug can't scroll in awake
                     var rowTemp = Instantiate(rowPrefab, contentParent);
                     StartCoroutine(DestroyTemp(rowTemp.gameObject));
                 }
-                else if (i < npcList.Count)
+                else if (i < witnessList.Count)
                 {
                     var item = Instantiate(rowPrefab, contentParent);
 
                     int tempIndex = i;
                     // Debug.Log(tempIndex);
-                    Action clickAction = () => AddNpcSelection(npcList[tempIndex]);
+                    Action clickAction = () => AddWitnessSelection(witnessList[tempIndex]);
 
                     Dictionary<string, object> newItem = new Dictionary<string, object>
                     {
-                        {"image", npcList[i].npcImages[2]},
-                        {"npcName", npcList[i].npcName},
-                        {"npcRole", npcList[i].npcRole},
-                        {"npcChard", npcList[i]},
+                        {"image", witnessList[i].npcImages[2]},
+                        {"npcName", witnessList[i].npcName},
+                        {"npcRole", witnessList[i].npcRole},
+                        {"npcChard", witnessList[i]},
                         {"onClickAction", clickAction}
                     };
 
@@ -89,9 +93,28 @@ namespace JusticeRising.Canvas
             // Debug.Log($"destroy {go}");
         }
 
-        public void AddNpcSelection(NpcCard npc)
+        public void AddWitnessSelection(NpcCard npc)
         {
-            Debug.Log($"Selected npc name: {npc.npcName}, Role {npc.npcRole}");
+            var newItem = UI_selectedCard.Find((x) => x.isAdded == false);
+
+            if (newItem)
+            {
+                witnessList.Remove(npc);
+
+                newItem.SetUpSelectedCard(npc);
+                // Debug.Log($"Selected npc name: {npc.npcName}, Role {npc.npcRole}");
+                StartCoroutine(PrintRowItem());
+            }
+            else
+            {
+                Debug.LogWarning($"you only has 3");
+            }
+        }
+
+        public void AddUpdateWitnessList(NpcCard npc)
+        {
+            witnessList.Add(npc);
+            StartCoroutine(PrintRowItem());
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e157dbeeb1b9b5f4281e076eeb5ebe2c, type: 3}
   m_Name: NpcCard_Liam Smith
   m_EditorClassIdentifier: 
-  npcName: Liam Smith
+  npcName: Liam Smith,MBA
   npcRole: Client
   npcImages:
   - {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}

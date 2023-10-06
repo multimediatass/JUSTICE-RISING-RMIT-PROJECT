@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Newtonsoft.Json.Linq;
+using JusticeRising.GameData;
 
-public class Authentication : MonoBehaviour
+public class Authentication : RestAPIHandler
 {
-    public RestAPI restAPI;
+    public PlayerData playerData;
+    public bool isLoginSection = true;
 
     [Header("Sign In Components")]
-    public TMP_InputField signInEmail;
+    public TMP_InputField signInUsername;
     public TMP_InputField signInPassword;
 
     [Header("Sign In Components")]
@@ -20,6 +23,9 @@ public class Authentication : MonoBehaviour
     public TMP_InputField signUpPasswordComfirmation;
     public TMP_InputField signUpPhone;
     public string signUpGender;
+
+    public GameObject successPopUp;
+    public GameObject errPopUp;
 
     public void OnClickRegister()
     {
@@ -49,19 +55,50 @@ public class Authentication : MonoBehaviour
         };
 
         RowData dataObject = new RowData(newPlayer);
-        restAPI.PostAction(dataObject.baseData, "register");
+        restAPI.PostAction(dataObject.baseData, "register", OnSuccessResult, OnProtocolErr, DataProcessingErr);
+    }
+
+    public void OnClickLogin()
+    {
+        if (string.IsNullOrEmpty(signInUsername.text) || string.IsNullOrEmpty(signInPassword.text))
+        {
+            Debug.LogWarning("please fill the blank");
+            return;
+        }
+
+        List<string> c = new List<string>()
+        {
+            signInUsername.text, signInPassword.text
+        };
+
+        Dictionary<string, string> newPlayer = new Dictionary<string, string>
+            {
+                {"username", signInUsername.text},
+                {"password", signInPassword.text}
+            };
+
+        RowData dataObject = new RowData(newPlayer);
+        restAPI.PostAction(dataObject.baseData, "login", OnSuccessResult, OnProtocolErr, DataProcessingErr);
     }
 
     private void Update()
     {
-        if (!string.IsNullOrEmpty(signUpPassword.text))
+        if (!isLoginSection)
         {
-            signUpPasswordComfirmation.interactable = true;
+            if (!string.IsNullOrEmpty(signUpPassword.text))
+            {
+                signUpPasswordComfirmation.interactable = true;
+            }
+            else
+            {
+                signUpPasswordComfirmation.interactable = false;
+                signUpPasswordComfirmation.text = "";
+            }
         }
         else
         {
-            signUpPasswordComfirmation.interactable = false;
-            signUpPasswordComfirmation.text = "";
+            successPopUp.SetActive(false);
+            errPopUp.SetActive(false);
         }
     }
 
@@ -71,46 +108,71 @@ public class Authentication : MonoBehaviour
         Debug.Log($"player is {str}");
     }
 
-    public void OnClickLogin()
+    public void OnClickChangePanel(bool state)
     {
-        if (string.IsNullOrEmpty(signInEmail.text) || string.IsNullOrEmpty(signInPassword.text))
-        {
-            Debug.LogWarning("please fill the blank");
-            return;
-        }
-
-        List<string> c = new List<string>()
-        {
-            signInEmail.text, signInPassword.text
-        };
-
-        Dictionary<string, string> newPlayer = new Dictionary<string, string>
-            {
-                {"username", signInEmail.text},
-                {"password", signInPassword.text}
-            };
-
-        RowData dataObject = new RowData(newPlayer);
-        restAPI.PostAction(dataObject.baseData, "login");
+        isLoginSection = state;
     }
 
-    private bool OnInputFieldValdation(List<string> valCheck)
+    public override void OnSuccessResult(JObject result)
     {
-        var state = false;
+        if (isLoginSection)
+        {
+            RootLogin returnData = result.ToObject<RootLogin>();
+            Debug.Log($"{returnData.message}. player token: {returnData.token}");
 
-        if (valCheck.Contains(" "))
-        {
-            state = false;
-        }
-        else if (valCheck.Contains(""))
-        {
-            state = false;
+            playerData.playerToken = returnData.token;
         }
         else
         {
-            state = true;
-        }
+            successPopUp.SetActive(true);
+            errPopUp.SetActive(false);
 
-        return state;
+            RootRegister returnData = result.ToObject<RootRegister>();
+            Debug.Log($"Message: {returnData.message}.");
+        }
+    }
+
+    public override void OnProtocolErr(JObject result)
+    {
+        if (isLoginSection)
+        {
+            RootLogin returnData = result.ToObject<RootLogin>();
+            Debug.LogError($"{returnData.message}");
+        }
+        else
+        {
+            errPopUp.SetActive(true);
+            successPopUp.SetActive(false);
+
+            RootRegister returnData = result.ToObject<RootRegister>();
+            Debug.LogError($"Message: {returnData.message}.");
+        }
+    }
+
+    public override void DataProcessingErr(JObject result)
+    {
+        if (isLoginSection)
+        {
+            RootLogin returnData = result.ToObject<RootLogin>();
+            Debug.LogError($"{returnData.message}");
+        }
+        else
+        {
+            RootRegister returnData = result.ToObject<RootRegister>();
+            Debug.LogError($"Message: {returnData.message}.");
+        }
+    }
+
+    public class RootRegister
+    {
+        public string status { get; set; }
+        public string message { get; set; }
+    }
+
+    public class RootLogin
+    {
+        public string status { get; set; }
+        public string message { get; set; }
+        public string token { get; set; }
     }
 }

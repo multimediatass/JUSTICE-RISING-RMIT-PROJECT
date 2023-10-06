@@ -898,3 +898,4 @@ MonoBehaviour:
   - textName: npcRole
     targetPlace: {fileID: 7908950318828862019}
   isButton: 1
+  destroyOnClick: 1
