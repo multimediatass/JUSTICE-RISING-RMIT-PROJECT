@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 8417707397222684258}
   - component: {fileID: 2405476069287998400}
   m_Layer: 0
-  m_Name: Resume List
+  m_Name: Resume Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

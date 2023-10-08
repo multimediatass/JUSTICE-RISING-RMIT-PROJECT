@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using JusticeRising.GameData;
 using System;
-using UnityEditor;
+using UnityEngine.Events;
 
 namespace JusticeRising.Canvas
 {
     public class FinalDecisionController : MonoBehaviour
     {
         public static FinalDecisionController Instance;
+
         public PlayerData playerData;
         public List<NpcCard> witnessList;
 
@@ -21,6 +21,9 @@ namespace JusticeRising.Canvas
         public RowItemHandler rowPrefab;
         public Button btnSubmitDecision;
         public List<SelectedCard> UI_selectedCard;
+
+        public UnityEvent StartOpenFinalDecision;
+        public UnityEvent AfterCloseFinalDecision;
 
         private void Awake()
         {
@@ -34,7 +37,7 @@ namespace JusticeRising.Canvas
                 witnessList.Add(item);
             }
 
-            StartCoroutine(PrintRowItem());
+            OnOpenFinalDecision();
         }
 
         private IEnumerator PrintRowItem()
@@ -114,6 +117,18 @@ namespace JusticeRising.Canvas
         public void AddUpdateWitnessList(NpcCard npc)
         {
             witnessList.Add(npc);
+            StartCoroutine(PrintRowItem());
+        }
+
+        public void OnCloseFinalDecision()
+        {
+            AfterCloseFinalDecision?.Invoke();
+        }
+
+        public void OnOpenFinalDecision()
+        {
+            StartOpenFinalDecision?.Invoke();
+
             StartCoroutine(PrintRowItem());
         }
     }

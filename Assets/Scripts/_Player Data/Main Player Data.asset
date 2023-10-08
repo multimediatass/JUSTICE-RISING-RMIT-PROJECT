@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 636ff13570ed5d34bb9117a6116a2701, type: 3}
-  m_Name: New Player Data
+  m_Name: Main Player Data
   m_EditorClassIdentifier: 
   playerName: 
   selectedCharacter: 

@@ -10,7 +10,10 @@ namespace JusticeRising.Canvas
     {
         public static ResumeController Instance;
 
-        public List<NpcCard> npcCardResume;
+        public PlayerData playerData;
+        public List<NpcCard> resumeList;
+
+        [Header("UI Components")]
         public RowWitnessItem rowPrefab;
         public GameObject resumePanel;
         public Transform contentParent;
@@ -23,9 +26,19 @@ namespace JusticeRising.Canvas
             if (Instance == null) Instance = this;
         }
 
+        private void Start()
+        {
+            foreach (var item in playerData.npcResumeActivity)
+            {
+                resumeList.Add(item);
+            }
+
+            OnOpenResume();
+        }
+
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.R) && !resumePanel.activeSelf) OnOpenResume();
+            // if (Input.GetKeyDown(KeyCode.R) && !resumePanel.activeSelf) OnOpenResume();
         }
 
         private IEnumerator PrintRowItem()
@@ -40,9 +53,9 @@ namespace JusticeRising.Canvas
             yield return new WaitUntil(() => contentParent.childCount == 0);
 
             int i = 0;
-            while (i < npcCardResume.Count + 1)
+            while (i < resumeList.Count + 1)
             {
-                if (i == npcCardResume.Count)
+                if (i == resumeList.Count)
                 {
                     // bug can't scroll in awake
                     var rowTemp = Instantiate(rowPrefab, contentParent);
@@ -52,10 +65,10 @@ namespace JusticeRising.Canvas
                 else
                 {
                     var item = Instantiate(rowPrefab, contentParent);
-                    item.npcImage.sprite = npcCardResume[i].npcImages[2];
-                    item.npcName.text = npcCardResume[i].npcName;
-                    item.npcRole.text = npcCardResume[i].npcRole;
-                    item.npcCardResume = npcCardResume[i];
+                    item.npcImage.sprite = resumeList[i].npcImages[2];
+                    item.npcName.text = resumeList[i].npcName;
+                    item.npcRole.text = resumeList[i].npcRole;
+                    item.npcCardResume = resumeList[i];
                     item.detailResumeParent = this.transform;
                 }
 
