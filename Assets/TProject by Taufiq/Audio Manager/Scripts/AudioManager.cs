@@ -19,7 +19,7 @@ namespace Tproject.AudioManager
             if (Instance == null)
             {
                 Instance = this;
-                // DontDestroyOnLoad(gameObject);
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -28,6 +28,11 @@ namespace Tproject.AudioManager
         }
 
         private void Start()
+        {
+            PlayMusic("Theme");
+        }
+
+        public void PlayDefaultBacksound()
         {
             PlayMusic("Theme");
         }
@@ -58,6 +63,17 @@ namespace Tproject.AudioManager
             {
                 sfxSource.PlayOneShot(s.clip);
             }
+        }
+
+        public void PlayBacksound(AudioClip clip)
+        {
+            musicSource.clip = clip;
+            musicSource.Play();
+        }
+
+        public void DeleteBacksound()
+        {
+            musicSource.clip = null;
         }
 
         public void PlaySFX(AudioClip clip)

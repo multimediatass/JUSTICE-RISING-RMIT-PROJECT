@@ -11,7 +11,6 @@ namespace Tproject.VisualNovelV2
     // Creator Instagram: @shantaufiq
 
     using Tproject.AudioManager;
-    using JusticeRising;
 
     public class DialogsController : MonoBehaviour
     {
