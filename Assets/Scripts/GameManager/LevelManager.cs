@@ -32,7 +32,7 @@ namespace JusticeRising
         {
             // ChangeGameState(GameState.Play);
 
-            UIManager.instance.ShowTutorial(() => ChangeGameState(GameState.Play));
+            // UIManager.instance.ShowTutorial(() => ChangeGameState(GameState.Play));
         }
 
         public void ChangeGameState(GameState state)
