@@ -21,11 +21,8 @@ namespace JusticeRising
 
         public void SelectCharacter()
         {
-            PlayerData pd = new PlayerData();
-            pd.playerName = "Taufiq";
-            pd.selectedCharacter = genderSelected;
-
-            GameManager.instance.currentPlayerData = pd;
+            GameManager.instance.currentPlayerData.playerName = "Taufiq";
+            GameManager.instance.currentPlayerData.selectedCharacter = genderSelected;
 
             LoadingManager.instance.ChangeScene("GamePlay");
         }

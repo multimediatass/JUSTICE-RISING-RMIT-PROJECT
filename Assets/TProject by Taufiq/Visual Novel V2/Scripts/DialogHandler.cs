@@ -17,21 +17,24 @@ namespace Tproject.VisualNovelV2
         public NpcCard npcCard;
         // public DialogsController.DialogScript myDialogScript;
         [SerializeField] GameObject instructionPrefab;
-        public UnityEvent AfterDialogAction;
 
-        bool isVisVel = false;
+        [Space]
+        public UnityEvent OnValidOpportunity;
+        public UnityEvent OnInvalidOpportunity;
+
+        bool isPlaying = false;
 
         GameObject uiTemp = null;
 
         private void Start()
         {
             if (isPlayOnStart)
-                dialogsController.StartDialog(npcCard, OnAfterDialogAction);
+                dialogsController.StartDialog(npcCard, ValidEvent, InvalidEvent);
         }
 
         public void ToggleInstructionPopUp(bool state)
         {
-            if (state == true && uiTemp == null && isVisVel == false)
+            if (state == true && uiTemp == null && isPlaying == false)
                 uiTemp = Instantiate(instructionPrefab, dialogsController.transform);
             else if (uiTemp != null && state == false)
             {
@@ -44,32 +47,34 @@ namespace Tproject.VisualNovelV2
         private void Update()
         {
             if (uiTemp != null)
-                if (Input.GetKeyDown(KeyCode.G)) Dialog();
+                if (InputManager.instance.inputAction.PlayerControls.Intaction.IsPressed()) Dialog();
         }
 
         private void Dialog()
         {
-            dialogsController.StartDialog(npcCard, OnAfterDialogAction);
-            // dialogsController.StartDialog(myDialogScript, UpPlayerOpt);
+            dialogsController.StartDialog(npcCard, ValidEvent, InvalidEvent);
             ToggleInstructionPopUp(false);
 
-            isVisVel = true;
+            isPlaying = true;
 
             LevelManager.instance.ChangeGameState(LevelManager.GameState.VisualNovel);
         }
 
-        public void UpPlayerOpt(int opt)
+        public void ValidEvent()
         {
-            npcCard.DialogScripts.PlayerOpportunity = opt;
-            isVisVel = false;
-
-            AfterDialogAction?.Invoke();
+            isPlaying = false;
+            OnValidOpportunity?.Invoke();
         }
 
-        public void OnAfterDialogAction()
+        public void InvalidEvent()
         {
-            isVisVel = false;
-            AfterDialogAction?.Invoke();
+            isPlaying = false;
+            OnInvalidOpportunity?.Invoke();
+        }
+
+        public void SendCardToGameManager()
+        {
+            GameManager.instance.AddNpcCard(npcCard);
         }
     }
 }

@@ -1866,6 +1866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerData: {fileID: 11400000, guid: bfd811cd438faf64ab891f7e992faf7b, type: 2}
+  card: {fileID: 11400000, guid: 70b1c091a848bc149866f81684067095, type: 2}
 --- !u!4 &743609879
 Transform:
   m_ObjectHideFlags: 0

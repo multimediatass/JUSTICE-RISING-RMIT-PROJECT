@@ -23,9 +23,11 @@ namespace JusticeRising
             }
         }
 
-        private void Start()
+        public void AddNpcCard(NpcCard newCard)
         {
+            currentPlayerData.npcResumeActivity.Add(newCard);
 
+            Debug.Log(newCard.npcName);
         }
     }
 }

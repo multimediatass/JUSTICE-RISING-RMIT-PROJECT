@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using JusticeRising.GameData;
 
 namespace Tproject.Quiz
 {
     public class QuizController : MonoBehaviour
     {
+        public NpcCard npcCard;
         public List<MQuizContent> contensStaging;
         [System.Serializable]
         public struct MQuizContent
@@ -17,6 +19,16 @@ namespace Tproject.Quiz
             public Sprite illustrationSprite;
             public List<string> Option;
             public string CorrectAnswer;
+
+            public MQuizContent Clone()
+            {
+                MQuizContent copy = new MQuizContent();
+                copy.Question = this.Question;
+                copy.illustrationSprite = this.illustrationSprite;
+                copy.Option = new List<string>(this.Option);
+                copy.CorrectAnswer = this.CorrectAnswer;
+                return copy;
+            }
         }
 
         [Header("Score UI")]
@@ -40,19 +52,19 @@ namespace Tproject.Quiz
         // Handler action
         Action quizFinishToHandler;
 
-        public bool StartQuiz(List<MQuizContent> quizConten, Action act)
+        public bool StartQuiz(NpcCard card, Action act)
         {
-            if (_currentIndex == quizConten.Count - 1)
+            npcCard = card;
+
+            if (_currentIndex == card.QuizContents.Count)
             {
                 Debug.Log($"Player has been answerd this question section");
                 return false;
             }
 
             quizFinishToHandler = act;
-            foreach (var item in quizConten)
-            {
-                contensStaging.Add(item);
-            }
+
+            contensStaging = card.QuizContents.Clone();
 
             QuizPanel.SetActive(true);
             SetUpQuestionAndAnswers(_currentIndex);
@@ -89,6 +101,9 @@ namespace Tproject.Quiz
 
             bool isChecking = false;
 
+            NpcCard.PlayerAnswerData playerAnswerData = new NpcCard.PlayerAnswerData(contensStaging[_currentIndex].Question, btnAnswerd.name);
+            npcCard.QuizAnswerd.Add(playerAnswerData);
+
             float i = 0;
             while (i < 1f)
             {
@@ -116,9 +131,10 @@ namespace Tproject.Quiz
 
             validationPanel.SetActive(false);
 
-            if (_currentIndex < contensStaging.Count - 1)
+            if (_currentIndex < contensStaging.Count) _currentIndex++;
+
+            if (_currentIndex < contensStaging.Count)
             {
-                _currentIndex++;
                 SetUpQuestionAndAnswers(_currentIndex);
             }
             else
@@ -140,6 +156,19 @@ namespace Tproject.Quiz
             yield return new WaitForSeconds(3f);
 
             panelScore.SetActive(false);
+        }
+    }
+
+    public static class ExtensionMethods
+    {
+        public static List<QuizController.MQuizContent> Clone(this List<QuizController.MQuizContent> listToClone)
+        {
+            List<QuizController.MQuizContent> clonedList = new List<QuizController.MQuizContent>();
+            foreach (var item in listToClone)
+            {
+                clonedList.Add(item.Clone());
+            }
+            return clonedList;
         }
     }
 }

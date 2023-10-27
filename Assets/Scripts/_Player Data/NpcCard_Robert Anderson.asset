@@ -56,3 +56,34 @@ MonoBehaviour:
       SFX: {fileID: 0}
       npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
   ConversationSelected: []
+  QuizContents:
+  - Question: In general, intellectual property rights are divided into two categories,
+      i.e.
+    illustrationSprite: {fileID: 21300000, guid: 4b02d9060dbfcce4fb0b932a8c518697,
+      type: 3}
+    Option:
+    - Inheritance and trade rights
+    - Legal rights and illegal rights
+    - Copyright and copyright holders
+    - Copyright and industrial property rights
+    CorrectAnswer: Copyright and industrial property rights
+  - Question: Benefit to the licensor, i.e. acceptance of a performance contract
+      in the form of payment....
+    illustrationSprite: {fileID: 0}
+    Option:
+    - Commission
+    - Royalti
+    - Flowers
+    - Return
+    CorrectAnswer: Royalti
+  - Question: The result of someone's idea or idea, which has value, either in concrete
+      or abstract form, is called...
+    illustrationSprite: {fileID: 21300000, guid: 4b02d9060dbfcce4fb0b932a8c518697,
+      type: 3}
+    Option:
+    - Description
+    - Copyright
+    - Creator
+    - Creation
+    CorrectAnswer: Creation
+  QuizAnswerd: []

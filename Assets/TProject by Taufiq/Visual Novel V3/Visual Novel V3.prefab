@@ -325,7 +325,10 @@ MonoBehaviour:
   npcCard: {fileID: 11400000, guid: 6927f5081ad7a1840810cf47087cfa79, type: 2}
   instructionPrefab: {fileID: 434770068252583160, guid: 818754fc161042644ab207da7f7cdc1a,
     type: 3}
-  AfterDialogAction:
+  OnValidOpportunity:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInvalidOpportunity:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &2222304222568849152

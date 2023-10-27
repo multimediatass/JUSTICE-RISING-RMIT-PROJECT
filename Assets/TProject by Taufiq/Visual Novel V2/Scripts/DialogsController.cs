@@ -60,7 +60,10 @@ namespace Tproject.VisualNovelV2
 
         // reset player opertunity
         Action<int> SetUpPlayerOpt;
-        Action afterDialogAction;
+
+        bool isPlayerHasOpportunity = false;
+        Action playerDontHaveOpportunity;
+        Action playerHasOpportunity;
 
         [Header("UI Components")]
         [SerializeField] GameObject pannelUI;
@@ -88,12 +91,13 @@ namespace Tproject.VisualNovelV2
                 Destroy(gameObject);
         }
 
-        public void StartDialog(NpcCard card, Action _afterAction)
+        public void StartDialog(NpcCard card, Action _PlayerHasOpportunity, Action _PlayerDontHaveOpportunity)
         {
             npcCard = card;
 
             DialogScripts = card.DialogScripts.Clone();
-            afterDialogAction = _afterAction;
+            playerDontHaveOpportunity = _PlayerDontHaveOpportunity;
+            playerHasOpportunity = _PlayerHasOpportunity;
 
             pannelUI.SetActive(true);
 
@@ -107,6 +111,9 @@ namespace Tproject.VisualNovelV2
             }
 
             speakerImage.sprite = card.npcImages[0];
+
+            if (DialogScripts.PlayerOpportunity < 1) isPlayerHasOpportunity = false;
+            else isPlayerHasOpportunity = true;
         }
         public void StartDialog(DialogScript scr, Action<int> popt)
         {
@@ -305,7 +312,9 @@ namespace Tproject.VisualNovelV2
         public void OnclickCloseDialog()
         {
             if (GOMod.RemoveGOChildren(contentParent)) pannelUI.SetActive(false);
-            afterDialogAction?.Invoke();
+
+            if (isPlayerHasOpportunity) playerHasOpportunity?.Invoke();
+            else playerDontHaveOpportunity?.Invoke();
 
             npcCard.AddConversationSelected(_conversationSelected);
             npcCard.DialogScripts.PlayerOpportunity = DialogScripts.PlayerOpportunity;
