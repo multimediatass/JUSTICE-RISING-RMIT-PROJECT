@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using JusticeRising.GameData;
 using UnityEngine.Events;
 
@@ -18,6 +19,8 @@ namespace JusticeRising.Canvas
         public GameObject resumePanel;
         public Transform contentParent;
 
+        public bool isPlayOnStart;
+        [Space]
         public UnityEvent StartOpenResume;
         public UnityEvent AfterCloseResume;
 
@@ -33,7 +36,8 @@ namespace JusticeRising.Canvas
                 resumeList.Add(item);
             }
 
-            OnOpenResume();
+            if (isPlayOnStart)
+                OnOpenResume();
         }
 
         private void Update()
@@ -69,7 +73,7 @@ namespace JusticeRising.Canvas
                     item.npcName.text = resumeList[i].npcName;
                     item.npcRole.text = resumeList[i].npcRole;
                     item.npcCardResume = resumeList[i];
-                    item.detailResumeParent = this.transform;
+                    // item.detailResumeParent = this.transform;
                 }
 
                 yield return new WaitForSeconds(0.01f);

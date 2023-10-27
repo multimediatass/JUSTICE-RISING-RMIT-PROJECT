@@ -18,7 +18,40 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
   - {fileID: 21300000, guid: dfaba81f0d10a824b9360e9cd5a4aa36, type: 3}
   - {fileID: 21300000, guid: c8001f3613cf0b6458c68fe078cf8aeb, type: 3}
-  ConversationSelected:
-  - ini sarah
-  - adeknya yuni
-  - dia Saksi dari Manager Nexa Cinema
+  DialogScripts:
+    PlayerOpportunity: 3
+    npcName: Sarah Williams,MBA
+    sectionList:
+    - Question: Do you have any interactions or communications with related parties
+        after the incident?
+      Answer: Yes, we have given them warning letters, but we have not received any
+        repayment from them.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
+    - Question: Could you explain what you saw or heard related to this case?
+      Answer: I heard that some Lizznet users downloaded and shared film content
+        from our company illegally through the LIZZNET network, but on the part of
+        LIZznet itself we are not responsible for the actions of its users.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
+    - Question: What kind of technology or system is used in this case?
+      Answer: Please apologize for this question beyond my knowledge.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
+    - Question: Is there any technological solution that can be considered to solve
+        the problem in this case?
+      Answer: 'Sorry about the problem I can''t answer '
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
+    - Question: How can you be sure about what you're witnessing?How can you be sure
+        about what you're witnessing?
+      Answer: I have some evidence of the client's actions including Nexa Cinema's
+        financial report on loss of copyright infringement and the results of recordings
+        of Lizznet users' activity downloading and sharing copies of some films from
+        our companyI have some evidence of the client's actions including Nexa Cinema's
+        financial report on loss of copyright infringement and the results of recordings
+        of Lizznet users' activity downloading and sharing copies of some films from
+        our company
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
+  ConversationSelected: []

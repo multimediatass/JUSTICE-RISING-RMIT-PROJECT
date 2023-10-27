@@ -854,5 +854,5 @@ MonoBehaviour:
   npcRole: {fileID: 4247996579195940909}
   npcCardResume: {fileID: 0}
   detailResumeParent: {fileID: 0}
-  detailResumePrefab: {fileID: 240897407744661310, guid: 0026e05afdbbeaf43af06610c5dbfc03,
+  detailResumePrefab: {fileID: 3499284306658555448, guid: c73be23c80db55c4abf71b406ad809a2,
     type: 3}

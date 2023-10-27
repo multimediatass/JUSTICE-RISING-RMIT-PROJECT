@@ -18,7 +18,41 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
   - {fileID: 21300000, guid: 6c5945674f78e36448603bcd4c85053b, type: 3}
   - {fileID: 21300000, guid: 8896fac37ebb6c542bcd979b09c2cc17, type: 3}
-  ConversationSelected:
-  - fgdsgfdsgfd
-  - fdsgfdsgfds
-  - fdsgfds
+  DialogScripts:
+    PlayerOpportunity: 3
+    npcName: Robert Anderson,S.J.D.
+    sectionList:
+    - Question: What jurisdiction is involved in this case?
+      Answer: Yes, I am here as an Expert in Intellectual Property Law specializing
+        in laws that protect the rights to creative works, such as copyright, trademarks,
+        patents, and trade secrets.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: How can you be sure about what you're witnessing?
+      Answer: "Of course, this case has been regulated in the patent protection internationally
+        agreed in Paris Convention for the Protection of Industrial Property which
+        agreed *Scope of industrial property* or Industrial property spaces as provided
+        in Article 1 (2) of the Paris Convention stating that:\r\n\r\n*The protection
+        of industrial property has as its object\_patents, utility models, industrial
+        designs, trademarks, service marks, trade names, indications of source or
+        appellations of origin, and the repression of unfair competition.*"
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: How do you assess the legal issues that arise in this case based
+        on the facts and evidence available?
+      Answer: In my opinion, if based on the facts and evidence available then Lizznet
+        has committed a breach by allowing its users to do several downloads and
+        distribution of copies of Nexa Cinema films without a prior contract
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: How do you identify digital evidence or electronic tracks in this
+        case?
+      Answer: Please apologize about the digital problem that is not in my lock
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: Can you explain the technology or concept that is being debated in
+        the trial?
+      Answer: I'm sorry I didn't explain this matter.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+  ConversationSelected: []

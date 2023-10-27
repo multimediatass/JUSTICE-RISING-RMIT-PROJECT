@@ -18,10 +18,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
   - {fileID: 21300000, guid: 35fbc45c581db924bbe09099a928e037, type: 3}
   - {fileID: 21300000, guid: beee58c282c6f4d4c974a4a4008bc44d, type: 3}
-  ConversationSelected:
-  - nama kamu siapa
-  - nama aku wardah, kamu siapa?
-  - aku rifansyah
-  - kelahi yukkk
-  - ayuk siapa takut
-  - ketemu ditengah aja
+  DialogScripts:
+    PlayerOpportunity: 2
+    npcName: Liam Smith,MBA
+    sectionList:
+    - Question: Welcome, Mr. Liam Smith. I am Charlotte Wilson, LLB Senior lawyer
+        in this law firm. Is there anything I can help. Tell me what happened.
+      Answer: Thank you sir. So I have a problem with the company Lizznet he just
+        gave permission to its users to download and share film content illegally
+        through the LizzNet network, but I object to copyright infringement by its
+        users.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
+    - Question: Calm down.Every company is entitled to fair legal protection. I will
+        be your lawyer and will do everything necessary to prove your innocence.
+        First, let's gather the evidence that will support your case.
+      Answer: Good sir!!!
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
+  ConversationSelected: []

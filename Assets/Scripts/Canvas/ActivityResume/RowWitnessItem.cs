@@ -18,7 +18,7 @@ namespace JusticeRising.Canvas
 
         public void ShowDetail()
         {
-            DetailResume detailItem = Instantiate(detailResumePrefab, detailResumeParent);
+            DetailResume detailItem = Instantiate(detailResumePrefab);
             detailItem.npcCardDetail = npcCardResume;
             Debug.Log($"show detail for {npcCardResume.npcName} data");
         }

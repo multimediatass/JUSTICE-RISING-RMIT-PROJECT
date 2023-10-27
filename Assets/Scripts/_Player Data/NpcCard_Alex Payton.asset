@@ -18,7 +18,30 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d322e063f8178d24a92ef8a108d1b3cb, type: 3}
   - {fileID: 21300000, guid: 417d7cc1cd5107b4f805cea6fbea424a, type: 3}
   - {fileID: 21300000, guid: 96e0307330a057346b10cbcbbfad42cc, type: 3}
-  ConversationSelected:
-  - ini alex
-  - dia adalah payton
-  - Saksi Pengguna Lizznet
+  DialogScripts:
+    PlayerOpportunity: 3
+    npcName: Alex Payton
+    sectionList:
+    - Question: Is there any technological solution that can be considered to solve
+        the problem in this case?
+      Answer: Please apologize for this question beyond my knowledge.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: Do you know the legal field related to this case?
+      Answer: I'm sorry I didn't know about it.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: What internet provider are you using right now?
+      Answer: 'Yes, right now I''m using the Lizznet provider '
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: Have you ever downloaded movies through the LIZZNET network?
+      Answer: Yes, I did download movies through the Lizznet network but I used certain
+        software because LizzNet has policies and privacy that do not allow it.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: What kind of software do you use to download the movie?
+      Answer: I use Bittorent Software to download the movie.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+  ConversationSelected: []

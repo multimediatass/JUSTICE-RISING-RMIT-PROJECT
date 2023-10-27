@@ -7,22 +7,22 @@ namespace JusticeRising
     public class InputManager : MonoBehaviour
     {
         public static InputManager instance;
-        public PlayerActions _playerActionAsset;
+        public PlayerActions inputAction;
 
         private void Awake()
         {
             instance = this;
-            _playerActionAsset = new PlayerActions();
+            inputAction = new PlayerActions();
         }
 
         private void OnEnable()
         {
-            _playerActionAsset.PlayerControls.Enable();
+            inputAction.PlayerControls.Enable();
         }
 
         private void OnDisable()
         {
-            _playerActionAsset.PlayerControls.Enable();
+            inputAction.PlayerControls.Enable();
         }
     }
 }

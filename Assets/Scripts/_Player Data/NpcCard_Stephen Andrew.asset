@@ -18,4 +18,41 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 26d894a762dd39b44a944f87009d99ae, type: 3}
   - {fileID: 21300000, guid: e4c83cfa8f74da6459198fb6d0ddba01, type: 3}
   - {fileID: 21300000, guid: 78be0b7bd7115f44b8eae5680a233854, type: 3}
+  DialogScripts:
+    PlayerOpportunity: 3
+    npcName: Stephen Andrew,BFA
+    sectionList:
+    - Question: How do you think the advances in technology and the Internet affect
+        copyright protection in this case?
+      Answer: In terms of copyright protection, laws and regulations must adapt to
+        these changes. There are challenges in law enforcement when violations occur
+        in the digital realm, where localization and identification of offenders
+        can be more difficult. I think we need a more innovative and effective approach
+        to dealing with copyright infringement in the digital age.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 26d894a762dd39b44a944f87009d99ae, type: 3}
+    - Question: How does the film industry impact on illegal downloads and piracy
+        of films?
+      Answer: The film industry creates jobs for a variety of professions, including
+        actors, directors, production crews, and others. If income is reduced due
+        to piracy, it can have a negative impact on the job placement in the industry.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 26d894a762dd39b44a944f87009d99ae, type: 3}
+    - Question: In the era of streaming and digital distribution, how does copyright
+        play in ensuring that filmmakers get proper recognition and reward?
+      Answer: Filmmakers can generate revenue through licenses and streaming agreements
+        involving the use of their work. Copyright provides a legal basis for negotiating
+        contracts with streaming service providers or distributors, ensuring that
+        filmmakers receive a fair remuneration. This creates a legal basis for pursuing
+        legal action against copyright infringers, which can include claims for damages.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 26d894a762dd39b44a944f87009d99ae, type: 3}
+    - Question: Do you know the laws or regulations associated with this case?
+      Answer: ' I''m sorry about that. I can''t respond.'
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 26d894a762dd39b44a944f87009d99ae, type: 3}
+    - Question: What kind of technology or system is used in this case?
+      Answer: Please apologize for this question beyond my knowledge.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 26d894a762dd39b44a944f87009d99ae, type: 3}
   ConversationSelected: []

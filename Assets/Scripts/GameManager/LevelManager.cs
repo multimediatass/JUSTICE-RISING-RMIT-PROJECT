@@ -11,7 +11,7 @@ namespace JusticeRising
         public static LevelManager instance;
         public enum GameState
         {
-            Pause, Play, VisualNovel, CutScene
+            Pause, Play, VisualNovel, CutScene, UIInteraction
         }
 
         public GameState CurrentGameState;
@@ -19,6 +19,7 @@ namespace JusticeRising
         public UnityEvent GamepauseState;
         public UnityEvent GameplayState;
         public UnityEvent VisualNovelState;
+        public UnityEvent UIInteractionState;
 
         private void Awake()
         {
@@ -48,6 +49,9 @@ namespace JusticeRising
                 case GameState.VisualNovel:
                     VisualNovelState.Invoke();
                     break;
+                case GameState.UIInteraction:
+                    UIInteractionState.Invoke();
+                    break;
             }
 
             CurrentGameState = state;
@@ -71,6 +75,11 @@ namespace JusticeRising
         public void PauseGame()
         {
             ChangeGameState(GameState.Pause);
+        }
+
+        public void UIInteraction()
+        {
+            ChangeGameState(GameState.UIInteraction);
         }
     }
 }

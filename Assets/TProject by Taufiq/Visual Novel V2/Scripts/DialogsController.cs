@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 using Tproject.Tools;
-using UnityEngine.UI;
+using JusticeRising.GameData;
+using System.Linq;
 
 namespace Tproject.VisualNovelV2
 {
@@ -16,6 +18,8 @@ namespace Tproject.VisualNovelV2
     {
         public static DialogsController instance;
 
+        public NpcCard npcCard;
+        private List<string> _conversationSelected = new List<string>();
 
         [Header("Dialog Scripts Manager")]
         public DialogScript DialogScripts;
@@ -37,13 +41,30 @@ namespace Tproject.VisualNovelV2
                 public AudioClip SFX;
                 public Sprite npcImage;
             }
+
+            public DialogScript Clone()
+            {
+                DialogScript copy = new DialogScript();
+                copy.PlayerOpportunity = this.PlayerOpportunity;
+                copy.npcName = this.npcName;
+                copy.sectionList = new List<section>(this.sectionList.Select(s => new section
+                {
+                    Question = s.Question,
+                    Answer = s.Answer,
+                    SFX = s.SFX,
+                    npcImage = s.npcImage
+                }));
+                return copy;
+            }
         }
 
         // reset player opertunity
         Action<int> SetUpPlayerOpt;
+        Action afterDialogAction;
 
         [Header("UI Components")]
         [SerializeField] GameObject pannelUI;
+        [SerializeField] Image speakerImage;
         [SerializeField] Transform contentParent;
         [SerializeField] TextMeshProUGUI plankNpcName;
         [SerializeField] GameObject btnClose;
@@ -67,6 +88,26 @@ namespace Tproject.VisualNovelV2
                 Destroy(gameObject);
         }
 
+        public void StartDialog(NpcCard card, Action _afterAction)
+        {
+            npcCard = card;
+
+            DialogScripts = card.DialogScripts.Clone();
+            afterDialogAction = _afterAction;
+
+            pannelUI.SetActive(true);
+
+            if (CheckingOpt())
+                ShowQuestion();
+            else
+            {
+                var item = rowItems.Find((x) => x.rowItemType == RowItem.ItemType.Cleft);
+                _rowQuestion = Instantiate(item, contentParent);
+                _rowQuestion.textUI.text = $"Sorry I am bussy now!!";
+            }
+
+            speakerImage.sprite = card.npcImages[0];
+        }
         public void StartDialog(DialogScript scr, Action<int> popt)
         {
             DialogScripts = scr;
@@ -122,8 +163,12 @@ namespace Tproject.VisualNovelV2
             }
             else
             {
+                if (npcCard.ConversationSelected.Count > 0)
+                {
+                    btnSpeedUp.SetActive(true);
+                }
+
                 btnClose.SetActive(false);
-                btnSpeedUp.SetActive(true);
                 result = true;
             }
 
@@ -151,8 +196,12 @@ namespace Tproject.VisualNovelV2
         {
             StartCoroutine(InstanceRowItem(GetDialogSection(sectionId), GetSFX(sectionId)));
 
+            if (DialogScripts.sectionList[sectionId].npcImage)
+                speakerImage.sprite = DialogScripts.sectionList[sectionId].npcImage;
+
             DialogScripts.sectionList.RemoveAt(sectionId);
             DialogScripts.PlayerOpportunity--;
+
         }
 
         private IEnumerator InstanceRowItem(List<string> textPrint, AudioClip sfx = null)
@@ -184,6 +233,8 @@ namespace Tproject.VisualNovelV2
                     if (i == 1 && sfx != null)
                         _myCoroutine = StartCoroutine(TypeText(textPrint[i], item.textUI, sfx));
                     else _myCoroutine = StartCoroutine(TypeText(textPrint[i], item.textUI));
+
+                    _conversationSelected.Add(textPrint[i]);
                 }
                 else
                 {
@@ -203,21 +254,33 @@ namespace Tproject.VisualNovelV2
         {
             target.text = "";
             _state = State.PLAYING;
-            int wordIndex = 0;
+            // int wordIndex = 0;
 
             if (clip != null) AudioManager.Instance.PlaySFX(clip);
 
             while (_state != State.COMPLETED)
             {
-                target.text += text[wordIndex];
-                yield return new WaitForSeconds(_speedFactor * 0.05f);
+                // target.text += text[wordIndex];
+                // yield return new WaitForSeconds(_speedFactor * 0.05f);
 
-                if (++wordIndex == text.Length)
+                // if (++wordIndex == text.Length)
+                // {
+                //     _state = State.COMPLETED;
+                //     _myCoroutine = null;
+                //     break;
+                // }
+
+                // without running text
+                target.text = text;
+                yield return new WaitForSeconds(0.05f);
+
+                if (target.text.Length == text.Length)
                 {
                     _state = State.COMPLETED;
                     _myCoroutine = null;
                     break;
                 }
+
             }
         }
 
@@ -233,7 +296,7 @@ namespace Tproject.VisualNovelV2
             else if (isPlayNormalSpeed())
             {
                 _state = State.SPEEDED_UP;
-                _speedFactor = 0.001f;
+                _speedFactor = 0f;
             }
 
             btnSpeedUp.SetActive(false);
@@ -242,7 +305,10 @@ namespace Tproject.VisualNovelV2
         public void OnclickCloseDialog()
         {
             if (GOMod.RemoveGOChildren(contentParent)) pannelUI.SetActive(false);
-            SetUpPlayerOpt(DialogScripts.PlayerOpportunity);
+            afterDialogAction?.Invoke();
+
+            npcCard.AddConversationSelected(_conversationSelected);
+            npcCard.DialogScripts.PlayerOpportunity = DialogScripts.PlayerOpportunity;
 
             // LevelManager.instance.ChangeGameState(LevelManager.GameState.Play);
 

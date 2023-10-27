@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using JusticeRising.GameData;
 
 namespace Tproject.VisualNovelV2
 {
@@ -11,14 +12,22 @@ namespace Tproject.VisualNovelV2
 
     public class DialogHandler : MonoBehaviour
     {
+        public bool isPlayOnStart;
         [SerializeField] DialogsController dialogsController;
-        public DialogsController.DialogScript myDialogScript;
+        public NpcCard npcCard;
+        // public DialogsController.DialogScript myDialogScript;
         [SerializeField] GameObject instructionPrefab;
         public UnityEvent AfterDialogAction;
 
         bool isVisVel = false;
 
         GameObject uiTemp = null;
+
+        private void Start()
+        {
+            if (isPlayOnStart)
+                dialogsController.StartDialog(npcCard, OnAfterDialogAction);
+        }
 
         public void ToggleInstructionPopUp(bool state)
         {
@@ -40,7 +49,8 @@ namespace Tproject.VisualNovelV2
 
         private void Dialog()
         {
-            dialogsController.StartDialog(myDialogScript, UpPlayerOpt);
+            dialogsController.StartDialog(npcCard, OnAfterDialogAction);
+            // dialogsController.StartDialog(myDialogScript, UpPlayerOpt);
             ToggleInstructionPopUp(false);
 
             isVisVel = true;
@@ -50,9 +60,15 @@ namespace Tproject.VisualNovelV2
 
         public void UpPlayerOpt(int opt)
         {
-            myDialogScript.PlayerOpportunity = opt;
+            npcCard.DialogScripts.PlayerOpportunity = opt;
             isVisVel = false;
 
+            AfterDialogAction?.Invoke();
+        }
+
+        public void OnAfterDialogAction()
+        {
+            isVisVel = false;
             AfterDialogAction?.Invoke();
         }
     }

@@ -26,7 +26,7 @@ namespace JusticeRising
 
         private void Start()
         {
-            dialogHandler.myDialogScript.npcName = characterName;
+            // dialogHandler.myDialogScript.npcName = characterName;
             IntractiveImageAnimate();
         }
 

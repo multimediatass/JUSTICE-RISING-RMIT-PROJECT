@@ -101,7 +101,7 @@ namespace Tproject.CutScene
             UI_titleText.text = title;
             UI_contentText.text = "";
             _state = State.PLAYING;
-            int wordIndex = 0;
+            // int wordIndex = 0;
 
             Btn_Next.GetComponentInChildren<TextMeshProUGUI>().text = "Speed Up";
 
@@ -110,16 +110,29 @@ namespace Tproject.CutScene
 
             while (_state != State.COMPLETED)
             {
-                UI_contentText.text += contentScript[wordIndex];
-                yield return new WaitForSeconds(_speedFactor * 0.05f);
+                // UI_contentText.text += contentScript[wordIndex];
+                // yield return new WaitForSeconds(_speedFactor * 0.05f);
+                // if (++wordIndex == contentScript.Length)
+                // {
+                //     Btn_Next.GetComponentInChildren<TextMeshProUGUI>().text = sectionIndex < contentSections.Count - 1 ? "Next" : "Close";
 
-                if (++wordIndex == contentScript.Length)
+                //     _speedFactor = 1f;
+
+                //     LeanTween.cancel(UI_background.gameObject);
+
+                //     _state = State.COMPLETED;
+                //     _myCoroutine = null;
+                //     break;
+                // }
+
+                UI_contentText.text = contentScript;
+                yield return new WaitForSeconds(0.05f);
+
+                if (UI_contentText.text.Length == contentScript.Length)
                 {
                     Btn_Next.GetComponentInChildren<TextMeshProUGUI>().text = sectionIndex < contentSections.Count - 1 ? "Next" : "Close";
 
-                    _speedFactor = 1f;
-
-                    LeanTween.cancel(UI_background.gameObject);
+                    // LeanTween.cancel(UI_background.gameObject);
 
                     _state = State.COMPLETED;
                     _myCoroutine = null;
@@ -139,6 +152,7 @@ namespace Tproject.CutScene
                     sectionIndex++;
 
                     GO_blackPanel.SetActive(true);
+                    LeanTween.cancel(UI_background.gameObject);
                     LeanTween.alpha(GO_blackPanel.GetComponent<RectTransform>(), 1f, .5f).setOnComplete(RequestTypeText);
                 }
                 else

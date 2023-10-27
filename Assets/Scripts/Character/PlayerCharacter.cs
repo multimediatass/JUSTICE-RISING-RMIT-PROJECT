@@ -7,8 +7,6 @@ namespace JusticeRising
 {
     public class PlayerCharacter : Character
     {
-        // input fields
-        private PlayerActions _playerActionAsset;
         private float _speed;
 
         [Header("Camera Controller")]
@@ -22,8 +20,6 @@ namespace JusticeRising
 
         private void Awake()
         {
-            _playerActionAsset = new PlayerActions();
-
             SetUpCharacter();
         }
 
@@ -57,16 +53,6 @@ namespace JusticeRising
             LoadingManager.instance.CloseLoadingPanel();
         }
 
-        private void OnEnable()
-        {
-            _playerActionAsset.PlayerControls.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _playerActionAsset.PlayerControls.Disable();
-        }
-
         private void Start()
         {
             _speed = normalSpeed;
@@ -96,13 +82,13 @@ namespace JusticeRising
         float maxAnimMoveSpeed = 0.5f;
         private void Move()
         {
-            Vector2 moveVal = _playerActionAsset.PlayerControls.Movement.ReadValue<Vector2>();
+            Vector2 moveVal = InputManager.instance.inputAction.PlayerControls.Movement.ReadValue<Vector2>();
 
             Vector3 move = _mainCamera.forward * moveVal.y + _mainCamera.right * moveVal.x;
             move.y = 0f;
             charController.Move(_speed * Time.deltaTime * move);
 
-            if (_playerActionAsset.PlayerControls.SpeedUp.IsPressed())
+            if (InputManager.instance.inputAction.PlayerControls.SpeedUp.IsPressed())
             {
                 _speed = runSpeed;
                 maxAnimMoveSpeed = 1f;
@@ -139,7 +125,7 @@ namespace JusticeRising
             anim.SetBoolJumping(false);
             anim.SetBoolFalling(false);
 
-            if (_playerActionAsset.PlayerControls.Jump.triggered && groundedPlayer)
+            if (InputManager.instance.inputAction.PlayerControls.Jump.triggered && groundedPlayer)
             {
                 playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
 
