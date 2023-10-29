@@ -1069,7 +1069,7 @@ GameObject:
   - component: {fileID: 444865455}
   - component: {fileID: 444865454}
   m_Layer: 5
-  m_Name: Btn_New Game
+  m_Name: Btn_Start Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1139,22 +1139,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 779850456}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 795572300}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 582554311}
+        m_TargetAssemblyTypeName: JusticeRising.GameMenu, Assembly-CSharp
+        m_MethodName: OnClickStartGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1770,7 +1758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3119a91c1d64bcf4fb36365bac6cb517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: bfd811cd438faf64ab891f7e992faf7b, type: 2}
   genderSelected: 
+  panelMenu: {fileID: 795572300}
+  panelChooseCharacters: {fileID: 779850456}
 --- !u!1 &697833996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,7 +1857,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerData: {fileID: 11400000, guid: bfd811cd438faf64ab891f7e992faf7b, type: 2}
-  card: {fileID: 11400000, guid: 70b1c091a848bc149866f81684067095, type: 2}
 --- !u!4 &743609879
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using JusticeRising.GameData;
 using System;
 using UnityEngine.Events;
+using JusticeRising;
 
 namespace JusticeRising.Canvas
 {
@@ -152,13 +153,6 @@ namespace JusticeRising.Canvas
 
         private void OpenFinalDecision()
         {
-            if (playerData.npcResumeActivity.Count < 1)
-            {
-                Debug.LogWarning($"witness is less than 1");
-                OnDataWitnessLessThanOne?.Invoke();
-                return;
-            }
-
             witnessList.Clear();
 
             foreach (var item in playerData.npcResumeActivity)
@@ -173,7 +167,18 @@ namespace JusticeRising.Canvas
 
         public void DecisionChecking()
         {
-            if (UI_decisionValidationDialog && playerData.witnessSelected.Count > 0) UI_decisionValidationDialog.SetActive(true);
+            if (playerData.npcResumeActivity.Count < 1)
+            {
+                Debug.LogWarning($"witness is less than 1");
+                OnDataWitnessLessThanOne?.Invoke();
+                return;
+            }
+
+            if (UI_decisionValidationDialog && playerData.npcResumeActivity.Count > 0 && playerData.witnessSelected.Count < 1)
+            {
+                LevelManager.instance.UIInteraction();
+                UI_decisionValidationDialog.SetActive(true);
+            }
         }
     }
 }
