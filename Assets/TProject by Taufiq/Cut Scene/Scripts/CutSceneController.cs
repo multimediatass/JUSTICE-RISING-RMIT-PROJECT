@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 using UnityEngine.Events;
+using JusticeRising;
 
 namespace Tproject.CutScene
 {
@@ -172,6 +173,11 @@ namespace Tproject.CutScene
 
                 Btn_Next.GetComponentInChildren<TextMeshProUGUI>().text = "...";
             }
+        }
+
+        public void BackToGameMenu()
+        {
+            LoadingManager.instance.ChangeScene("GameMenu");
         }
     }
 }

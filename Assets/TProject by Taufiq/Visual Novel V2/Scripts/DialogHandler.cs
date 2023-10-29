@@ -19,6 +19,8 @@ namespace Tproject.VisualNovelV2
         [SerializeField] GameObject instructionPrefab;
 
         [Space]
+        [Header("After Dialog Events")]
+        [Space]
         public UnityEvent OnValidOpportunity;
         public UnityEvent OnInvalidOpportunity;
 

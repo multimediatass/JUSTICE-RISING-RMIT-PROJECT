@@ -681,10 +681,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2200f2e1942f040a50c81ae7f1a55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcCard: {fileID: 0}
   contensStaging: []
   panelScore: {fileID: 3608730307091410845}
-  trueResultText: {fileID: 6308268525353679890}
-  falseResultText: {fileID: 1921316911508113557}
+  UI_TrueResultText: {fileID: 6308268525353679890}
+  UI_TotalScore: {fileID: 1921316911508113557}
   QuizPanel: {fileID: 165336540514814902}
   validationPanel: {fileID: 5027206401381734871}
   imgValidationProgress: {fileID: 6643290103892664014}
@@ -1891,7 +1892,7 @@ GameObject:
   - component: {fileID: 8672187285195112756}
   - component: {fileID: 1921316911508113557}
   m_Layer: 5
-  m_Name: False
+  m_Name: Total
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

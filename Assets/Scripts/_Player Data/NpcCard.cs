@@ -25,12 +25,16 @@ namespace JusticeRising.GameData
         public struct PlayerAnswerData
         {
             public string Question;
+            public string CorrectAnswer;
             public string PlayerAnswer;
+            public string Result;
 
-            public PlayerAnswerData(string question, string playerAnswer)
+            public PlayerAnswerData(string question, string correctAnswer, string playerAnswer, string result)
             {
                 Question = question;
+                CorrectAnswer = correctAnswer;
                 PlayerAnswer = playerAnswer;
+                Result = result;
             }
         }
 

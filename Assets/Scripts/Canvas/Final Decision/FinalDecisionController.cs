@@ -23,7 +23,8 @@ namespace JusticeRising.Canvas
         public RowItemHandler rowPrefab;
         public Button btnSubmitDecision;
         public List<SelectedCard> UI_selectedCard;
-
+        public GameObject UI_decisionValidationDialog;
+        [Space]
         public UnityEvent StartOpenFinalDecision;
         public UnityEvent OnDataWitnessLessThanOne;
         public UnityEvent AfterCloseFinalDecision;
@@ -135,8 +136,8 @@ namespace JusticeRising.Canvas
 
         public void OnClickOpenFinalDecision()
         {
-            if (playerData.witnessSelected.Count < 1)
-                OpenFinalDecision();
+            // if (playerData.witnessSelected.Count > 1)
+            OpenFinalDecision();
         }
 
         public void OnClickCloseFinalDecision()
@@ -151,14 +152,14 @@ namespace JusticeRising.Canvas
 
         private void OpenFinalDecision()
         {
-            witnessList.Clear();
-
             if (playerData.npcResumeActivity.Count < 1)
             {
-                Debug.LogWarning($"{witnessList} count is less than 1");
+                Debug.LogWarning($"witness is less than 1");
                 OnDataWitnessLessThanOne?.Invoke();
                 return;
             }
+
+            witnessList.Clear();
 
             foreach (var item in playerData.npcResumeActivity)
             {
@@ -168,6 +169,11 @@ namespace JusticeRising.Canvas
             StartOpenFinalDecision?.Invoke();
 
             StartCoroutine(PrintRowItem());
+        }
+
+        public void DecisionChecking()
+        {
+            if (UI_decisionValidationDialog && playerData.witnessSelected.Count > 0) UI_decisionValidationDialog.SetActive(true);
         }
     }
 }

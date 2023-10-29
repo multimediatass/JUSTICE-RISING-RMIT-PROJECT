@@ -33,10 +33,10 @@ namespace Tproject.Quiz
 
         [Header("Score UI")]
         public GameObject panelScore;
-        public TextMeshProUGUI trueResultText;
-        public TextMeshProUGUI falseResultText;
+        public TextMeshProUGUI UI_TrueResultText;
+        public TextMeshProUGUI UI_TotalScore;
         private int scoreTrue;
-        private int scoreFalse;
+        private int totalScore;
 
 
         [Header("Quiz UI")]
@@ -99,10 +99,8 @@ namespace Tproject.Quiz
         {
             validationPanel.SetActive(true);
 
+            bool validationResult = false;
             bool isChecking = false;
-
-            NpcCard.PlayerAnswerData playerAnswerData = new NpcCard.PlayerAnswerData(contensStaging[_currentIndex].Question, btnAnswerd.name);
-            npcCard.QuizAnswerd.Add(playerAnswerData);
 
             float i = 0;
             while (i < 1f)
@@ -115,19 +113,24 @@ namespace Tproject.Quiz
                     if (btnAnswerd.name == contensStaging[_currentIndex].CorrectAnswer)
                     {
                         scoreTrue++;
-                        Debug.Log($"the answer is: true | current score {scoreTrue} / {scoreFalse}");
+
+                        validationResult = true;
                     }
                     else
                     {
-                        scoreFalse++;
-                        Debug.Log($"the answer is: false | current score {scoreTrue} / {scoreFalse}");
+                        validationResult = false;
                     }
+
+                    totalScore++;
 
                     isChecking = true;
                 }
 
                 yield return null;
             }
+
+            NpcCard.PlayerAnswerData playerAnswerData = new NpcCard.PlayerAnswerData(contensStaging[_currentIndex].Question, contensStaging[_currentIndex].CorrectAnswer, btnAnswerd.name, validationResult.ToString());
+            npcCard.QuizAnswerd.Add(playerAnswerData);
 
             validationPanel.SetActive(false);
 
@@ -153,11 +156,13 @@ namespace Tproject.Quiz
         IEnumerator ShowScore()
         {
             panelScore.SetActive(true);
-            trueResultText.text = scoreTrue.ToString();
-            falseResultText.text = scoreFalse.ToString();
+            UI_TrueResultText.text = scoreTrue.ToString();
+            UI_TotalScore.text = totalScore.ToString();
 
             yield return new WaitForSeconds(3f);
 
+            scoreTrue = 0;
+            totalScore = 0;
             panelScore.SetActive(false);
         }
     }
