@@ -11,5 +11,7 @@ namespace JusticeRising.GameData
         public string selectedCharacter;
         public string playerToken;
         public List<NpcCard> npcResumeActivity;
+
+        public List<string> witnessSelected;
     }
 }

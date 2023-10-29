@@ -319,7 +319,8 @@ namespace Tproject.VisualNovelV2
             npcCard.AddConversationSelected(_conversationSelected);
             npcCard.DialogScripts.PlayerOpportunity = DialogScripts.PlayerOpportunity;
 
-            // LevelManager.instance.ChangeGameState(LevelManager.GameState.Play);
+            _conversationSelected.Clear();
+            npcCard = null;
 
             AudioManager.Instance.StopSFX();
 

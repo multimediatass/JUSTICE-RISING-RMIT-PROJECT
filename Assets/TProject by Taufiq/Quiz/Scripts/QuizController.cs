@@ -144,6 +144,9 @@ namespace Tproject.Quiz
                 quizFinishToHandler?.Invoke();
 
                 StartCoroutine(nameof(ShowScore));
+                _currentIndex = 0;
+
+                npcCard = null;
             }
         }
 

@@ -9,7 +9,7 @@ namespace Tproject.Quiz
     public class QuizHandler : MonoBehaviour
     {
         public QuizController quizController;
-        public List<QuizController.MQuizContent> mQuizContentList;
+        // public List<QuizController.MQuizContent> mQuizContentList;
 
         public NpcCard npcCard;
         [SerializeField] bool playOnStart = false;

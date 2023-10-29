@@ -31,11 +31,6 @@ namespace JusticeRising.Canvas
 
         private void Start()
         {
-            foreach (var item in playerData.npcResumeActivity)
-            {
-                resumeList.Add(item);
-            }
-
             if (isPlayOnStart)
                 OnOpenResume();
         }
@@ -96,6 +91,13 @@ namespace JusticeRising.Canvas
         public void OnOpenResume()
         {
             StartOpenResume?.Invoke();
+
+            resumeList.Clear();
+
+            foreach (var item in playerData.npcResumeActivity)
+            {
+                resumeList.Add(item);
+            }
 
             StartCoroutine(PrintRowItem());
         }

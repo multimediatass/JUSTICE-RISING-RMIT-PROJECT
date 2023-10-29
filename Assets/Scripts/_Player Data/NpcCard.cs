@@ -17,7 +17,7 @@ namespace JusticeRising.GameData
         public List<string> ConversationSelected;
 
         [Space]
-        [Header("Visual Novel Data")]
+        [Header("Quiz Data")]
         public List<QuizController.MQuizContent> QuizContents;
         public List<PlayerAnswerData> QuizAnswerd = new List<PlayerAnswerData>();
 

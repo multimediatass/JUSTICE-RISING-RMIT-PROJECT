@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NpcCard_Alex Payton
   m_EditorClassIdentifier: 
   npcName: Alex Payton
-  npcRole: Saksi Pengguna Lizznet
+  npcRole: Pengguna Lizznet
   npcImages:
   - {fileID: 21300000, guid: d322e063f8178d24a92ef8a108d1b3cb, type: 3}
   - {fileID: 21300000, guid: 417d7cc1cd5107b4f805cea6fbea424a, type: 3}
@@ -45,3 +45,13 @@ MonoBehaviour:
       SFX: {fileID: 0}
       npcImage: {fileID: 0}
   ConversationSelected: []
+  QuizContents:
+  - Question: How long is the protection of a trademark?
+    illustrationSprite: {fileID: 0}
+    Option:
+    - 20 years.
+    - 10 years
+    - 25 years.
+    - Forever
+    CorrectAnswer: 10 years
+  QuizAnswerd: []

@@ -26,6 +26,7 @@ namespace Tproject.CutScene
             {
                 FadeOut(container);
                 AfterMenuClose?.Invoke();
+                currentPage = 0;
             }
         }
 

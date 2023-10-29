@@ -15,6 +15,8 @@ namespace JusticeRising.Canvas
         public PlayerData playerData;
         public List<NpcCard> witnessList;
 
+        public bool isPlayOnStart = false;
+
         [Header("UI Components")]
         public GameObject Panel;
         public Transform contentParent;
@@ -23,6 +25,7 @@ namespace JusticeRising.Canvas
         public List<SelectedCard> UI_selectedCard;
 
         public UnityEvent StartOpenFinalDecision;
+        public UnityEvent OnDataWitnessLessThanOne;
         public UnityEvent AfterCloseFinalDecision;
 
         private void Awake()
@@ -32,12 +35,8 @@ namespace JusticeRising.Canvas
 
         private void Start()
         {
-            foreach (var item in playerData.npcResumeActivity)
-            {
-                witnessList.Add(item);
-            }
-
-            OnOpenFinalDecision();
+            if (isPlayOnStart)
+                OpenFinalDecision();
         }
 
         private IEnumerator PrintRowItem()
@@ -120,13 +119,52 @@ namespace JusticeRising.Canvas
             StartCoroutine(PrintRowItem());
         }
 
-        public void OnCloseFinalDecision()
+        public void OnClickDecided()
         {
+            foreach (var item in UI_selectedCard)
+            {
+                Debug.Log($"witness selected {item.npcCard.npcName}");
+
+                playerData.witnessSelected.Add(item.npcCard.npcName);
+            }
+
+            Panel.SetActive(false);
+
             AfterCloseFinalDecision?.Invoke();
         }
 
-        public void OnOpenFinalDecision()
+        public void OnClickOpenFinalDecision()
         {
+            if (playerData.witnessSelected.Count < 1)
+                OpenFinalDecision();
+        }
+
+        public void OnClickCloseFinalDecision()
+        {
+            foreach (var item in UI_selectedCard)
+            {
+                item.DiselectWitness();
+            }
+
+            Panel.SetActive(false);
+        }
+
+        private void OpenFinalDecision()
+        {
+            witnessList.Clear();
+
+            if (playerData.npcResumeActivity.Count < 1)
+            {
+                Debug.LogWarning($"{witnessList} count is less than 1");
+                OnDataWitnessLessThanOne?.Invoke();
+                return;
+            }
+
+            foreach (var item in playerData.npcResumeActivity)
+            {
+                witnessList.Add(item);
+            }
+
             StartOpenFinalDecision?.Invoke();
 
             StartCoroutine(PrintRowItem());

@@ -38,5 +38,20 @@ namespace JusticeRising
         {
             animator[charAnimIndex].SetBool("isSitting", val);
         }
+
+        public void NPCBoolIdle(bool val)
+        {
+            animator[0].SetBool("isIdle", val);
+        }
+
+        public void NPCBoolTalking(bool val)
+        {
+            animator[0].SetBool("isTalking", val);
+        }
+
+        public void NPCBoolSitting(bool val)
+        {
+            animator[0].SetBool("isSitting", val);
+        }
     }
 }

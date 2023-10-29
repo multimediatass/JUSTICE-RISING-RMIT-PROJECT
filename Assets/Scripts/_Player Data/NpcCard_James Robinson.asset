@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NpcCard_James Robinson
   m_EditorClassIdentifier: 
   npcName: Dr.James Robinson,B.Comp.Sc,M.Comp.Sc.
-  npcRole: 'Saksi Ahli Teknologi Informasi '
+  npcRole: 'Ahli Teknologi Informasi '
   npcImages:
   - {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
   - {fileID: 21300000, guid: 8b4e47d430327884ba3958c1323ad99b, type: 3}
@@ -48,10 +48,18 @@ MonoBehaviour:
       npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
     - Question: Based on the facts and evidence available, how do you assess the
         legal issues that arise in this case?
-      Answer: "1. s or regulations are related to this case?\r\n**Answer:** Excuse
-        me I have no knowledge about it \r\n2. Based on the facts and evidence available,
-        how do you assess the legal issues that arise in this case?\r\n**Answer:**Please
-        apologize for this question beyond my knowledge."
+      Answer: Please apologize for this question beyond my knowledge.
       SFX: {fileID: 0}
       npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
   ConversationSelected: []
+  QuizContents:
+  - Question: The organizations that operate under the United Nations as an attempt
+      to protect the copyright of intellectual property are
+    illustrationSprite: {fileID: 0}
+    Option:
+    - WIPO
+    - G20
+    - ASEAN
+    - WHO
+    CorrectAnswer: WIPO
+  QuizAnswerd: []
