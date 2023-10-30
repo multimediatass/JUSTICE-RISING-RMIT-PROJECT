@@ -14,7 +14,7 @@ public class Authentication : RestAPIHandler
     public TMP_InputField signInUsername;
     public TMP_InputField signInPassword;
 
-    [Header("Sign In Components")]
+    [Header("Sign Up Components")]
     public TMP_InputField signUpFirstName;
     public TMP_InputField signUpLastName;
     public TMP_InputField signUpUsername;
