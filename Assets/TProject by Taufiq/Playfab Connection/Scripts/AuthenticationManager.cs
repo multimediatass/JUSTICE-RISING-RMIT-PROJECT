@@ -1,15 +1,19 @@
-
+using JusticeRising.GameData;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using Newtonsoft.Json;
 using TMPro;
+using System;
 
 namespace Tproject.Authentication
 {
     public class AuthenticationManager : MonoBehaviour
     {
+        public PlayerData playerData;
+        public bool isLoginSection = true;
+
         [Header("Register Components")]
         public TMP_InputField R_FirstName;
         public TMP_InputField R_LastName;
@@ -26,14 +30,53 @@ namespace Tproject.Authentication
         public TMP_InputField L_emailInput;
         public TMP_InputField L_passwordInput;
 
-        [Header("Restart Components")]
+        [Header("Recovery Account Components")]
         [HideInInspector] public TextMeshProUGUI Reset_messageText;
         [HideInInspector] public TMP_InputField Reset_emailInput;
         [HideInInspector] public TMP_InputField Reset_passwordInput;
 
+        private void Update()
+        {
+            if (!isLoginSection)
+            {
+                if (!string.IsNullOrEmpty(R_passwordInput.text))
+                {
+                    R_PasswordComfirmation.interactable = true;
+                }
+                else
+                {
+                    R_PasswordComfirmation.interactable = false;
+                    R_PasswordComfirmation.text = "";
+                }
+            }
+            else
+            {
+                // successPopUp.SetActive(false);
+                // errPopUp.SetActive(false);
+            }
+        }
+
+        public void OnClickLoginPanelState(bool state)
+        {
+            isLoginSection = state;
+        }
+
         // Start: Register section
         public void OnClickRegister()
         {
+            if (string.IsNullOrEmpty(R_passwordInput.text) || string.IsNullOrEmpty(R_PasswordComfirmation.text)
+                || string.IsNullOrEmpty(R_Username.text) || string.IsNullOrEmpty(R_emailInput.text))
+            {
+                Debug.LogWarning("please fill the blank");
+                return;
+            }
+
+            if (R_passwordInput.text != R_PasswordComfirmation.text)
+            {
+                Debug.LogWarning("comfirm your password");
+                return;
+            }
+
             if (R_passwordInput.text.Length < 6)
             {
                 R_messageText.text = "Input password more than 6 characters";
@@ -62,7 +105,7 @@ namespace Tproject.Authentication
                 username = R_Username.text,
                 gender = R_signUpGender,
                 email = R_emailInput.text,
-                password = R_passwordInput.text,
+                // password = R_passwordInput.text,
                 phone = R_Phone.text
             };
             string json = JsonConvert.SerializeObject(playerData);
@@ -129,12 +172,42 @@ namespace Tproject.Authentication
             }
 
             L_messageText.text = $"player '{name}' has been successed login!";
+
+            GetUserData();
         }
 
         private void OnLoginError(PlayFabError error)
         {
             L_messageText.text = error.ErrorMessage;
             Debug.Log($"{error.GenerateErrorReport()}");
+        }
+
+        private void GetUserData()
+        {
+            var request = new GetUserDataRequest();
+
+            PlayFabClientAPI.GetUserData(request, OnGetUserDataSuccess, OnGetUserDataError);
+        }
+
+        private void OnGetUserDataError(PlayFabError error)
+        {
+            Debug.LogError($"Error getting user data: {error.GenerateErrorReport()}");
+        }
+
+        private void OnGetUserDataSuccess(GetUserDataResult result)
+        {
+            if (result.Data != null && result.Data.ContainsKey("PlayerProfileData"))
+            {
+                string jsonData = result.Data["PlayerProfileData"].Value;
+                PlayerProfileDataMap data = JsonConvert.DeserializeObject<PlayerProfileDataMap>(jsonData);
+                playerData.playerProfile = data;
+
+                Debug.Log("Data loaded successfully!");
+            }
+            else
+            {
+                Debug.LogError("No PlayerProfileData found for this user.");
+            }
         }
 
         // End: Login section
@@ -166,16 +239,5 @@ namespace Tproject.Authentication
             R_signUpGender = str;
             Debug.Log($"player is {str}");
         }
-    }
-
-    public class PlayerProfileDataMap
-    {
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string username { get; set; }
-        public string gender { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string phone { get; set; }
     }
 }
