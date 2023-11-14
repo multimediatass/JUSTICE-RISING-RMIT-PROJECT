@@ -119,8 +119,6 @@ public class Authentication : RestAPIHandler
         {
             RootLogin returnData = result.ToObject<RootLogin>();
             Debug.Log($"{returnData.message}. player token: {returnData.token}");
-
-            playerData.playerToken = returnData.token;
         }
         else
         {

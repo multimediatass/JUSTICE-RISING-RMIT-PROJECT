@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using JusticeRising;
 using UnityEngine.Events;
+using JusticeRising;
 
 namespace Tproject.CutScene
 {
@@ -17,12 +18,14 @@ namespace Tproject.CutScene
 
         private void Update()
         {
-            if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered && !container.activeSelf)
+            if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered &&
+                !container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.Play)
             {
                 OnClickOpenMenu();
                 OnMenuOpen?.Invoke();
             }
-            else if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered && container.activeSelf)
+            else if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered &&
+            container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.UIInteraction)
             {
                 FadeOut(container);
                 AfterMenuClose?.Invoke();

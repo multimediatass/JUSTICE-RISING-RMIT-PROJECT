@@ -39,7 +39,7 @@ namespace JusticeRising
         private void SetUpCharacter()
         {
             int charIndex = -1;
-            charIndex = GetGenderType(GameManager.instance.currentPlayerData.selectedCharacter);
+            charIndex = GetGenderType(GameManager.instance.currentPlayerData.characterSelected);
 
             anim.charAnimIndex = charIndex;
 

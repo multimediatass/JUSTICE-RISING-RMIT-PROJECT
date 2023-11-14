@@ -5,7 +5,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using Newtonsoft.Json;
 using TMPro;
-using System;
+using UnityEngine.Events;
 
 namespace Tproject.Authentication
 {
@@ -25,10 +25,17 @@ namespace Tproject.Authentication
         public TMP_InputField R_Phone;
         public string R_signUpGender;
 
+        [Space]
+        public UnityEvent OnRegisterSuccessEvent;
+        public UnityEvent OnRegisterFailedEvent;
+
         [Header("Login Components")]
         public TextMeshProUGUI L_messageText;
         public TMP_InputField L_emailInput;
         public TMP_InputField L_passwordInput;
+        [Space]
+        public UnityEvent OnLoginSuccessEvent;
+        public UnityEvent OnLoginFailedEvent;
 
         [Header("Recovery Account Components")]
         [HideInInspector] public TextMeshProUGUI Reset_messageText;
@@ -54,6 +61,11 @@ namespace Tproject.Authentication
                 // successPopUp.SetActive(false);
                 // errPopUp.SetActive(false);
             }
+        }
+
+        public bool CheckLoginState()
+        {
+            return PlayFabClientAPI.IsClientLoggedIn();
         }
 
         public void OnClickLoginPanelState(bool state)
@@ -131,6 +143,8 @@ namespace Tproject.Authentication
         void OnUserDataUpdateSuccess(UpdateUserDataResult result)
         {
             Debug.Log("User data updated successfully!");
+
+            OnRegisterSuccessEvent?.Invoke();
         }
 
         void OnUserDataUpdateError(PlayFabError error)
@@ -142,6 +156,7 @@ namespace Tproject.Authentication
         {
             R_messageText.text = error.ErrorMessage;
             Debug.Log($"{error.GenerateErrorReport()}");
+            OnRegisterFailedEvent?.Invoke();
         }
 
         // End: Register section
@@ -180,6 +195,8 @@ namespace Tproject.Authentication
         {
             L_messageText.text = error.ErrorMessage;
             Debug.Log($"{error.GenerateErrorReport()}");
+
+            OnLoginFailedEvent?.Invoke();
         }
 
         private void GetUserData()
@@ -203,6 +220,8 @@ namespace Tproject.Authentication
                 playerData.playerProfile = data;
 
                 Debug.Log("Data loaded successfully!");
+
+                OnLoginSuccessEvent?.Invoke();
             }
             else
             {

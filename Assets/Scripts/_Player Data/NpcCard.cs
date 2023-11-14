@@ -16,6 +16,14 @@ namespace JusticeRising.GameData
         public DialogsController.DialogScript DialogScripts;
         public List<string> ConversationSelected;
 
+        [System.Serializable]
+        public struct PlayerDialogData
+        {
+            public string questionSetected;
+            public string Answer;
+            public string time;
+        }
+
         [Space]
         [Header("Quiz Data")]
         public List<QuizController.MQuizContent> QuizContents;

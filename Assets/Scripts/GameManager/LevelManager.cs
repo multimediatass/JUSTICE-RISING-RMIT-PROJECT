@@ -1,4 +1,4 @@
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,12 +19,18 @@ namespace JusticeRising
         public UnityEvent VisualNovelState;
         public UnityEvent UIInteractionState;
 
+        [Header("TIME MANAGER")]
+        public TextMeshProUGUI timeText;
+        private float elapsedTime = 0f;
+
         private void Awake()
         {
             if (instance == null)
                 instance = this;
             else
                 Destroy(gameObject);
+
+            RestartTime();
         }
 
         private void Start()
@@ -32,6 +38,34 @@ namespace JusticeRising
             // ChangeGameState(GameState.Play);
 
             // UIManager.instance.ShowTutorial(() => ChangeGameState(GameState.Play));
+        }
+
+        void Update()
+        {
+            elapsedTime += Time.deltaTime;
+            DisplayTime(elapsedTime);
+        }
+
+        void DisplayTime(float timeToDisplay)
+        {
+            timeToDisplay += 1;
+
+            float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+            float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+
+        public void RestartTime()
+        {
+            elapsedTime = 0f;
+        }
+
+        public string GetCurrentTime()
+        {
+            float minutes = Mathf.FloorToInt(elapsedTime / 60);
+            float seconds = Mathf.FloorToInt(elapsedTime % 60);
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
         }
 
         public void ChangeGameState(GameState state)

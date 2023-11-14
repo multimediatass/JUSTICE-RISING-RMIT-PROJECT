@@ -8,11 +8,9 @@ namespace JusticeRising.GameData
     public class PlayerData : ScriptableObject
     {
         public PlayerProfileDataMap playerProfile;
-        public string playerName;
-        public string selectedCharacter;
-        public string playerToken;
-        public List<NpcCard> npcResumeActivity;
+        public string characterSelected;
 
+        public List<NpcCard> npcResumeActivity;
         public List<string> witnessSelected;
     }
 

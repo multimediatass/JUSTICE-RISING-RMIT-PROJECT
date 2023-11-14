@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Sandbox.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/TProject by Taufiq/Playfab Connection/Scene/xample-scene.unity
+    guid: 6bf132ddfa9f7984e90ae6fbf6c695fd
   m_configObjects: {}

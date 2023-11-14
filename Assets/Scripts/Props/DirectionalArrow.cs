@@ -26,6 +26,13 @@ namespace JusticeRising
             isLookingForComplate = false;
         }
 
+        public void RequestLookingForTarget(Transform newTarget)
+        {
+            target = newTarget;
+
+            isLookingForComplate = false;
+        }
+
         private void Update()
         {
             if (!isLookingForComplate)
