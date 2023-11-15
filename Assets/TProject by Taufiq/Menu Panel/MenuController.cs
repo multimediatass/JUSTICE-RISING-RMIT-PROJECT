@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using JusticeRising;
 using UnityEngine.Events;
-using JusticeRising;
 
 namespace Tproject.CutScene
 {

@@ -14,6 +14,7 @@ namespace JusticeRising
 
         [Header("Character Group")]
         [SerializeField] private GameObject[] charactersPrefabs;
+        [SerializeField] private GameObject[] iconMaps;
 
         private bool isTeleport = false;
 
@@ -48,6 +49,13 @@ namespace JusticeRising
                 if (i == charIndex)
                     charactersPrefabs[i].SetActive(true);
                 else charactersPrefabs[i].SetActive(false);
+            }
+
+            for (int i = iconMaps.Length - 1; i >= 0; i--)
+            {
+                if (i == charIndex)
+                    iconMaps[i].SetActive(true);
+                else iconMaps[i].SetActive(false);
             }
 
             LoadingManager.instance.CloseLoadingPanel();

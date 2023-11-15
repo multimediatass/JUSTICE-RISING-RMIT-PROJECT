@@ -89,6 +89,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Maps"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a816935-b4b9-4b0b-aaff-23c2a04a37d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -205,7 +214,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5eead69e-1fc5-4f1b-8372-c1e261944dda"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -311,6 +320,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""MenuPanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25e65f23-cabe-4c0a-be80-9258685699c3"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Maps"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -349,6 +369,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerControls_SpeedUp = m_PlayerControls.FindAction("SpeedUp", throwIfNotFound: true);
         m_PlayerControls_NextAction = m_PlayerControls.FindAction("NextAction", throwIfNotFound: true);
         m_PlayerControls_MenuPanel = m_PlayerControls.FindAction("MenuPanel", throwIfNotFound: true);
+        m_PlayerControls_Maps = m_PlayerControls.FindAction("Maps", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -417,6 +438,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_SpeedUp;
     private readonly InputAction m_PlayerControls_NextAction;
     private readonly InputAction m_PlayerControls_MenuPanel;
+    private readonly InputAction m_PlayerControls_Maps;
     public struct PlayerControlsActions
     {
         private @PlayerActions m_Wrapper;
@@ -428,6 +450,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @SpeedUp => m_Wrapper.m_PlayerControls_SpeedUp;
         public InputAction @NextAction => m_Wrapper.m_PlayerControls_NextAction;
         public InputAction @MenuPanel => m_Wrapper.m_PlayerControls_MenuPanel;
+        public InputAction @Maps => m_Wrapper.m_PlayerControls_Maps;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -458,6 +481,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @MenuPanel.started += instance.OnMenuPanel;
             @MenuPanel.performed += instance.OnMenuPanel;
             @MenuPanel.canceled += instance.OnMenuPanel;
+            @Maps.started += instance.OnMaps;
+            @Maps.performed += instance.OnMaps;
+            @Maps.canceled += instance.OnMaps;
         }
 
         private void UnregisterCallbacks(IPlayerControlsActions instance)
@@ -483,6 +509,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @MenuPanel.started -= instance.OnMenuPanel;
             @MenuPanel.performed -= instance.OnMenuPanel;
             @MenuPanel.canceled -= instance.OnMenuPanel;
+            @Maps.started -= instance.OnMaps;
+            @Maps.performed -= instance.OnMaps;
+            @Maps.canceled -= instance.OnMaps;
         }
 
         public void RemoveCallbacks(IPlayerControlsActions instance)
@@ -527,5 +556,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnSpeedUp(InputAction.CallbackContext context);
         void OnNextAction(InputAction.CallbackContext context);
         void OnMenuPanel(InputAction.CallbackContext context);
+        void OnMaps(InputAction.CallbackContext context);
     }
 }

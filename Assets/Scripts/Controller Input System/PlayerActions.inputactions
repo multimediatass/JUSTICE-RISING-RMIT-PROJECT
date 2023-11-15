@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Maps",
+                    "type": "Button",
+                    "id": "5a816935-b4b9-4b0b-aaff-23c2a04a37d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -183,7 +192,7 @@
                 {
                     "name": "",
                     "id": "5eead69e-1fc5-4f1b-8372-c1e261944dda",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -287,6 +296,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MenuPanel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25e65f23-cabe-4c0a-be80-9258685699c3",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Maps",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

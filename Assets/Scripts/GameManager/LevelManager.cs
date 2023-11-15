@@ -9,7 +9,7 @@ namespace JusticeRising
         public static LevelManager instance;
         public enum GameState
         {
-            Pause, Play, VisualNovel, CutScene, UIInteraction
+            Pause, Play, VisualNovel, CutScene, UIInteraction, MainMaps
         }
 
         public GameState CurrentGameState;
@@ -18,6 +18,7 @@ namespace JusticeRising
         public UnityEvent GameplayState;
         public UnityEvent VisualNovelState;
         public UnityEvent UIInteractionState;
+        public UnityEvent MainMapsState;
 
         [Header("TIME MANAGER")]
         public TextMeshProUGUI timeText;
@@ -44,6 +45,9 @@ namespace JusticeRising
         {
             elapsedTime += Time.deltaTime;
             DisplayTime(elapsedTime);
+
+            if (InputManager.instance.inputAction.PlayerControls.Maps.triggered &&
+                CurrentGameState != GameState.MainMaps) ChangeGameState(GameState.MainMaps);
         }
 
         void DisplayTime(float timeToDisplay)
@@ -80,6 +84,9 @@ namespace JusticeRising
                     break;
                 case GameState.VisualNovel:
                     VisualNovelState.Invoke();
+                    break;
+                case GameState.MainMaps:
+                    MainMapsState.Invoke();
                     break;
                 case GameState.UIInteraction:
                     UIInteractionState.Invoke();
