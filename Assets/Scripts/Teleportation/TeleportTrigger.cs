@@ -44,7 +44,7 @@ namespace JusticeRising
         {
             if (popUpTemp != null)
             {
-                if (Input.GetKeyDown(KeyCode.G))
+                if (InputManager.instance.inputAction.PlayerControls.Intaction.IsPressed())
                 {
                     character.TeleportToDestination(teleportDestination, () => afterTelerport.Invoke());
                     Destroy(popUpTemp);

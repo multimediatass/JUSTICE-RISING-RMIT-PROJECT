@@ -10,6 +10,9 @@ namespace JusticeRising.GameData
     {
         public string npcName;
         public string npcRole;
+
+        [TextArea]
+        public string npcDescription;
         public List<Sprite> npcImages;
 
         [Header("Visual Novel Data")]

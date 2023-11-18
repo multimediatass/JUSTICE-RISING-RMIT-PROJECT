@@ -674,7 +674,7 @@ MonoBehaviour:
   frameImage: {fileID: 7936840985456722271}
   doneColor:
     serializedVersion: 2
-    rgba: 4284867165
+    rgba: 4290772923
 --- !u!1 &4588863089357280800
 GameObject:
   m_ObjectHideFlags: 0

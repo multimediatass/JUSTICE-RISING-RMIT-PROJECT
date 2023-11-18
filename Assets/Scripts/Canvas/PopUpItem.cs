@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+
+using JusticeRising;
 
 namespace JusticeRising.Canvas
 {
@@ -86,7 +87,7 @@ namespace JusticeRising.Canvas
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.G) && afterCloseFunct != null)
+            if (InputManager.instance.inputAction.PlayerControls.Intaction.IsPressed() && afterCloseFunct != null)
             {
                 afterCloseFunct.Invoke();
             }

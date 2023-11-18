@@ -149,7 +149,7 @@ namespace JusticeRising
             }
         }
 
-        public void TeleportToDestination(Transform destination, Action afterTeleFunct)
+        public void TeleportToDestination(Transform destination, Action afterTeleFunct = null)
         {
             object[] arg = new object[2] { destination.position, afterTeleFunct };
 
@@ -168,7 +168,8 @@ namespace JusticeRising
             // Debug.Log($"Player has been teleport {(Vector3)parms[0]}");
             LoadingManager.instance.CloseLoadingPanel();
             isTeleport = false;
-            af.Invoke();
+            if (af != null)
+                af.Invoke();
         }
     }
 }

@@ -1,76 +1,92 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
+using JusticeRising;
 using UnityEngine.UI;
 
-public class MapController : MonoBehaviour
+namespace Tproject
 {
-    public Camera mapCamera;
-    public RawImage mapDisplay;
-    public float zoomSpeed = 5f;
-    public float minZoom = 5f;
-    public float maxZoom = 50f;
-
-    private Vector3 lastPanPosition;
-    private bool isPanning;
-
-    private void Update()
+    public class MapController : MonoBehaviour
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        ZoomMap(scroll);
+        public Camera mapCamera;
+        public RawImage mapDisplay;
+        public float zoomSpeed = 5f;
+        public float minZoom = 5f;
+        public float maxZoom = 50f;
 
-        if (IsCursorOverMapDisplay())
+        private Vector3 lastPanPosition;
+        private bool isPanning;
+
+        public GameObject panelMainMap;
+
+        private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            ZoomMap(scroll);
+
+            if (IsCursorOverMapDisplay())
             {
-                lastPanPosition = Input.mousePosition;
-                isPanning = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    lastPanPosition = Input.mousePosition;
+                    isPanning = true;
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    isPanning = false;
+                }
             }
-            else if (Input.GetMouseButtonUp(0))
+            else
             {
                 isPanning = false;
             }
+
+            if (isPanning)
+            {
+                PanCamera(Input.mousePosition);
+            }
         }
-        else
+
+        private bool IsCursorOverMapDisplay()
         {
-            isPanning = false;
+            return RectTransformUtility.RectangleContainsScreenPoint(
+                mapDisplay.rectTransform,
+                Input.mousePosition,
+                null);
         }
 
-        if (isPanning)
+        private void ZoomMap(float increment)
         {
-            PanCamera(Input.mousePosition);
+            if (mapCamera.orthographic)
+            {
+                mapCamera.orthographicSize = Mathf.Clamp(mapCamera.orthographicSize - increment * zoomSpeed, minZoom, maxZoom);
+            }
+            else
+            {
+                mapCamera.fieldOfView = Mathf.Clamp(mapCamera.fieldOfView - increment * zoomSpeed, minZoom, maxZoom);
+            }
         }
-    }
 
-    private bool IsCursorOverMapDisplay()
-    {
-        return RectTransformUtility.RectangleContainsScreenPoint(
-            mapDisplay.rectTransform,
-            Input.mousePosition,
-            null);
-    }
-
-    private void ZoomMap(float increment)
-    {
-        if (mapCamera.orthographic)
+        private void PanCamera(Vector3 newPanPosition)
         {
-            mapCamera.orthographicSize = Mathf.Clamp(mapCamera.orthographicSize - increment * zoomSpeed, minZoom, maxZoom);
+            // Menghitung perbedaan posisi mouse
+            Vector3 offset = mapCamera.ScreenToViewportPoint(lastPanPosition - newPanPosition);
+
+            // Menghitung pergerakan kamera berdasarkan offset
+            Vector3 move = new Vector3(-offset.x * mapCamera.orthographicSize, 0, -offset.y * mapCamera.orthographicSize);
+
+            // Memindahkan kamera
+            mapCamera.transform.Translate(move, Space.World);
+            lastPanPosition = newPanPosition;
         }
-        else
+
+        public void ShowMainMap()
         {
-            mapCamera.fieldOfView = Mathf.Clamp(mapCamera.fieldOfView - increment * zoomSpeed, minZoom, maxZoom);
+            panelMainMap.SetActive(true);
+            LeanTween.alphaCanvas(panelMainMap.GetComponent<CanvasGroup>(), 1f, .5f);
         }
-    }
 
-    private void PanCamera(Vector3 newPanPosition)
-    {
-        // Menghitung perbedaan posisi mouse
-        Vector3 offset = mapCamera.ScreenToViewportPoint(lastPanPosition - newPanPosition);
-
-        // Menghitung pergerakan kamera berdasarkan offset
-        Vector3 move = new Vector3(-offset.x * mapCamera.orthographicSize, 0, -offset.y * mapCamera.orthographicSize);
-
-        // Memindahkan kamera
-        mapCamera.transform.Translate(move, Space.World);
-        lastPanPosition = newPanPosition;
+        public void HideMainMap()
+        {
+            LeanTween.alphaCanvas(panelMainMap.GetComponent<CanvasGroup>(), 0f, .5f).setOnComplete(() => panelMainMap.SetActive(false));
+        }
     }
 }

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[G] Ask Question'
+  m_text: '[E] Ask Question'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 505e4d34a7db1bc46a5d7d15af2a29e2, type: 2}
   m_sharedMaterial: {fileID: 1653631458307283989, guid: 505e4d34a7db1bc46a5d7d15af2a29e2,

@@ -65,11 +65,16 @@ namespace JusticeRising
             elapsedTime = 0f;
         }
 
-        public string GetCurrentTime()
+        public string GetCurrentTimeString()
         {
             float minutes = Mathf.FloorToInt(elapsedTime / 60);
             float seconds = Mathf.FloorToInt(elapsedTime % 60);
             return string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+
+        public float GetCurrentTimeFloat()
+        {
+            return elapsedTime;
         }
 
         public void ChangeGameState(GameState state)
