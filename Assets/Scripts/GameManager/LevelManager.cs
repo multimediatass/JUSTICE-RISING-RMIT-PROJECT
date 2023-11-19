@@ -21,6 +21,7 @@ namespace JusticeRising
         public UnityEvent MainMapsState;
 
         [Header("TIME MANAGER")]
+        public bool isPlayingTime = false;
         public TextMeshProUGUI timeText;
         private float elapsedTime = 0f;
 
@@ -43,8 +44,11 @@ namespace JusticeRising
 
         void Update()
         {
-            elapsedTime += Time.deltaTime;
-            DisplayTime(elapsedTime);
+            if (isPlayingTime)
+            {
+                elapsedTime += Time.deltaTime;
+                DisplayTime(elapsedTime);
+            }
 
             if (InputManager.instance.inputAction.PlayerControls.Maps.triggered &&
                 CurrentGameState != GameState.MainMaps) ChangeGameState(GameState.MainMaps);

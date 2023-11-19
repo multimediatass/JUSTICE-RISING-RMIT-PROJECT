@@ -177,7 +177,7 @@ namespace Tproject.CutScene
 
         public void BackToGameMenu()
         {
-            LoadingManager.instance.ChangeScene("GameMenu");
+            // LoadingManager.instance.ChangeScene("GameMenu");
         }
     }
 }

@@ -54,10 +54,10 @@ namespace JusticeRising.Canvas
             return pop.gameObject;
         }
 
-        public GameObject ShowPopUpModal(PopUpItem.InspectFormat msg, Action nextAction)
+        public GameObject ShowPopUpModal(PopUpItem.InspectFormat msg, Action nextAction = null)
         {
             var pop = Instantiate(popUpFinish, this.transform);
-            pop.PopUpModal(msg, nextAction);
+            pop.PopUpModal(msg);
 
             return pop.gameObject;
         }

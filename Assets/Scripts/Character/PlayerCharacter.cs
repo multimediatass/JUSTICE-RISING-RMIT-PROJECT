@@ -21,7 +21,7 @@ namespace JusticeRising
 
         private void Awake()
         {
-            SetUpCharacter();
+            // SetUpCharacter();
         }
 
         private int GetGenderType(string type)
@@ -58,14 +58,14 @@ namespace JusticeRising
                 else iconMaps[i].SetActive(false);
             }
 
-            LoadingManager.instance.CloseLoadingPanel();
+            // LoadingManager.instance.CloseLoadingPanel();
         }
 
         private void Start()
         {
             _speed = normalSpeed;
 
-            if (!characterCanMove) anim.SetBoolIsSitting(true);
+            // if (!characterCanMove) anim.SetBoolIsSitting(true);
         }
 
         private void Update()
@@ -160,13 +160,13 @@ namespace JusticeRising
         {
             Action af = (Action)parms[1];
 
-            LoadingManager.instance.StartLoading();
+            // LoadingManager.instance.StartLoading();
             isTeleport = true;
             yield return new WaitForSeconds(0.5f);
             this.transform.position = (Vector3)parms[0];
             yield return new WaitForSeconds(0.5f);
             // Debug.Log($"Player has been teleport {(Vector3)parms[0]}");
-            LoadingManager.instance.CloseLoadingPanel();
+            // LoadingManager.instance.CloseLoadingPanel();
             isTeleport = false;
             if (af != null)
                 af.Invoke();

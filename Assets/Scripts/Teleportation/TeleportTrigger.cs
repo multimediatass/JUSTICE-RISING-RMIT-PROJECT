@@ -62,7 +62,7 @@ namespace JusticeRising
             msg.description = "Please be patient, we're still on our development";
             msg.instruction = "[G] Back to Main Menu";
 
-            popUpTemp = UIManager.instance.ShowPopUpModal(msg, () => LoadingManager.instance.ChangeScene("GameMenu"));
+            popUpTemp = UIManager.instance.ShowPopUpModal(msg);
         }
     }
 }

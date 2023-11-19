@@ -6,6 +6,7 @@ using PlayFab.ClientModels;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Tproject.Authentication
 {
@@ -23,7 +24,10 @@ namespace Tproject.Authentication
         public TMP_InputField R_passwordInput;
         public TMP_InputField R_PasswordComfirmation;
         public TMP_InputField R_Phone;
+        [Space]
         public string R_signUpGender;
+        public Button[] R_genderButton;
+        public Color buttonSelectedColor;
 
         [Space]
         public UnityEvent OnRegisterSuccessEvent;
@@ -79,13 +83,15 @@ namespace Tproject.Authentication
             if (string.IsNullOrEmpty(R_passwordInput.text) || string.IsNullOrEmpty(R_PasswordComfirmation.text)
                 || string.IsNullOrEmpty(R_Username.text) || string.IsNullOrEmpty(R_emailInput.text))
             {
-                Debug.LogWarning("please fill the blank");
+                // Debug.LogWarning("Please fill the blank");
+                R_messageText.text = "Please fill the blank";
                 return;
             }
 
             if (R_passwordInput.text != R_PasswordComfirmation.text)
             {
-                Debug.LogWarning("comfirm your password");
+                // Debug.LogWarning("comfirm your password");
+                R_messageText.text = "Please comfirm your password";
                 return;
             }
 
@@ -253,10 +259,46 @@ namespace Tproject.Authentication
         }
         // End: Recovery section
 
-        public void OnClickGenderSelection(string str)
+        public void OnClickGenderSelection(string gender)
         {
-            R_signUpGender = str;
-            Debug.Log($"player is {str}");
+            R_signUpGender = gender;
+            Debug.Log($"player select: {gender}");
+
+            // Highlight the selected button
+            ResetButtonColors();
+            switch (gender)
+            {
+                case "Male":
+                    HighlightButton(R_genderButton[0]);
+                    break;
+                case "Female":
+                    HighlightButton(R_genderButton[1]);
+                    break;
+                case "Other":
+                    HighlightButton(R_genderButton[2]);
+                    break;
+            }
+        }
+        void HighlightButton(Button button)
+        {
+            ColorBlock colors = button.colors;
+            colors.normalColor = buttonSelectedColor; // Highlight color
+            colors.selectedColor = buttonSelectedColor;
+            button.colors = colors;
+        }
+
+        public void ResetButtonColors()
+        {
+            ResetButtonColor(R_genderButton[0]);
+            ResetButtonColor(R_genderButton[1]);
+            ResetButtonColor(R_genderButton[2]);
+        }
+
+        void ResetButtonColor(Button button)
+        {
+            ColorBlock colors = button.colors;
+            colors.normalColor = Color.white; // Default color
+            button.colors = colors;
         }
     }
 }
