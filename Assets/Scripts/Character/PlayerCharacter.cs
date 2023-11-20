@@ -37,10 +37,11 @@ namespace JusticeRising
             };
         }
 
-        private void SetUpCharacter()
+        public void SetUpCharacter(string parm)
         {
             int charIndex = -1;
-            charIndex = GetGenderType(GameManager.instance.currentPlayerData.characterSelected);
+            // charIndex = GetGenderType(GameManager.instance.currentPlayerData.characterSelected);
+            charIndex = GetGenderType(parm);
 
             anim.charAnimIndex = charIndex;
 

@@ -48,6 +48,7 @@ MonoBehaviour:
       SFX: {fileID: 0}
       npcImage: {fileID: 0}
   ConversationSelected: []
+  playerDialogData: []
   QuizContents:
   - Question: How long is the protection of a trademark?
     illustrationSprite: {fileID: 0}

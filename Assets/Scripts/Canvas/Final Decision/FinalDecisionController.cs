@@ -169,7 +169,7 @@ namespace JusticeRising.Canvas
         {
             if (playerData.npcResumeActivity.Count < 1)
             {
-                Debug.LogWarning($"witness is less than 1");
+                // Debug.LogWarning($"witness is less than 1");
                 OnDataWitnessLessThanOne?.Invoke();
                 return;
             }

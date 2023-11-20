@@ -54,6 +54,8 @@ namespace JusticeRising
                 CurrentGameState != GameState.MainMaps) ChangeGameState(GameState.MainMaps);
         }
 
+        public void GameTimeState(bool state) => isPlayingTime = state;
+
         void DisplayTime(float timeToDisplay)
         {
             timeToDisplay += 1;

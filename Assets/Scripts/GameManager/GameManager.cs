@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using JusticeRising.GameData;
 
@@ -27,7 +26,7 @@ namespace JusticeRising
         {
             currentPlayerData.npcResumeActivity.Add(newCard);
 
-            Debug.Log(newCard.npcName);
+            // Debug.Log($"AddNPCCard: {newCard.npcName}");
         }
     }
 }

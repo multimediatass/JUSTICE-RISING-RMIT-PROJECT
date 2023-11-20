@@ -27,6 +27,5 @@ public class GameDataManager : MonoBehaviour
     {
         string time = DateTime.Now.ToString("dddd, dd MMMM HH:mm");
         message.text = time;
-
     }
 }

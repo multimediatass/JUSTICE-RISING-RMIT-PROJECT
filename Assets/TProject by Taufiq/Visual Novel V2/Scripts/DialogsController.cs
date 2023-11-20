@@ -7,6 +7,7 @@ using System;
 using Tproject.Tools;
 using JusticeRising.GameData;
 using System.Linq;
+using JusticeRising;
 
 namespace Tproject.VisualNovelV2
 {
@@ -206,6 +207,15 @@ namespace Tproject.VisualNovelV2
             if (DialogScripts.sectionList[sectionId].npcImage)
                 speakerImage.sprite = DialogScripts.sectionList[sectionId].npcImage;
 
+            NpcCard.PlayerDialogData newData = new NpcCard.PlayerDialogData
+            {
+                questionSetected = DialogScripts.sectionList[sectionId].Question,
+                Answer = DialogScripts.sectionList[sectionId].Answer,
+                selectedTimeOnGame = LevelManager.instance.GetCurrentTimeString()
+            };
+
+            npcCard.playerDialogData.Add(newData);
+
             DialogScripts.sectionList.RemoveAt(sectionId);
             DialogScripts.PlayerOpportunity--;
 
@@ -313,10 +323,13 @@ namespace Tproject.VisualNovelV2
         {
             if (GOMod.RemoveGOChildren(contentParent)) pannelUI.SetActive(false);
 
-            if (isPlayerHasOpportunity) playerHasOpportunity?.Invoke();
+            if (isPlayerHasOpportunity)
+            {
+                playerHasOpportunity?.Invoke();
+                npcCard.AddConversationSelected(_conversationSelected);
+            }
             else playerDontHaveOpportunity?.Invoke();
 
-            npcCard.AddConversationSelected(_conversationSelected);
             npcCard.DialogScripts.PlayerOpportunity = DialogScripts.PlayerOpportunity;
 
             _conversationSelected.Clear();

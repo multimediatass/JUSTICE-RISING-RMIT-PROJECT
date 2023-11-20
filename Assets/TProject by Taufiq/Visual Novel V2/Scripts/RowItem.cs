@@ -66,7 +66,7 @@ namespace Tproject.VisualNovelV2
         public void OnClickQuestionOpt(int optId)
         {
             if (questionList.Count == 0) return;
-            Debug.Log($"player select question number {optId}");
+            // Debug.Log($"player select question number {optId}");
 
             Destroy(this.gameObject);
 

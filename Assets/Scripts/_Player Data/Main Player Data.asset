@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636ff13570ed5d34bb9117a6116a2701, type: 3}
   m_Name: Main Player Data
   m_EditorClassIdentifier: 
-  playerName: 
-  selectedCharacter: 
-  playerToken: 
+  playerProfile:
+    firstName: shan
+    lastName: taufiq
+    username: shantaufiq
+    gender: Male
+    email: shantaufiq021@gmail.com
+    phone: 0812371518179
+  characterSelected: Male
   npcResumeActivity: []
   witnessSelected: []

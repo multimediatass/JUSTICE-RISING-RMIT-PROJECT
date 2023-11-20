@@ -149,6 +149,12 @@ namespace Tproject.Quiz
                 StartCoroutine(nameof(ShowScore));
                 _currentIndex = 0;
 
+                npcCard.correctValue = scoreTrue;
+                npcCard.totalQuestion = totalScore;
+
+                // send data to playfab
+                npcCard.SendQuizDataToPlayfab();
+
                 npcCard = null;
             }
         }
