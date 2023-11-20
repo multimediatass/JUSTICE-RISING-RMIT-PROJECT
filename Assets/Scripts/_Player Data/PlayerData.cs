@@ -12,6 +12,7 @@ namespace JusticeRising.GameData
 
         public List<NpcCard> npcResumeActivity;
         public List<string> witnessSelected;
+        public int PlayerScore;
     }
 
     [System.Serializable]

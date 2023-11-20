@@ -85,11 +85,13 @@ namespace JusticeRising.GameData
             };
 
             string json = JsonConvert.SerializeObject(newData);
-            UpdateUserData($"DialogReport_{npcName}_{DateTime.Now.ToString("MMddyy_HHmm")}", json);
+            UpdateUserData($"DialogReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
         }
 
         public void SendQuizDataToPlayfab()
         {
+            GameManager.instance.IncreaseMasterScore(correctValue * 10);
+
             QuizData newData = new QuizData
             {
                 PlayerName = $"{GameManager.instance.currentPlayerData.playerProfile.firstName} {GameManager.instance.currentPlayerData.playerProfile.lastName}",
@@ -99,13 +101,13 @@ namespace JusticeRising.GameData
                 NpcRole = $"{npcRole}",
                 QuestionCount = totalQuestion,
                 CorrectValue = correctValue,
-                ConversationSelected = QuizAnswerd,
+                PlayerQuizData = QuizAnswerd,
                 SubmitTimeOnGame = LevelManager.instance.GetCurrentTimeString(),
                 Datestamp = DateTime.Now.ToString("dddd, dd MMMM HH:mm")
             };
 
             string json = JsonConvert.SerializeObject(newData);
-            UpdateUserData($"QuizReport_{npcName}_{DateTime.Now.ToString("MMddyy_HHmm")}", json);
+            UpdateUserData($"QuizReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
         }
 
         void UpdateUserData(string key, string json)
@@ -149,7 +151,7 @@ namespace JusticeRising.GameData
         public string NpcRole;
         public int QuestionCount;
         public int CorrectValue;
-        public List<NpcCard.PlayerAnswerData> ConversationSelected;
+        public List<NpcCard.PlayerAnswerData> PlayerQuizData;
         public string SubmitTimeOnGame;
         public string Datestamp;
     }
