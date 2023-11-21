@@ -6,6 +6,9 @@ using JusticeRising.GameData;
 using System;
 using UnityEngine.Events;
 using JusticeRising;
+using PlayFab;
+using PlayFab.ClientModels;
+using Newtonsoft.Json;
 
 namespace JusticeRising.Canvas
 {
@@ -125,14 +128,36 @@ namespace JusticeRising.Canvas
         {
             foreach (var item in UI_selectedCard)
             {
-                Debug.Log($"witness selected {item.npcCard.npcName}");
+                // Debug.Log($"witness selected {item.npcCard.npcName}");
 
-                playerData.witnessSelected.Add(item.npcCard.npcName);
+                FinalDecisionData.WitnessData newWitness = new FinalDecisionData.WitnessData(item.npcCard.npcName, item.npcCard.npcRole);
+
+                playerData.witnessSelected.Add(newWitness);
             }
+
+            SendDecisionData(playerData.witnessSelected);
 
             Panel.SetActive(false);
 
             AfterCloseFinalDecision?.Invoke();
+        }
+
+        private void SendDecisionData(List<FinalDecisionData.WitnessData> _data)
+        {
+            FinalDecisionData newData = new FinalDecisionData
+            {
+                PlayerName = $"{GameManager.instance.currentPlayerData.playerProfile.firstName} {GameManager.instance.currentPlayerData.playerProfile.lastName}",
+                Username = $"{GameManager.instance.currentPlayerData.playerProfile.username}",
+                Email = $"{GameManager.instance.currentPlayerData.playerProfile.email}",
+                SubmitTimeOnGame = LevelManager.instance.GetCurrentTimeString(),
+                WitnessesSelected = _data,
+                Datestamp = DateTime.Now.ToString("dddd, dd MMMM HH:mm")
+            };
+
+            string json = JsonConvert.SerializeObject(newData);
+            GameManager.instance.UpdateUserData($"FinalDecisionReport_{DateTime.Now.ToString("yyMMdd_HHmm")}", json);
+
+            Debug.Log($"final decision data has been sent: {json}");
         }
 
         public void OnClickOpenFinalDecision()

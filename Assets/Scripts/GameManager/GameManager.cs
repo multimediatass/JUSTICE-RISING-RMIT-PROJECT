@@ -79,5 +79,22 @@ namespace JusticeRising
                 (err) => Debug.LogError(err.GenerateErrorReport())
             );
         }
+
+        public void UpdateUserData(string key, string json)
+        {
+            var data = new Dictionary<string, string>
+            {
+                {key, json}
+            };
+
+            var request = new UpdateUserDataRequest
+            {
+                Data = data
+            };
+
+            PlayFabClientAPI.UpdateUserData(request,
+                (s) => Debug.Log($"Success send user data to playfab"),
+                (err) => Debug.LogError(err.GenerateErrorReport()));
+        }
     }
 }

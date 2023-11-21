@@ -85,7 +85,7 @@ namespace JusticeRising.GameData
             };
 
             string json = JsonConvert.SerializeObject(newData);
-            UpdateUserData($"DialogReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
+        UpdateUserData($"DialogReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
         }
 
         public void SendQuizDataToPlayfab()
