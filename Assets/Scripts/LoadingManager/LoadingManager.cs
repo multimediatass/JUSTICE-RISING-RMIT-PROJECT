@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using System.Collections;
 using TMPro;
+using System;
 
 [System.Serializable]
 public struct LoadingContent
@@ -72,14 +73,16 @@ namespace Tproject
                      .setOnComplete(() => StartCoroutine(LoadSceneAsync(arg)));
         }
 
-        public void ShowLoadingScreen(float time)
+        public void ShowLoadingScreen(Action _funct, float time)
         {
             loadingBar.fillAmount = 0f;
             loadingPanel.SetActive(true);
             SelectRandomLoadingContent();
 
+            object[] arg = new object[2] { _funct, time };
+
             LeanTween.alphaCanvas(loadingPanel.GetComponent<CanvasGroup>(), 1f, 0.5f)
-                .setOnComplete(() => StartCoroutine(DisplayLoadingPanel(time)));
+                .setOnComplete(() => StartCoroutine(DisplayLoadingPanel(arg)));
         }
 
         private IEnumerator LoadSceneAsync(object[] parms)
@@ -113,13 +116,16 @@ namespace Tproject
             }
         }
 
-        private IEnumerator DisplayLoadingPanel(float time)
+        private IEnumerator DisplayLoadingPanel(object[] parms)
         {
             onPanelActive.Invoke();
 
+            Action onFinishFunction = (Action)parms[0];
+            float time = (float)parms[1];
+
             if (loadingContents.Length > 0)
             {
-                int randomIndex = Random.Range(0, loadingContents.Length);
+                int randomIndex = UnityEngine.Random.Range(0, loadingContents.Length);
                 LoadingContent selectedContent = loadingContents[randomIndex];
                 backgroundImage.sprite = selectedContent.sprite;
                 messageText.text = selectedContent.message;
@@ -134,11 +140,13 @@ namespace Tproject
                 yield return null;
             }
 
-            LeanTween.alphaCanvas(loadingPanel.GetComponent<CanvasGroup>(), 0f, 0.5f)
+            onPanelClose.Invoke();
+            onFinishFunction?.Invoke();
+
+            LeanTween.alphaCanvas(loadingPanel.GetComponent<CanvasGroup>(), 0f, 0.4f)
                 .setOnComplete(() =>
                 {
                     loadingPanel.SetActive(false);
-                    onPanelClose.Invoke();
                 });
         }
 
@@ -146,7 +154,7 @@ namespace Tproject
         {
             if (loadingContents.Length > 0)
             {
-                int randomIndex = Random.Range(0, loadingContents.Length);
+                int randomIndex = UnityEngine.Random.Range(0, loadingContents.Length);
                 LoadingContent selectedContent = loadingContents[randomIndex];
                 backgroundImage.sprite = selectedContent.sprite;
                 messageText.text = selectedContent.message;

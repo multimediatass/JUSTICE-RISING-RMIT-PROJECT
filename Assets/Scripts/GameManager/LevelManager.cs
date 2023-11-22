@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using Tproject;
 
 namespace JusticeRising
 {
@@ -9,16 +10,20 @@ namespace JusticeRising
         public static LevelManager instance;
         public enum GameState
         {
-            Pause, Play, VisualNovel, CutScene, UIInteraction, MainMaps
+            Pause, Play, VisualNovel, CutScene, UIInteraction, MainMaps, GameMenu, RestartGamePlay
         }
+
+        public GameManager gameManager;
 
         public GameState CurrentGameState;
 
+        public UnityEvent GameMenuState;
         public UnityEvent GamepauseState;
         public UnityEvent GameplayState;
         public UnityEvent VisualNovelState;
         public UnityEvent UIInteractionState;
         public UnityEvent MainMapsState;
+        public UnityEvent RestartGamePlaysState;
 
         [Header("TIME MANAGER")]
         public bool isPlayingTime = false;
@@ -37,7 +42,7 @@ namespace JusticeRising
 
         private void Start()
         {
-            // ChangeGameState(GameState.Play);
+            gameManager = GameManager.instance;
 
             // UIManager.instance.ShowTutorial(() => ChangeGameState(GameState.Play));
         }
@@ -87,6 +92,9 @@ namespace JusticeRising
         {
             switch (state)
             {
+                case GameState.GameMenu:
+                    GameMenuState.Invoke();
+                    break;
                 case GameState.Pause:
                     GamepauseState.Invoke();
                     break;
@@ -102,9 +110,14 @@ namespace JusticeRising
                 case GameState.UIInteraction:
                     UIInteractionState.Invoke();
                     break;
+                case GameState.RestartGamePlay:
+                    RestartGamePlaysState.Invoke();
+                    break;
             }
 
             CurrentGameState = state;
+
+            Debug.Log($"CurrentGameState: {CurrentGameState}");
         }
 
 
@@ -127,9 +140,28 @@ namespace JusticeRising
             ChangeGameState(GameState.Pause);
         }
 
+        public void OpenGameMenu()
+        {
+            ChangeGameState(GameState.GameMenu);
+            ResetGameMasterData();
+        }
+
         public void UIInteraction()
         {
             ChangeGameState(GameState.UIInteraction);
+        }
+
+        public void ResetGameMasterData()
+        {
+            RestartTime();
+            gameManager.currentPlayerData.ResetData();
+        }
+
+        public void RestartGamePlay()
+        {
+            ChangeGameState(GameState.RestartGamePlay);
+
+            LoadingManager.Instance.ShowLoadingScreen(PlayGame, 3f);
         }
     }
 }

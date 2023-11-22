@@ -26,10 +26,15 @@ namespace Tproject.CutScene
             else if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered &&
             container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.UIInteraction)
             {
-                FadeOut(container);
+                OnCloseMenu();
                 AfterMenuClose?.Invoke();
-                currentPage = 0;
             }
+        }
+
+        public void OnCloseMenu()
+        {
+            FadeOut(container);
+            currentPage = 0;
         }
 
         private void OnClickOpenMenu()

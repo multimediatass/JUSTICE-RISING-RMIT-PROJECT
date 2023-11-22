@@ -21,6 +21,7 @@ namespace JusticeRising.GameData
         public List<Sprite> npcImages;
 
         [Header("Visual Novel Data")]
+        private int tempOpportunity;
         public DialogsController.DialogScript DialogScripts;
         public List<string> ConversationSelected;
 
@@ -57,6 +58,12 @@ namespace JusticeRising.GameData
             }
         }
 
+        private void Start()
+        {
+            if (tempOpportunity == 0)
+                tempOpportunity = DialogScripts.PlayerOpportunity;
+        }
+
         public void AddConversationSelected(List<string> list)
         {
             if (DialogScripts.PlayerOpportunity < 1) return;
@@ -68,6 +75,16 @@ namespace JusticeRising.GameData
 
             if (DialogScripts.PlayerOpportunity > 0)
                 SendVisualNovelDataToPlayfab();
+        }
+
+        public void ResetNpcData()
+        {
+            ConversationSelected.Clear();
+            playerDialogData.Clear();
+            QuizAnswerd.Clear();
+            correctValue = 0;
+            totalQuestion = 0;
+            DialogScripts.PlayerOpportunity = tempOpportunity;
         }
 
         public void SendVisualNovelDataToPlayfab()
@@ -85,7 +102,7 @@ namespace JusticeRising.GameData
             };
 
             string json = JsonConvert.SerializeObject(newData);
-        UpdateUserData($"DialogReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
+            UpdateUserData($"DialogReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
         }
 
         public void SendQuizDataToPlayfab()
