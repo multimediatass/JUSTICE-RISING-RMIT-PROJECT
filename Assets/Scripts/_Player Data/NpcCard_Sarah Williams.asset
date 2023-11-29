@@ -21,7 +21,8 @@ MonoBehaviour:
   npcImages:
   - {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
   - {fileID: 21300000, guid: dfaba81f0d10a824b9360e9cd5a4aa36, type: 3}
-  - {fileID: 21300000, guid: c8001f3613cf0b6458c68fe078cf8aeb, type: 3}
+  - {fileID: 21300000, guid: bcfa0bf23c73b7840b5522e41848a221, type: 3}
+  defaultOpportunity: 3
   DialogScripts:
     PlayerOpportunity: 3
     npcName: Sarah Williams,MBA
@@ -59,6 +60,7 @@ MonoBehaviour:
       SFX: {fileID: 0}
       npcImage: {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
   ConversationSelected: []
+  playerDialogData: []
   QuizContents:
   - Question: In general, intellectual property rights are divided into two categories,
       i.e.
@@ -70,3 +72,5 @@ MonoBehaviour:
     - Subjective and objective rights
     CorrectAnswer: Copyright and industrial property rights
   QuizAnswerd: []
+  correctValue: 0
+  totalQuestion: 0

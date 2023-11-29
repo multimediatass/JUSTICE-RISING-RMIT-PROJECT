@@ -99,4 +99,14 @@ public class QuestController : MonoBehaviour
         var popup = Instantiate(popupMessage, canvas);
         popup.textMessage.text = msg;
     }
+
+    public void ResetQuest()
+    {
+        for (int i = 0; i < toDoList.Count - 1; i++)
+        {
+            ItemList temp = toDoList[i];
+            temp.isDone = false;
+            toDoList[i] = temp;
+        }
+    }
 }

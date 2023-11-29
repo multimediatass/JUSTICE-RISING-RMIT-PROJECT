@@ -12,11 +12,17 @@ namespace JusticeRising.GameData
 
         public List<NpcCard> npcResumeActivity;
         public List<FinalDecisionData.WitnessData> witnessSelected;
+        public List<NpcCard> staticNpc;
         public int PlayerScore;
 
         public void ResetData()
         {
             foreach (var item in npcResumeActivity)
+            {
+                item.ResetNpcData();
+            }
+
+            foreach (var item in staticNpc)
             {
                 item.ResetNpcData();
             }

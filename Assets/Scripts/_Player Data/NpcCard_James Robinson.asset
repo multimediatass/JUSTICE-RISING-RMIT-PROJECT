@@ -26,7 +26,8 @@ MonoBehaviour:
   npcImages:
   - {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
   - {fileID: 21300000, guid: 8b4e47d430327884ba3958c1323ad99b, type: 3}
-  - {fileID: 21300000, guid: 207cd5a15e942a041870ca50c81ee94c, type: 3}
+  - {fileID: 21300000, guid: cf285eab6a89da4478b775ab1bb0e035, type: 3}
+  defaultOpportunity: 3
   DialogScripts:
     PlayerOpportunity: 3
     npcName: Dr.James Robinson,B.Comp.Sc,M.Comp.Sc.
@@ -61,6 +62,7 @@ MonoBehaviour:
       SFX: {fileID: 0}
       npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
   ConversationSelected: []
+  playerDialogData: []
   QuizContents:
   - Question: The organizations that operate under the United Nations as an attempt
       to protect the copyright of intellectual property are
@@ -72,3 +74,5 @@ MonoBehaviour:
     - WHO
     CorrectAnswer: WIPO
   QuizAnswerd: []
+  correctValue: 0
+  totalQuestion: 0

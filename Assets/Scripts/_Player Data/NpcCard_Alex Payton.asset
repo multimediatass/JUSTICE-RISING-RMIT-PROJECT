@@ -20,9 +20,10 @@ MonoBehaviour:
   npcImages:
   - {fileID: 21300000, guid: d322e063f8178d24a92ef8a108d1b3cb, type: 3}
   - {fileID: 21300000, guid: 417d7cc1cd5107b4f805cea6fbea424a, type: 3}
-  - {fileID: 21300000, guid: 96e0307330a057346b10cbcbbfad42cc, type: 3}
+  - {fileID: 21300000, guid: 1a24848873ebb774b858608045f18052, type: 3}
+  defaultOpportunity: 3
   DialogScripts:
-    PlayerOpportunity: 0
+    PlayerOpportunity: 3
     npcName: Alex Payton
     sectionList:
     - Question: Is there any technological solution that can be considered to solve

@@ -74,11 +74,10 @@ namespace JusticeRising.Canvas
         public void OnClickBack()
         {
             StartCoroutine(DestroyTemp(this.gameObject));
+            ResumeController.Instance.OnCloseResume();
         }
         public void OnClickClose()
         {
-            ResumeController.Instance.OnCloseResume();
-
             StartCoroutine(DestroyTemp(this.gameObject));
         }
     }

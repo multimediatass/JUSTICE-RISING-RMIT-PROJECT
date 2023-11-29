@@ -18,7 +18,8 @@ MonoBehaviour:
   npcImages:
   - {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
   - {fileID: 21300000, guid: 35fbc45c581db924bbe09099a928e037, type: 3}
-  - {fileID: 21300000, guid: beee58c282c6f4d4c974a4a4008bc44d, type: 3}
+  - {fileID: 21300000, guid: ee106d2480a1bf24288286705fea0497, type: 3}
+  defaultOpportunity: 2
   DialogScripts:
     PlayerOpportunity: 2
     npcName: Liam Smith,MBA
@@ -38,5 +39,8 @@ MonoBehaviour:
       SFX: {fileID: 0}
       npcImage: {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
   ConversationSelected: []
+  playerDialogData: []
   QuizContents: []
   QuizAnswerd: []
+  correctValue: 0
+  totalQuestion: 0

@@ -44,6 +44,8 @@ namespace JusticeRising
         {
             gameManager = GameManager.instance;
 
+            ResetGameMasterData();
+
             // UIManager.instance.ShowTutorial(() => ChangeGameState(GameState.Play));
         }
 
@@ -163,5 +165,7 @@ namespace JusticeRising
 
             LoadingManager.Instance.ShowLoadingScreen(PlayGame, 3f);
         }
+
+        // public void Reset
     }
 }

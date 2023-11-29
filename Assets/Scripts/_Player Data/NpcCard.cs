@@ -21,7 +21,7 @@ namespace JusticeRising.GameData
         public List<Sprite> npcImages;
 
         [Header("Visual Novel Data")]
-        private int tempOpportunity;
+        [SerializeField] private int defaultOpportunity;
         public DialogsController.DialogScript DialogScripts;
         public List<string> ConversationSelected;
 
@@ -60,8 +60,8 @@ namespace JusticeRising.GameData
 
         private void Start()
         {
-            if (tempOpportunity == 0)
-                tempOpportunity = DialogScripts.PlayerOpportunity;
+            // if (tempOpportunity == 0)
+            //     tempOpportunity = DialogScripts.PlayerOpportunity;
         }
 
         public void AddConversationSelected(List<string> list)
@@ -84,7 +84,7 @@ namespace JusticeRising.GameData
             QuizAnswerd.Clear();
             correctValue = 0;
             totalQuestion = 0;
-            DialogScripts.PlayerOpportunity = tempOpportunity;
+            DialogScripts.PlayerOpportunity = defaultOpportunity;
         }
 
         public void SendVisualNovelDataToPlayfab()
