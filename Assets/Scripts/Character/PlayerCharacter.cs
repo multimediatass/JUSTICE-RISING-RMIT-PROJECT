@@ -15,6 +15,7 @@ namespace JusticeRising
         [Header("Character Group")]
         [SerializeField] private GameObject[] charactersPrefabs;
         [SerializeField] private GameObject[] iconMaps;
+        [SerializeField] private CutSceneAnimController animForCutScene;
 
         private bool isTeleport = false;
 
@@ -44,6 +45,7 @@ namespace JusticeRising
             charIndex = GetGenderType(parm);
 
             anim.charAnimIndex = charIndex;
+            animForCutScene.SetUpPlayerCutSceneCharacter(charIndex);
 
             for (int i = charactersPrefabs.Length - 1; i >= 0; i--)
             {
