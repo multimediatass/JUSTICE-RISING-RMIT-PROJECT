@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e157dbeeb1b9b5f4281e076eeb5ebe2c, type: 3}
+  m_Name: NpcCard_Robert Anderson
+  m_EditorClassIdentifier: 
+  npcName: Robert Anderson,S.J.D.
+  npcRole: Ahli Hukum Properti Intelektual
+  npcDescription: 'Robert Anderson is a professional Intellectual Property Lawyer
+    specializing in the legal field related to intellectual property rights. Intellectual
+    property encompasses copyrights, patents, trademarks, industrial designs, and
+    other intellectual property rights.
+
+
+    The duties of an intellectual property
+    lawyer involve providing legal advice, assisting in the registration and protection
+    of intellectual property rights, handling legal disputes related to intellectual
+    property rights, and ensuring that their clients understand and utilize their
+    legal rights in the intellectual property field'
+  npcImages:
+  - {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+  - {fileID: 21300000, guid: 6c5945674f78e36448603bcd4c85053b, type: 3}
+  - {fileID: 21300000, guid: e37e82c6b5b1a63408448ee74efe606b, type: 3}
+  defaultOpportunity: 3
+  DialogScripts:
+    PlayerOpportunity: 3
+    npcName: Robert Anderson,S.J.D.
+    sectionList:
+    - Question: What jurisdiction is involved in this case?
+      Answer: Yes, I am here as an Expert in Intellectual Property Law specializing
+        in laws that protect the rights to creative works, such as copyright, trademarks,
+        patents, and trade secrets.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: How can you be sure about what you're witnessing?
+      Answer: "Of course, this case has been regulated in the patent protection internationally
+        agreed in Paris Convention for the Protection of Industrial Property which
+        agreed *Scope of industrial property* or Industrial property spaces as provided
+        in Article 1 (2) of the Paris Convention stating that:\r\n\r\n*The protection
+        of industrial property has as its object\_patents, utility models, industrial
+        designs, trademarks, service marks, trade names, indications of source or
+        appellations of origin, and the repression of unfair competition.*"
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: How do you assess the legal issues that arise in this case based
+        on the facts and evidence available?
+      Answer: In my opinion, if based on the facts and evidence available then Lizznet
+        has committed a breach by allowing its users to do several downloads and
+        distribution of copies of Nexa Cinema films without a prior contract
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: How do you identify digital evidence or electronic tracks in this
+        case?
+      Answer: Please apologize about the digital problem that is not in my lock
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+    - Question: Can you explain the technology or concept that is being debated in
+        the trial?
+      Answer: I'm sorry I didn't explain this matter.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+  ConversationSelected: []
+  playerDialogData: []
+  QuizContents:
+  - Question: In general, intellectual property rights are divided into two categories,
+      i.e.
+    illustrationSprite: {fileID: 21300000, guid: 4b02d9060dbfcce4fb0b932a8c518697,
+      type: 3}
+    Option:
+    - Inheritance and trade rights
+    - Legal rights and illegal rights
+    - Copyright and copyright holders
+    - Copyright and industrial property rights
+    CorrectAnswer: Copyright and industrial property rights
+  - Question: Benefit to the licensor, i.e. acceptance of a performance contract
+      in the form of payment....
+    illustrationSprite: {fileID: 0}
+    Option:
+    - Commission
+    - Royalti
+    - Flowers
+    - Return
+    CorrectAnswer: Royalti
+  - Question: The result of someone's idea or idea, which has value, either in concrete
+      or abstract form, is called...
+    illustrationSprite: {fileID: 21300000, guid: 4b02d9060dbfcce4fb0b932a8c518697,
+      type: 3}
+    Option:
+    - Description
+    - Copyright
+    - Creator
+    - Creation
+    CorrectAnswer: Creation
+  QuizAnswerd: []
+  correctValue: 0
+  totalQuestion: 0

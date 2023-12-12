@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e157dbeeb1b9b5f4281e076eeb5ebe2c, type: 3}
+  m_Name: NpcCard_Alex Payton
+  m_EditorClassIdentifier: 
+  npcName: Alex Payton
+  npcRole: Pengguna Lizznet
+  npcDescription: Alex Payton is someone who works as an employee in a company and
+    has used Bittorent to download one of the films distributed by Nexa Cinema through
+    the Lizznet provider
+  npcImages:
+  - {fileID: 21300000, guid: d322e063f8178d24a92ef8a108d1b3cb, type: 3}
+  - {fileID: 21300000, guid: 417d7cc1cd5107b4f805cea6fbea424a, type: 3}
+  - {fileID: 21300000, guid: 1a24848873ebb774b858608045f18052, type: 3}
+  defaultOpportunity: 3
+  DialogScripts:
+    PlayerOpportunity: 3
+    npcName: Alex Payton
+    sectionList:
+    - Question: Is there any technological solution that can be considered to solve
+        the problem in this case?
+      Answer: Please apologize for this question beyond my knowledge.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: Do you know the legal field related to this case?
+      Answer: I'm sorry I didn't know about it.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: What internet provider are you using right now?
+      Answer: 'Yes, right now I''m using the Lizznet provider '
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: Have you ever downloaded movies through the LIZZNET network?
+      Answer: Yes, I did download movies through the Lizznet network but I used certain
+        software because LizzNet has policies and privacy that do not allow it.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+    - Question: What kind of software do you use to download the movie?
+      Answer: I use Bittorent Software to download the movie.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 0}
+  ConversationSelected: []
+  playerDialogData: []
+  QuizContents:
+  - Question: How long is the protection of a trademark?
+    illustrationSprite: {fileID: 0}
+    Option:
+    - 20 years.
+    - 10 years
+    - 25 years.
+    - Forever
+    CorrectAnswer: 10 years
+  QuizAnswerd: []
+  correctValue: 0
+  totalQuestion: 0

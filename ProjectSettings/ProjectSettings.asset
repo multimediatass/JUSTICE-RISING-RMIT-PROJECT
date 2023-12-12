@@ -53,7 +53,7 @@ PlayerSettings:
   mipStripping: 0
   numberOfMipsStripped: 0
   numberOfMipsStrippedPerMipmapLimitGroup: {}
-  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
+  m_StackTraceTypes: fe0000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
@@ -133,7 +133,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.1.0
+  bundleVersion: 0.3
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -147,7 +147,7 @@ PlayerSettings:
   enableOpenGLProfilerGPURecorders: 1
   useHDRDisplay: 0
   hdrBitDepth: 0
-  m_ColorGamuts: 00000000
+  m_ColorGamuts: 
   targetPixelDensity: 30
   resolutionScalingMode: 0
   resetResolutionOnWindowResize: 0
@@ -505,9 +505,14 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: WebGL
+    m_StaticBatching: 0
+    m_DynamicBatching: 1
   m_BuildTargetShaderSettings: []
-  m_BuildTargetGraphicsJobs: []
+  m_BuildTargetGraphicsJobs:
+  - m_BuildTarget: WebGLSupport
+    m_GraphicsJobs: 0
   m_BuildTargetGraphicsJobMode: []
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: iOSSupport
@@ -516,6 +521,9 @@ PlayerSettings:
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000
     m_Automatic: 0
+  - m_BuildTarget: WebGLSupport
+    m_APIs: 0b000000
+    m_Automatic: 1
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
@@ -534,7 +542,10 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_EncodingQuality: 1
   m_BuildTargetGroupLightmapSettings: []
-  m_BuildTargetGroupLoadStoreDebugModeSettings: []
+  m_BuildTargetGroupLoadStoreDebugModeSettings:
+  - m_BuildTarget: WebGL
+    m_DebugModeEnabled: 0
+    m_IsEditorOnly: 1
   m_BuildTargetNormalMapEncoding:
   - m_BuildTarget: Android
     m_Encoding: 1
@@ -561,7 +572,7 @@ PlayerSettings:
   switchUseCPUProfiler: 0
   switchUseGOLDLinker: 0
   switchLTOSetting: 0
-  switchApplicationID: 0x01004b9000490000
+  switchApplicationID: 72140675890085890
   switchNSODependencies: 
   switchCompilerFlags: 
   switchTitleNames_0: 
@@ -702,8 +713,8 @@ PlayerSettings:
   ps4ParentalLevel: 11
   ps4ContentID: ED1633-NPXX51362_00-0000000000000000
   ps4Category: 0
-  ps4MasterVersion: 01.00
-  ps4AppVersion: 01.00
+  ps4MasterVersion: 1
+  ps4AppVersion: 1
   ps4AppType: 0
   ps4ParamSfxPath: 
   ps4VideoOutPixelFormat: 0
@@ -778,7 +789,7 @@ PlayerSettings:
   spritePackerPolicy: 
   webGLMemorySize: 32
   webGLExceptionSupport: 1
-  webGLNameFilesAsHashes: 0
+  webGLNameFilesAsHashes: 1
   webGLShowDiagnostics: 0
   webGLDataCaching: 1
   webGLDebugSymbols: 0
@@ -787,11 +798,11 @@ PlayerSettings:
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 0
+  webGLCompressionFormat: 1
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
-  webGLDecompressionFallback: 0
+  webGLDecompressionFallback: 1
   webGLInitialMemorySize: 32
   webGLMaximumMemorySize: 2048
   webGLMemoryGrowthMode: 2
@@ -799,7 +810,20 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: UNITY_POST_PROCESSING_STACK_V2
+    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2
+    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
+    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2
+    PS4: UNITY_POST_PROCESSING_STACK_V2
+    PS5: UNITY_POST_PROCESSING_STACK_V2
+    QNX: UNITY_POST_PROCESSING_STACK_V2
+    Stadia: UNITY_POST_PROCESSING_STACK_V2
+    Standalone: UNITY_POST_PROCESSING_STACK_V2
+    VisionOS: UNITY_POST_PROCESSING_STACK_V2
+    WebGL: UNITY_POST_PROCESSING_STACK_V2
+    XboxOne: UNITY_POST_PROCESSING_STACK_V2
+    tvOS: UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -837,7 +861,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateNotAfter: daf06edb8a9952ca
   metroApplicationDescription: My project
   wsaImages: {}
   metroTileShortName: 
@@ -907,11 +931,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: e698aedd-bc65-4272-82de-c23600f84c35
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: JUSTICE-RISING-RMIT-PROJECT
+  organizationId: yahdiinformatika_unity
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

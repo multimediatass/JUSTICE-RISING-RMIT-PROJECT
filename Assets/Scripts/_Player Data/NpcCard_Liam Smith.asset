@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e157dbeeb1b9b5f4281e076eeb5ebe2c, type: 3}
+  m_Name: NpcCard_Liam Smith
+  m_EditorClassIdentifier: 
+  npcName: Liam Smith,MBA
+  npcRole: Client
+  npcDescription: This is your client
+  npcImages:
+  - {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
+  - {fileID: 21300000, guid: 35fbc45c581db924bbe09099a928e037, type: 3}
+  - {fileID: 21300000, guid: ee106d2480a1bf24288286705fea0497, type: 3}
+  defaultOpportunity: 2
+  DialogScripts:
+    PlayerOpportunity: 2
+    npcName: Liam Smith,MBA
+    sectionList:
+    - Question: Welcome, Mr. Liam Smith. I am Charlotte Wilson, LLB Senior lawyer
+        in this law firm. Is there anything I can help. Tell me what happened.
+      Answer: Thank you sir. So I have a problem with the company Lizznet he just
+        gave permission to its users to download and share film content illegally
+        through the LizzNet network, but I object to copyright infringement by its
+        users.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
+    - Question: Calm down.Every company is entitled to fair legal protection. I will
+        be your lawyer and will do everything necessary to prove your innocence.
+        First, let's gather the evidence that will support your case.
+      Answer: Good sir!!!
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
+  ConversationSelected: []
+  playerDialogData: []
+  QuizContents: []
+  QuizAnswerd: []
+  correctValue: 0
+  totalQuestion: 0

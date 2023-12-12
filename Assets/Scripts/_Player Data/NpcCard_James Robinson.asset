@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e157dbeeb1b9b5f4281e076eeb5ebe2c, type: 3}
+  m_Name: NpcCard_James Robinson
+  m_EditorClassIdentifier: 
+  npcName: Dr.James Robinson,B.Comp.Sc,M.Comp.Sc.
+  npcRole: 'Ahli Teknologi Informasi '
+  npcDescription: 'James Robinson is a professional Information Technology (IT) expert
+    with knowledge and skills in the field of information technology.
+
+
+    He works
+    to manage, develop, and maintain information systems and technology used within
+    an organization. His duties include hardware and software installation, computer
+    network maintenance, issue resolution, information security, database management,
+    and technical support for users.'
+  npcImages:
+  - {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
+  - {fileID: 21300000, guid: 8b4e47d430327884ba3958c1323ad99b, type: 3}
+  - {fileID: 21300000, guid: cf285eab6a89da4478b775ab1bb0e035, type: 3}
+  defaultOpportunity: 3
+  DialogScripts:
+    PlayerOpportunity: 3
+    npcName: Dr.James Robinson,B.Comp.Sc,M.Comp.Sc.
+    sectionList:
+    - Question: What kind of technology expert is entitled to deal with this case?
+      Answer: Yes, I, as an Information Technology Expert, am the right person to
+        deal with this case because based on my background of work as an IT infrastructure
+        manager, developing software, securing data, and providing effective technological
+        solutions.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
+    - Question: How do you identify digital evidence or electronic tracks in this
+        case?
+      Answer: Based on the facts and evidence available, it can be assured that users
+        of Lizznet downloaded and distributed this using Bittorent technology
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
+    - Question: Is there any technological solution that can be considered to solve
+        the problem in this case?
+      Answer: Yes, it is advisable for Lizznet to add a feature that can detect if
+        users want to download movies using their networks so that it can warn or
+        block users
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
+    - Question: What laws or regulations are related to this case?
+      Answer: 'Excuse me I have no knowledge about it '
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
+    - Question: Based on the facts and evidence available, how do you assess the
+        legal issues that arise in this case?
+      Answer: Please apologize for this question beyond my knowledge.
+      SFX: {fileID: 0}
+      npcImage: {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
+  ConversationSelected: []
+  playerDialogData: []
+  QuizContents:
+  - Question: The organizations that operate under the United Nations as an attempt
+      to protect the copyright of intellectual property are
+    illustrationSprite: {fileID: 0}
+    Option:
+    - WIPO
+    - G20
+    - ASEAN
+    - WHO
+    CorrectAnswer: WIPO
+  QuizAnswerd: []
+  correctValue: 0
+  totalQuestion: 0
