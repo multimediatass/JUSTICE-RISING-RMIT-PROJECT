@@ -4412,6 +4412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 352688413669234449}
   - component: {fileID: 4312406712365824457}
+  - component: {fileID: 6487226052197755950}
   m_Layer: 0
   m_Name: Cowok umur 35 1
   m_TagString: Untagged
@@ -4471,6 +4472,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6487226052197755950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151921818150852804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46898a425f88f64fbfd166b543381d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationBehaviours: []
 --- !u!1 &7158418334499441031
 GameObject:
   m_ObjectHideFlags: 0

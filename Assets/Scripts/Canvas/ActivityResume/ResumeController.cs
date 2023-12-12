@@ -90,7 +90,7 @@ namespace JusticeRising.Canvas
 
         public void OnOpenResume()
         {
-            StartOpenResume?.Invoke();
+            // StartOpenResume?.Invoke();
 
             resumeList.Clear();
 

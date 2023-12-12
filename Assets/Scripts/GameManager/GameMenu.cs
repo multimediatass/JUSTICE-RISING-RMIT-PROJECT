@@ -1,8 +1,6 @@
 using Tproject;
-
 using UnityEngine;
-using JusticeRising.GameData;
-using Tproject.Authentication;
+using UnityEngine.Events;
 
 namespace JusticeRising
 {
@@ -10,6 +8,8 @@ namespace JusticeRising
     {
         public string genderSelected;
         public PlayerCharacter character;
+
+        public UnityEvent OnPlayerSelectedCharacter;
 
         [Space]
         [Header("UI Components")]
@@ -32,9 +32,8 @@ namespace JusticeRising
             GameManager.instance.currentPlayerData.characterSelected = genderSelected;
             character.SetUpCharacter(genderSelected);
 
-            LoadingManager.Instance.ShowLoadingScreen(3f);
+            LoadingManager.Instance.ShowLoadingScreen(() => OnPlayerSelectedCharacter?.Invoke(), 3f);
         }
-
     }
 
 }

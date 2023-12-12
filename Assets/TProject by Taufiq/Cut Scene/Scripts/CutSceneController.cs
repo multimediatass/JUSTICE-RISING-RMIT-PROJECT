@@ -164,6 +164,8 @@ namespace Tproject.CutScene
 
                     GO_blackPanel.SetActive(true);
                     LeanTween.alpha(GO_blackPanel.GetComponent<RectTransform>(), 1f, .5f).setLoopPingPong(1).setOnStart(() => AfterCutSceneClosed?.Invoke());
+
+                    sectionIndex = 0;
                 }
             }
             else if (isPlayNormalSpeed())

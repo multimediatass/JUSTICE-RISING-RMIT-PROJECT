@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using JusticeRising;
 using UnityEngine.Events;
 
-namespace Tproject.CutScene
+namespace Tproject
 {
     public class MenuController : MonoBehaviour
     {
@@ -13,6 +13,7 @@ namespace Tproject.CutScene
         private int currentPage = 0;
         public UnityEvent OnMenuOpen;
         public UnityEvent AfterMenuClose;
+        [SerializeField] private bool isDetailOpened = false;
 
 
         private void Update()
@@ -24,12 +25,18 @@ namespace Tproject.CutScene
                 OnMenuOpen?.Invoke();
             }
             else if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered &&
-            container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.UIInteraction)
+            container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.UIInteraction &&
+            !isDetailOpened)
             {
-                FadeOut(container);
+                OnCloseMenu();
                 AfterMenuClose?.Invoke();
-                currentPage = 0;
             }
+        }
+
+        public void OnCloseMenu()
+        {
+            FadeOut(container);
+            currentPage = 0;
         }
 
         private void OnClickOpenMenu()
@@ -150,6 +157,11 @@ namespace Tproject.CutScene
             {
                 btn.image.color = new Color(1f, 1f, 1f, 0.5f);
             }
+        }
+
+        public void DetailOpenState(bool state)
+        {
+            isDetailOpened = state;
         }
     }
 }

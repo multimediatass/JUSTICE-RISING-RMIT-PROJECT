@@ -21,6 +21,8 @@ namespace JusticeRising.Canvas
             DetailResume detailItem = Instantiate(detailResumePrefab);
             detailItem.npcCardDetail = npcCardResume;
             Debug.Log($"show detail for {npcCardResume.npcName} data");
+
+            ResumeController.Instance.StartOpenResume?.Invoke();
         }
 
     }

@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: Main Player Data
   m_EditorClassIdentifier: 
   playerProfile:
-    firstName: shan
-    lastName: taufiq
-    username: shantaufiq
+    firstName: top
+    lastName: project
+    username: TProject
     gender: Male
-    email: shantaufiq021@gmail.com
-    phone: 0812371518179
+    email: MyTProject2021@gmail.com
+    phone: 0812345678
   characterSelected: Male
   npcResumeActivity: []
   witnessSelected: []
+  staticNpc:
+  - {fileID: 11400000, guid: 68783f571fde92d44a2076eb1395b0ff, type: 2}
+  PlayerScore: 0
