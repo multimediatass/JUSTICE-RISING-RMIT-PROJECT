@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NpcCard_Alex Payton
   m_EditorClassIdentifier: 
   npcName: Alex Payton
-  npcRole: Pengguna Lizznet
+  npcRole: Lizznet users
   npcDescription: Alex Payton is someone who works as an employee in a company and
     has used Bittorent to download one of the films distributed by Nexa Cinema through
     the Lizznet provider

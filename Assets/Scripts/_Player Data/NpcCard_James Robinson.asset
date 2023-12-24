@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NpcCard_James Robinson
   m_EditorClassIdentifier: 
   npcName: Dr.James Robinson,B.Comp.Sc,M.Comp.Sc.
-  npcRole: 'Ahli Teknologi Informasi '
+  npcRole: Information Technology Expert
   npcDescription: 'James Robinson is a professional Information Technology (IT) expert
     with knowledge and skills in the field of information technology.
 

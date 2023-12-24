@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Main Player Data
   m_EditorClassIdentifier: 
   playerProfile:
-    firstName: top
-    lastName: project
-    username: TProject
-    gender: Male
-    email: MyTProject2021@gmail.com
-    phone: 0812345678
-  characterSelected: Male
+    firstName: 
+    lastName: 
+    username: 
+    gender: 
+    email: 
+    phone: 
+  characterSelected: 
   npcResumeActivity: []
   witnessSelected: []
   staticNpc:

@@ -16,6 +16,7 @@ namespace JusticeRising
         [SerializeField] private GameObject[] charactersPrefabs;
         [SerializeField] private GameObject[] iconMaps;
         [SerializeField] private CutSceneAnimController animForCutScene;
+        GameObject currentCharacter;
 
         private bool isTeleport = false;
 
@@ -50,7 +51,10 @@ namespace JusticeRising
             for (int i = charactersPrefabs.Length - 1; i >= 0; i--)
             {
                 if (i == charIndex)
+                {
                     charactersPrefabs[i].SetActive(true);
+                    currentCharacter = charactersPrefabs[i];
+                }
                 else charactersPrefabs[i].SetActive(false);
             }
 
@@ -87,6 +91,11 @@ namespace JusticeRising
                 Jump();
                 // anim.SetBoolIsPlaying(true);
             }
+        }
+
+        public void CharacterVisibility(bool state)
+        {
+            currentCharacter.SetActive(state);
         }
 
         float animMoveSpeed = 0f;
@@ -154,19 +163,21 @@ namespace JusticeRising
 
         public void TeleportToDestination(Transform destination, Action afterTeleFunct = null)
         {
-            object[] arg = new object[2] { destination.position, afterTeleFunct };
+            object[] arg = new object[3] { destination.position, destination.rotation, afterTeleFunct };
 
             StartCoroutine(nameof(Teleport), arg);
         }
 
         IEnumerator Teleport(object[] parms)
         {
-            Action af = (Action)parms[1];
+            Action af = (Action)parms[2];
+            Quaternion newRotate = (Quaternion)parms[1];
 
             // LoadingManager.instance.StartLoading();
             isTeleport = true;
             yield return new WaitForSeconds(0.5f);
             this.transform.position = (Vector3)parms[0];
+            this.transform.rotation = newRotate;
             yield return new WaitForSeconds(0.5f);
             // Debug.Log($"Player has been teleport {(Vector3)parms[0]}");
             // LoadingManager.instance.CloseLoadingPanel();

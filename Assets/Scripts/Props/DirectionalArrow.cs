@@ -58,6 +58,7 @@ namespace JusticeRising
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
+            if (targetList.Count == 0) return;
             GUI.color = Color.black;
             UnityEditor.Handles.Label(transform.position - (transform.position - target.position) / 2, distanceBetweenObjects.ToString());
         }

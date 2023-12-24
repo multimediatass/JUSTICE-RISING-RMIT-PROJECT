@@ -1,6 +1,7 @@
 using Tproject;
 using UnityEngine;
 using UnityEngine.Events;
+using Tproject.CutScene;
 
 namespace JusticeRising
 {
@@ -10,6 +11,8 @@ namespace JusticeRising
         public PlayerCharacter character;
 
         public UnityEvent OnPlayerSelectedCharacter;
+
+        public CutSceneController cutSceneEnding;
 
         [Space]
         [Header("UI Components")]
@@ -31,8 +34,22 @@ namespace JusticeRising
         {
             GameManager.instance.currentPlayerData.characterSelected = genderSelected;
             character.SetUpCharacter(genderSelected);
+            cutSceneEnding.SetUpPlayerSpeaker(GetGenderType(genderSelected));
 
             LoadingManager.Instance.ShowLoadingScreen(() => OnPlayerSelectedCharacter?.Invoke(), 3f);
+        }
+
+        private int GetGenderType(string type)
+        {
+            string a = type;
+
+            return a switch
+            {
+                "Male" => 0,
+                "Female" => 1,
+                "Nonbinary" => 2,
+                _ => -1
+            };
         }
     }
 

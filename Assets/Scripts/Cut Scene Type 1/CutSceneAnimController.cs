@@ -22,6 +22,9 @@ public class CutSceneAnimController : MonoBehaviour
     [SerializeField] bool isPlayer;
     [SerializeField] private Animator[] playerAnim;
 
+    // private AnimationBehaviour onBehaviourPlay = new AnimationBehaviour();
+    private Coroutine myCoroutine;
+
     public void SetUpPlayerCutSceneCharacter(int index)
     {
         if (isPlayer)
@@ -44,7 +47,7 @@ public class CutSceneAnimController : MonoBehaviour
             if (behaviour.animationName == contentName)
             {
                 animator.SetTrigger(behaviour.triggerName);
-                StartCoroutine(WaitForAnimation(behaviour));
+                myCoroutine = StartCoroutine(WaitForAnimation(behaviour));
                 break;
             }
         }
@@ -54,11 +57,13 @@ public class CutSceneAnimController : MonoBehaviour
     {
         if (behaviour.positions != null && behaviour.positions.Length >= 2)
         {
+            float durationPerMove = behaviour.animationDuration / (behaviour.positions.Length - 1);
+
             for (int i = 0; i < behaviour.positions.Length - 1; i++)
             {
-                MoveObjectSmoothly(behaviour.positions[i], behaviour.positions[i + 1], behaviour.animationDuration);
+                MoveObjectSmoothly(behaviour.positions[i], behaviour.positions[i + 1], durationPerMove);
 
-                yield return new WaitForSeconds(behaviour.animationDuration);
+                yield return new WaitForSeconds(durationPerMove);
             }
         }
         else if (behaviour.positions.Length == 1)
@@ -91,5 +96,16 @@ public class CutSceneAnimController : MonoBehaviour
         {
             LeanTween.rotate(objectToMove, target.rotation.eulerAngles, rotateDuration).setEase(LeanTweenType.easeInOutSine);
         });
+    }
+
+    public void FinishThisAnimation()
+    {
+        if (myCoroutine != null)
+        {
+            SetToIdle();
+            StopCoroutine(myCoroutine);
+            myCoroutine = null;
+            this.gameObject.SetActive(false);
+        }
     }
 }

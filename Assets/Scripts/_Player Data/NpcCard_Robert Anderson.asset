@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NpcCard_Robert Anderson
   m_EditorClassIdentifier: 
   npcName: Robert Anderson,S.J.D.
-  npcRole: Ahli Hukum Properti Intelektual
+  npcRole: Intellectual Property Law Expert Witness
   npcDescription: 'Robert Anderson is a professional Intellectual Property Lawyer
     specializing in the legal field related to intellectual property rights. Intellectual
     property encompasses copyrights, patents, trademarks, industrial designs, and

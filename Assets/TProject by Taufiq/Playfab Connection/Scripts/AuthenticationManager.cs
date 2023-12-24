@@ -12,6 +12,7 @@ namespace Tproject.Authentication
 {
     public class AuthenticationManager : MonoBehaviour
     {
+        [SerializeField] private bool isForDebug;
         public PlayerData playerData;
         public bool isLoginSection = true;
 
@@ -45,6 +46,16 @@ namespace Tproject.Authentication
         [HideInInspector] public TextMeshProUGUI Reset_messageText;
         [HideInInspector] public TMP_InputField Reset_emailInput;
         [HideInInspector] public TMP_InputField Reset_passwordInput;
+
+        private void Start()
+        {
+            if (isForDebug)
+            {
+                L_emailInput.text = "mytproject2021@gmail.com";
+                L_passwordInput.text = "tproject123";
+                OnClickLogin();
+            }
+        }
 
         private void Update()
         {
