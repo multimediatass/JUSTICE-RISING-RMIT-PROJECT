@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NpcCard_Stephen Andrew
   m_EditorClassIdentifier: 
   npcName: Stephen Andrew,BFA
-  npcRole: Ahli Pengamat Film
+  npcRole: Film Observer
   npcDescription: Stephen Andrew is a film observer who, professionally or as a hobby,
     observes, analyzes, and provides reviews or critiques of films. Film observers
     can work as film critics, writers, or industry experts with in-depth knowledge

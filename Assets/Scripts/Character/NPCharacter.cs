@@ -73,7 +73,8 @@ namespace JusticeRising
             else
             {
                 // Debug.Log("start roaming");
-                dialogHandler.ToggleInstructionPopUp(false);
+                if (isTalkative)
+                    dialogHandler.ToggleInstructionPopUp(false);
             }
         }
 
