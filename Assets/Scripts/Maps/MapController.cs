@@ -7,6 +7,7 @@ namespace Tproject
     public class MapController : MonoBehaviour
     {
         public Camera mapCamera;
+        public GameObject player;
         public RawImage mapDisplay;
         public float zoomSpeed = 5f;
         public float minZoom = 5f;
@@ -81,6 +82,16 @@ namespace Tproject
         public void ShowMainMap()
         {
             panelMainMap.SetActive(true);
+
+            if (player != null)
+            {
+                // Mendapatkan posisi x dan z dari pemain (player)
+                Vector3 playerPosition = player.transform.position;
+
+                // Mengatur posisi kamera minimap hanya pada sumbu x dan z
+                mapCamera.transform.position = new Vector3(playerPosition.x, mapCamera.transform.position.y, playerPosition.z);
+            }
+
             LeanTween.alphaCanvas(panelMainMap.GetComponent<CanvasGroup>(), 1f, .5f);
         }
 

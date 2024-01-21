@@ -165,7 +165,5 @@ namespace JusticeRising
 
             LoadingManager.Instance.ShowLoadingScreen(PlayGame, 3f);
         }
-
-        // public void Reset
     }
 }
