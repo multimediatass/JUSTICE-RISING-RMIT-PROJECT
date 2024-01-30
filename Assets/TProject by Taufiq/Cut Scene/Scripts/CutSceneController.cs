@@ -88,7 +88,9 @@ namespace Tproject.CutScene
             UI_speakerImg.gameObject.SetActive(true);
 
 
-            if (backsoundCutScene != null) AudioManager.Instance.PlayBacksound(backsoundCutScene);
+            if (backsoundCutScene != null) AudioManager.Instance.StartTransitionToNewMusic(backsoundCutScene, .5f);
+
+            Debug.Log("start cutscene");
         }
 
         private void RequestTypeText()
@@ -182,7 +184,8 @@ namespace Tproject.CutScene
                 {
                     AudioManager.Instance.DeleteBacksound();
                     AudioManager.Instance.StopSFX();
-                    AudioManager.Instance.PlayDefaultBacksound();
+                    // AudioManager.Instance.PlayDefaultBacksound();
+                    AudioManager.Instance.StartTransitionToNewMusic("Lobby Theme", .5f);
 
                     GO_blackPanel.SetActive(true);
                     LeanTween.alpha(GO_blackPanel.GetComponent<RectTransform>(), 1f, .5f).setLoopPingPong(1).setOnStart(() => AfterCutSceneClosed?.Invoke());

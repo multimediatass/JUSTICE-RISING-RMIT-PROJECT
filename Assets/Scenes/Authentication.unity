@@ -146,6 +146,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 836911432855958365, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+        type: 3}
+      propertyPath: videoSource
+      value: 
+      objectReference: {fileID: 2097267800}
+    - target: {fileID: 836911432855958365, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+        type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 836911432855958365, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+        type: 3}
+      propertyPath: musicSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 42e04492714036147a08ebefdca2fc48, type: 3}
+    - target: {fileID: 836911432855958365, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+        type: 3}
+      propertyPath: musicSounds.Array.data[0].name
+      value: Lobby Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 836911432855958365, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+        type: 3}
+      propertyPath: musicSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 96f0f1b6dfad1df4080a410dd8dc73c1, type: 3}
+    - target: {fileID: 836911432855958365, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+        type: 3}
+      propertyPath: musicSounds.Array.data[1].name
+      value: Gameplay Theme
+      objectReference: {fileID: 0}
     - target: {fileID: 836911432855958366, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,7 +234,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 836911432855958367, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2097267800}
   m_SourcePrefab: {fileID: 100100000, guid: 2b69a8eaba0174d49a91024c09dc4a6b, type: 3}
 --- !u!1 &339555480
 GameObject:
@@ -456,6 +490,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerData: {fileID: 11400000, guid: bfd811cd438faf64ab891f7e992faf7b, type: 2}
+  OnStartGame:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2097267803}
+        m_TargetAssemblyTypeName: Tproject.AudioManager.AudioManager, Assembly-CSharp
+        m_MethodName: PlayBackgroundMusic
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Lobby Theme
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &743609879
 Transform:
   m_ObjectHideFlags: 0
@@ -890,6 +939,120 @@ MonoBehaviour:
   - {fileID: 399855772803495263}
   - {fileID: 4423445147254517006}
   - {fileID: 675826936215481904}
+--- !u!1 &2097267795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 836911432855958367, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 335214330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2097267800
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097267795}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2097267803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 836911432855958365, guid: 2b69a8eaba0174d49a91024c09dc4a6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 335214330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097267795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d7345dcc24ba645acd35689df59019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &26004465319992497
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2567,7 +2730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e27999d1f6b2444dbed23f35757a953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isForDebug: 0
+  isForDebug: 1
   playerData: {fileID: 11400000, guid: bfd811cd438faf64ab891f7e992faf7b, type: 2}
   isLoginSection: 1
   R_FirstName: {fileID: 7665357055022775037}

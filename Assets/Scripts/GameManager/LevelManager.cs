@@ -1,7 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using Tproject;
+using Tproject.AudioManager;
 
 namespace JusticeRising
 {
@@ -30,6 +33,9 @@ namespace JusticeRising
         public TextMeshProUGUI timeText;
         private float elapsedTime = 0f;
 
+
+        public static bool isCooldownPressingUI = false;
+
         private void Awake()
         {
             if (instance == null)
@@ -56,9 +62,12 @@ namespace JusticeRising
                 elapsedTime += Time.deltaTime;
                 DisplayTime(elapsedTime);
             }
+        }
 
-            if (InputManager.instance.inputAction.PlayerControls.Maps.triggered &&
-                CurrentGameState != GameState.MainMaps) ChangeGameState(GameState.MainMaps);
+        void FixedUpdate()
+        {
+            if (InputManager.instance.inputAction.PlayerControls.Maps.triggered && !LevelManager.isCooldownPressingUI &&
+                CurrentGameState != GameState.MainMaps && CurrentGameState != GameState.GameMenu && CurrentGameState != GameState.UIInteraction) ChangeGameState(GameState.MainMaps);
         }
 
         public void GameTimeState(bool state) => isPlayingTime = state;
@@ -92,6 +101,8 @@ namespace JusticeRising
 
         public void ChangeGameState(GameState state)
         {
+            if (isCooldownPressingUI) return;
+
             switch (state)
             {
                 case GameState.GameMenu:
@@ -101,6 +112,7 @@ namespace JusticeRising
                     GamepauseState.Invoke();
                     break;
                 case GameState.Play:
+                    StartCoroutine(CooldownOpeningUI());
                     GameplayState.Invoke();
                     break;
                 case GameState.VisualNovel:
@@ -122,6 +134,14 @@ namespace JusticeRising
             Debug.Log($"CurrentGameState: {CurrentGameState}");
         }
 
+        IEnumerator CooldownOpeningUI()
+        {
+            isCooldownPressingUI = true;
+
+            yield return new WaitForSeconds(1f);
+
+            isCooldownPressingUI = false;
+        }
 
         public void CursorMode(bool state)
         {
@@ -146,6 +166,8 @@ namespace JusticeRising
         {
             ChangeGameState(GameState.GameMenu);
             ResetGameMasterData();
+
+            AudioManager.Instance.StartTransitionToNewMusic("Lobby Theme", .5f);
         }
 
         public void UIInteraction()

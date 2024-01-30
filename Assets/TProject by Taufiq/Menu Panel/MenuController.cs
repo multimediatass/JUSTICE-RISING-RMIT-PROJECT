@@ -19,7 +19,7 @@ namespace Tproject
         private void Update()
         {
             if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered &&
-                !container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.Play)
+                !container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.Play && !LevelManager.isCooldownPressingUI)
             {
                 OnClickOpenMenu();
                 OnMenuOpen?.Invoke();
