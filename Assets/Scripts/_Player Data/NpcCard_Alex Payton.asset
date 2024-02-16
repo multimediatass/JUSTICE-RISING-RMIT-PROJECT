@@ -18,7 +18,7 @@ MonoBehaviour:
     has used Bittorent to download one of the films distributed by Nexa Cinema through
     the Lizznet provider
   npcImages:
-  - {fileID: 21300000, guid: d322e063f8178d24a92ef8a108d1b3cb, type: 3}
+  - {fileID: 21300000, guid: 30ef369596431ca489c48c90e9bd8cbf, type: 3}
   - {fileID: 21300000, guid: 417d7cc1cd5107b4f805cea6fbea424a, type: 3}
   - {fileID: 21300000, guid: 1a24848873ebb774b858608045f18052, type: 3}
   defaultOpportunity: 3

@@ -24,7 +24,7 @@ MonoBehaviour:
     network maintenance, issue resolution, information security, database management,
     and technical support for users.'
   npcImages:
-  - {fileID: 21300000, guid: f70e6b4db2c4bdb4cb4944c1b691049e, type: 3}
+  - {fileID: 21300000, guid: 852f8d225b223b1489b4ab437cac2878, type: 3}
   - {fileID: 21300000, guid: 8b4e47d430327884ba3958c1323ad99b, type: 3}
   - {fileID: 21300000, guid: cf285eab6a89da4478b775ab1bb0e035, type: 3}
   defaultOpportunity: 3

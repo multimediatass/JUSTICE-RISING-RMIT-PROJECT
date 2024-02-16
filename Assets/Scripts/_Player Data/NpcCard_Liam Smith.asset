@@ -16,7 +16,7 @@ MonoBehaviour:
   npcRole: Client
   npcDescription: This is your client
   npcImages:
-  - {fileID: 21300000, guid: 0770bfbd32835ef418f27a3c86b93417, type: 3}
+  - {fileID: 21300000, guid: 36d9b546ec005dd42b508bb832faadab, type: 3}
   - {fileID: 21300000, guid: 35fbc45c581db924bbe09099a928e037, type: 3}
   - {fileID: 21300000, guid: ee106d2480a1bf24288286705fea0497, type: 3}
   defaultOpportunity: 2
