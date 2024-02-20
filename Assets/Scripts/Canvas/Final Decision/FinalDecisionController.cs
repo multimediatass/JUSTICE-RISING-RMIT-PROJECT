@@ -155,7 +155,8 @@ namespace JusticeRising.Canvas
             };
 
             string json = JsonConvert.SerializeObject(newData);
-            GameManager.instance.UpdateUserData($"FinalDecisionReport_{DateTime.Now.ToString("yyMMdd_HHmm")}", json);
+            // GameManager.instance.UpdateUserData($"FinalDecisionReport_{DateTime.Now.ToString("yyMMdd_HHmm")}", json);
+            GameManager.instance.UpdateUserData($"FinalDecisionReport", json);
 
             Debug.Log($"final decision data has been sent: {json}");
         }

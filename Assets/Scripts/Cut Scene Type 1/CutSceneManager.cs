@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using Tproject.AudioManager;
 
 namespace JusticeRising
 {
@@ -25,7 +26,7 @@ namespace JusticeRising
         public TextMeshProUGUI storyText;        // Referensi ke UI text untuk menampilkan cerita
         public Image fadeImage;
         public AudioClip backsound;
-        [SerializeField] private AudioSource audioSource;
+        // [SerializeField] private AudioSource audioSource;
         [Space]
         public bool isPlayOnStart = false;
 
@@ -37,8 +38,8 @@ namespace JusticeRising
 
         void Start()
         {
-            if (audioSource == null)
-                audioSource = gameObject.AddComponent<AudioSource>();
+            // if (audioSource == null)
+            //     audioSource = gameObject.AddComponent<AudioSource>();
 
             if (isPlayOnStart)
                 PlayCutScene();
@@ -54,8 +55,11 @@ namespace JusticeRising
 
         public void PlayCutScene()
         {
-            audioSource.PlayOneShot(backsound);
+            // audioSource.PlayOneShot(backsound);
+
             OnCutsceneStart?.Invoke();
+
+            if (backsound != null) AudioManager.Instance.StartTransitionToNewMusic(backsound, .5f);
             cutSceneCoroutine = StartCoroutine(CutSceneRoutine());
         }
 
@@ -75,7 +79,8 @@ namespace JusticeRising
 
                 if (item.soundEffect != null)
                 {
-                    audioSource.PlayOneShot(item.soundEffect);
+                    // audioSource.PlayOneShot(item.soundEffect);
+                    AudioManager.Instance.PlaySFX(item.soundEffect);
                 }
 
                 if (item.positions != null && item.positions.Length > 1)
@@ -118,7 +123,8 @@ namespace JusticeRising
 
         public void StopBackSound()
         {
-            audioSource.Stop();
+            // audioSource.Stop();
+            AudioManager.Instance.StartTransitionToNewMusic("Gameplay Theme", .5f);
         }
 
         int index = 0;

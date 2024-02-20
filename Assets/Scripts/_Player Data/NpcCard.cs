@@ -102,7 +102,8 @@ namespace JusticeRising.GameData
             };
 
             string json = JsonConvert.SerializeObject(newData);
-            UpdateUserData($"DialogReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
+            // UpdateUserData($"DialogReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
+            UpdateUserData($"DialogReport_{npcName}", json);
         }
 
         public void SendQuizDataToPlayfab()
@@ -124,7 +125,8 @@ namespace JusticeRising.GameData
             };
 
             string json = JsonConvert.SerializeObject(newData);
-            UpdateUserData($"QuizReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
+            // UpdateUserData($"QuizReport_{DateTime.Now.ToString("yyMMdd_HHmm")}_{npcName}", json);
+            UpdateUserData($"QuizReport_{npcName}", json);
         }
 
         void UpdateUserData(string key, string json)

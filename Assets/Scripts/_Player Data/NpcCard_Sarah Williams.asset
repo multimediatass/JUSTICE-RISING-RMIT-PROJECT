@@ -19,7 +19,7 @@ MonoBehaviour:
     production cost management, and ready to address any external issues that the
     company may encounter from time to time.
   npcImages:
-  - {fileID: 21300000, guid: 219742ab5d7cd5a4494c4385b95dae26, type: 3}
+  - {fileID: 21300000, guid: d152d3291357ea04286dc7a9a7f9c45a, type: 3}
   - {fileID: 21300000, guid: dfaba81f0d10a824b9360e9cd5a4aa36, type: 3}
   - {fileID: 21300000, guid: bcfa0bf23c73b7840b5522e41848a221, type: 3}
   defaultOpportunity: 3

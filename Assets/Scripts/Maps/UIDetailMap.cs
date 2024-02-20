@@ -33,6 +33,8 @@ namespace Tproject
 
         public void ShowDescription(string name, string title, string desc, Sprite img, Transform destination)
         {
+            if (panel.activeSelf) return;
+
             nameText.text = name;
             titleText.text = title;
             descriptionText.text = desc;

@@ -26,7 +26,7 @@ MonoBehaviour:
     property rights, and ensuring that their clients understand and utilize their
     legal rights in the intellectual property field'
   npcImages:
-  - {fileID: 21300000, guid: e40d1de28fe83f548a5f666e52d019b0, type: 3}
+  - {fileID: 21300000, guid: 408b6afcdc42c11479c2a47116626385, type: 3}
   - {fileID: 21300000, guid: 6c5945674f78e36448603bcd4c85053b, type: 3}
   - {fileID: 21300000, guid: e37e82c6b5b1a63408448ee74efe606b, type: 3}
   defaultOpportunity: 3
