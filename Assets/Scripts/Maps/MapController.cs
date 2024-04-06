@@ -13,8 +13,10 @@ namespace Tproject
         public float minZoom = 5f;
         public float maxZoom = 50f;
 
-        private Vector3 lastPanPosition;
         private bool isPanning;
+        private Vector3 lastPanPosition;
+        private float lastPanTime = 0f;
+        [SerializeField] private float panSpeedScalar = 0.2f;
 
         public GameObject panelMainMap;
 
@@ -68,15 +70,23 @@ namespace Tproject
 
         private void PanCamera(Vector3 newPanPosition)
         {
+            float currentTime = Time.time; // Mendapatkan waktu sekarang
+            float deltaTime = currentTime - lastPanTime; // Menghitung delta waktu
+
             // Menghitung perbedaan posisi mouse
             Vector3 offset = mapCamera.ScreenToViewportPoint(lastPanPosition - newPanPosition);
 
+            // Menghitung kecepatan pergerakan mouse (offset per detik)
+            Vector3 velocity = offset / deltaTime;
+
             // Menghitung pergerakan kamera berdasarkan offset
-            Vector3 move = new Vector3(-offset.x * mapCamera.orthographicSize, 0, -offset.y * mapCamera.orthographicSize);
+            // Vector3 move = new Vector3(-offset.x * mapCamera.orthographicSize, 0, -offset.y * mapCamera.orthographicSize);
+            Vector3 move = new Vector3(-velocity.x * mapCamera.orthographicSize * panSpeedScalar, 0, -velocity.y * mapCamera.orthographicSize * panSpeedScalar);
 
             // Memindahkan kamera
             mapCamera.transform.Translate(move, Space.World);
             lastPanPosition = newPanPosition;
+            lastPanTime = currentTime;
         }
 
         public void ShowMainMap()
