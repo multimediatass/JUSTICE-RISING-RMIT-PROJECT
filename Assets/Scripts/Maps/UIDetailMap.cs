@@ -73,7 +73,7 @@ namespace Tproject
 
             HideDescription();
 
-            LevelManager.instance.PlayGame();
+            // LevelManager.instance.PlayGame();
         }
     }
 }
