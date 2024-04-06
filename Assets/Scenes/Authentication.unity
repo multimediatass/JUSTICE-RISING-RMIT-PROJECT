@@ -2730,7 +2730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e27999d1f6b2444dbed23f35757a953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isForDebug: 0
+  isForDebug: 1
   playerData: {fileID: 11400000, guid: bfd811cd438faf64ab891f7e992faf7b, type: 2}
   isLoginSection: 1
   R_FirstName: {fileID: 7665357055022775037}

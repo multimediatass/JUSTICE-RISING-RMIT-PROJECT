@@ -67,6 +67,13 @@ namespace Tproject
             }
         }
 
+        public void OnClickTeleportDirectly(Transform _transform)
+        {
+            character.TeleportToDestination(_transform);
+
+            LevelManager.instance.PlayGame();
+        }
+
         public void OnClickTeleport()
         {
             character.TeleportToDestination(teleportDestination);
