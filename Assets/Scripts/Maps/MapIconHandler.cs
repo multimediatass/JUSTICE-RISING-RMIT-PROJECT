@@ -23,6 +23,7 @@ namespace Tproject
 
         private void Update()
         {
+            // it's function for icon lookat camera
             if (mapCamera.gameObject.activeSelf == true)
             {
                 float currentZoom = mapCamera.orthographicSize;
