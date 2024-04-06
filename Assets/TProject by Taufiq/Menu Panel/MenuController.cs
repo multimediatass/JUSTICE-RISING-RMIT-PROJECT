@@ -31,7 +31,7 @@ namespace Tproject
                 OnCloseMenu();
                 AfterMenuClose?.Invoke();
 
-                Debug.Log($"Close Menu");
+                // Debug.Log($"Close Menu");
             }
         }
 

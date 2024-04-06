@@ -61,9 +61,12 @@ namespace Tproject
             if (currentScore >= scoreMax && !isScoreMaxReached)
             {
                 isScoreMaxReached = true;
-                OnScoreFinished.Invoke();
+                Invoke(nameof(CallOnScoreFinished), .5f);
             }
         }
+
+        private void CallOnScoreFinished() =>
+            OnScoreFinished?.Invoke();
 
         public int GetCurrentScore()
         {
