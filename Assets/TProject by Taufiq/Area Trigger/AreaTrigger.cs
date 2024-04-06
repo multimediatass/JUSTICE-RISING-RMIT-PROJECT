@@ -17,16 +17,22 @@ namespace Tproject
             if (other.TryGetComponent<Character>(out Character car))
             {
                 if (car.characterName == targetCharacterName)
-                    OnTargetEnter?.Invoke();
+                    Invoke(nameof(CallOnTargetEnter), .5f);
             }
         }
+
+        private void CallOnTargetEnter() =>
+            OnTargetEnter?.Invoke();
+
+        private void CallOnTargetExit() =>
+            OnTargetExit?.Invoke();
 
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<Character>(out Character car))
             {
                 if (car.characterName == targetCharacterName)
-                    OnTargetExit?.Invoke();
+                    Invoke(nameof(CallOnTargetExit), .5f);
             }
         }
     }

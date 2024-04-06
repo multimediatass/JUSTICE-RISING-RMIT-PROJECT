@@ -29,6 +29,11 @@ namespace JusticeRising
 
         void OnTriggerExit(Collider other)
         {
+            ClosePopup();
+        }
+
+        private void ClosePopup()
+        {
             if (popUpTemp != null)
             {
                 Destroy(popUpTemp);
@@ -46,6 +51,11 @@ namespace JusticeRising
                     Destroy(popUpTemp);
                     popUpTemp = null;
                 }
+            }
+
+            if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered || InputManager.instance.inputAction.PlayerControls.Maps.triggered)
+            {
+                ClosePopup();
             }
         }
     }
