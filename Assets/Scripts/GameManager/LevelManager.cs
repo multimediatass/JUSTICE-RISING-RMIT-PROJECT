@@ -67,7 +67,8 @@ namespace JusticeRising
         void FixedUpdate()
         {
             if (InputManager.instance.inputAction.PlayerControls.Maps.triggered && !LevelManager.isCooldownPressingUI &&
-                CurrentGameState != GameState.MainMaps && CurrentGameState != GameState.GameMenu && CurrentGameState != GameState.UIInteraction) ChangeGameState(GameState.MainMaps);
+                CurrentGameState != GameState.MainMaps && CurrentGameState != GameState.GameMenu && CurrentGameState != GameState.UIInteraction
+                && CurrentGameState != GameState.CutScene) ChangeGameState(GameState.MainMaps);
         }
 
         public void GameTimeState(bool state) => isPlayingTime = state;
@@ -155,6 +156,11 @@ namespace JusticeRising
         public void PlayGame()
         {
             ChangeGameState(GameState.Play);
+        }
+
+        public void PlayCutScene()
+        {
+            ChangeGameState(GameState.CutScene);
         }
 
         public void PauseGame()

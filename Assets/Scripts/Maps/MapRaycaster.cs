@@ -30,7 +30,7 @@ namespace Tproject
                         descriptionController.ShowDescription(targetNpc.npcName, targetNpc.npcRole, targetNpc.npcDescription, targetNpc.npcImages[0], buildingScript.GetTeleportDestination());
                         mapController.HideMainMap();
                     }
-                    else if (buildingScript != null && !buildingScript.isIntractable)
+                    else if (buildingScript != null && !buildingScript.isIntractable && buildingScript.GetTeleportDestination())
                     {
                         descriptionController.OnClickTeleportDirectly(buildingScript.GetTeleportDestination());
                         mapController.HideMainMap();
