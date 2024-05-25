@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JusticeRising;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -48,6 +49,7 @@ public class CutSceneAnimController : MonoBehaviour
             {
                 animator.SetTrigger(behaviour.triggerName);
                 myCoroutine = StartCoroutine(WaitForAnimation(behaviour));
+                LevelManager.instance.PlayCutScene();
                 break;
             }
         }
