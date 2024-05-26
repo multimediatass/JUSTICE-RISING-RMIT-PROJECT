@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.36078432, g: 0.36078432, b: 0.36078432, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -219,13 +219,18 @@ MonoBehaviour:
   backgroundImage: {fileID: 5306797483786640040}
   messageText: {fileID: 1572395446303675885}
   loadingContents:
-  - sprite: {fileID: 21300000, guid: 984933ec9d22b0143829c0732ff21633, type: 3}
-    message: this is made by love
-  - sprite: {fileID: 21300000, guid: 984933ec9d22b0143829c0732ff21633, type: 3}
-    message: 'Hint: Klick E to interact with everything '
-  - sprite: {fileID: 21300000, guid: 7f3762a7dbbc4aa4aba8c27f78383615, type: 3}
-    message: 'Hint: ASWD for walk'
-  loadingDuration: 3
+  - sprite: {fileID: 21300000, guid: 666459d77de4d23458f106a688b66efe, type: 3}
+    message: <b>Use Keyboard Shortcuts:</b> To expedite your actions, use <b>WASD</b>
+      for movement, <b>E</b> for interaction, <b>TAB</b> for accessing information,
+      <b>M</b> for opening the map, and <b>E</b> for interacting with witnesses.
+  - sprite: {fileID: 21300000, guid: 66c2972875f781c468c7d812789cde2d, type: 3}
+    message: <b>Consult with Expert Witnesses:</b> The witnesses present in the city
+      can strengthen your arguments. Engage in discussions with them and select the
+      appropriate witness to bolster your case.
+  - sprite: {fileID: 21300000, guid: e23c66610ddd162458ec722495285f25, type: 3}
+    message: <b>Maps:</b> Press the <b>M</b> key to open the map; use the map to
+      expedite your search for expert witnesses.
+  loadingDuration: 5
   onPanelActive:
     m_PersistentCalls:
       m_Calls: []
@@ -267,7 +272,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -454}
-  m_SizeDelta: {x: 1000, y: 50}
+  m_SizeDelta: {x: 1497.65, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8083331746232199868
 CanvasRenderer:
@@ -299,8 +304,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da200dbb26369824589e96a8596a317b, type: 2}
-  m_sharedMaterial: {fileID: 2269793554123077917, guid: da200dbb26369824589e96a8596a317b,
+  m_fontAsset: {fileID: 11400000, guid: 8644cf99bb896954191a2545f8d12b00, type: 2}
+  m_sharedMaterial: {fileID: 1653631458307283989, guid: 8644cf99bb896954191a2545f8d12b00,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -325,8 +330,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
