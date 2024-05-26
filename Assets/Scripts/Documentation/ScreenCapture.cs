@@ -5,65 +5,65 @@ using System.IO;
 
 public class ScreenCapture : MonoBehaviour
 {
-    [Header("Profile Data")]
-    public string FileName;
-    public string SavePath;
+    private static ScreenCapture instance;
 
-    public Image finalImage;
-    public GameObject CapturePanel;
+    public Camera myCamera;
+    private bool takeScreenshotOnNextFrame;
 
-
-    IEnumerator SaveFinalImage()
+    private void Awake()
     {
-        Debug.Log("you has been captured");
-
-        yield return new WaitForEndOfFrame();
-
-        Sprite sprite = finalImage.sprite;
-        Texture2D texture = SpriteToTexture2D(sprite);
-
-        // Texture2D screenImage = new Texture2D(Screen.width, Screen.height);
-
-        // screenImage.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        // screenImage.Apply();
-
-        // Pastikan SavePath diakhiri dengan "\"
-        if (!SavePath.EndsWith(@"\")) SavePath += @"\";
-
-        // Periksa apakah directory tersebut ada, jika tidak, buat
-        if (!Directory.Exists(SavePath))
+        instance = this;
+        if (myCamera == null)
         {
-            Directory.CreateDirectory(SavePath);
+            Debug.LogError("Camera not assigned. Please assign a camera in the inspector.");
         }
-
-        // string Path = $"{Application.persistentDataPath}/Customer_{FileName}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
-        string Path = $"{SavePath}/Customer_{FileName}_{System.DateTime.Now.ToString("yyyyMMdd_HHmmss")}.jpg";
-        Debug.Log(Path);
-        byte[] imageBytes = texture.EncodeToJPG();
-
-        File.WriteAllBytes(Path, imageBytes);
-
-        Destroy(texture);
-
-        yield return new WaitForSeconds(0.5f);
-
-        CapturePanel.SetActive(true);
     }
 
-    Texture2D SpriteToTexture2D(Sprite sprite)
+    void Update()
     {
-        if (sprite.rect.width != sprite.texture.width)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Texture2D newText = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
-            Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
-                                                        (int)sprite.textureRect.y,
-                                                        (int)sprite.textureRect.width,
-                                                        (int)sprite.textureRect.height);
-            newText.SetPixels(newColors);
-            newText.Apply();
-            return newText;
+            CaptureScreenshot(1920, 1080);
         }
-        else
-            return sprite.texture;
+    }
+
+    IEnumerator CaptureScreenshotCoroutine(int width, int height)
+    {
+        yield return new WaitForEndOfFrame();
+
+        RenderTexture renderTexture = new RenderTexture(width, height, 16);
+        myCamera.targetTexture = renderTexture;
+        Texture2D screenImage = new Texture2D(width, height, TextureFormat.ARGB32, false);
+
+        myCamera.Render();
+
+        RenderTexture.active = renderTexture;
+        screenImage.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        screenImage.Apply();
+
+        myCamera.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(renderTexture);
+
+        byte[] byteArray = screenImage.EncodeToPNG();
+        File.WriteAllBytes(Application.dataPath + "/Screenshot.png", byteArray);
+        Debug.Log($"Screenshot saved to: {Application.dataPath}/Screenshot.png");
+
+        Destroy(screenImage);
+    }
+
+    private void TakeScreenshot(int width, int height)
+    {
+        StartCoroutine(CaptureScreenshotCoroutine(width, height));
+    }
+
+    public void CaptureScreenshot(int width, int height)
+    {
+        if (myCamera == null)
+        {
+            Debug.LogError("Camera not assigned. Please assign a camera in the inspector.");
+            return;
+        }
+        TakeScreenshot(width, height);
     }
 }
