@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace JusticeRising
@@ -29,8 +30,9 @@ namespace JusticeRising
         public void RequestLookingForTarget(Transform newTarget)
         {
             target = newTarget;
-
             isLookingForComplate = false;
+
+            Debug.Log($"isLookingForComplate: {isLookingForComplate}, target.transform.position");
         }
 
         private void Update()
