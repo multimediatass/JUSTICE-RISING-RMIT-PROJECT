@@ -36,6 +36,10 @@ namespace JusticeRising
 
         private Coroutine cutSceneCoroutine;
 
+        private bool m_canSkipScene = false;
+        public float minWatchDuration = 20f;
+        public GameObject canSkipSceneHint;
+
         void Start()
         {
             // if (audioSource == null)
@@ -47,7 +51,7 @@ namespace JusticeRising
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && m_canSkipScene)
             {
                 SkipCutScene();
             }
@@ -57,10 +61,19 @@ namespace JusticeRising
         {
             // audioSource.PlayOneShot(backsound);
 
+            m_canSkipScene = false;
+            Invoke("CanSkipScene", minWatchDuration);
+
             OnCutsceneStart?.Invoke();
 
             if (backsound != null) AudioManager.Instance.StartTransitionToNewMusic(backsound, .5f);
             cutSceneCoroutine = StartCoroutine(CutSceneRoutine());
+        }
+
+        public void CanSkipScene()
+        {
+            m_canSkipScene = true;
+            canSkipSceneHint.SetActive(true);
         }
 
         IEnumerator CutSceneRoutine()
