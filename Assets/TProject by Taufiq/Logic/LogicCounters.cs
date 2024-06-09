@@ -41,7 +41,7 @@ namespace Tproject
             currentScore += amount;
             UpdateScoreUI();
 
-            CheckCondition();
+            // CheckCondition();
         }
 
         public void Decrease(int amount)
@@ -59,9 +59,11 @@ namespace Tproject
             }
             UpdateScoreUI();
 
-            CheckCondition();
+            // CheckCondition(); 
         }
 
+        // is called from component secondary camera controller
+        // there is bug if update on increase or decrease function
         public void CheckCondition()
         {
             if (currentScore >= scoreMax && !isScoreMaxReached)
