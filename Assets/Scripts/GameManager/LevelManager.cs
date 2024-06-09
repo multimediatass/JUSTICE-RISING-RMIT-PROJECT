@@ -33,7 +33,6 @@ namespace JusticeRising
         public TextMeshProUGUI timeText;
         private float elapsedTime = 0f;
 
-
         public static bool isCooldownPressingUI = false;
 
         private void Awake()
@@ -189,9 +188,8 @@ namespace JusticeRising
 
         public void RestartGamePlay()
         {
-            ChangeGameState(GameState.RestartGamePlay);
-
-            LoadingManager.Instance.ShowLoadingScreen(PlayGame, 3f);
+            // ChangeGameState(GameState.RestartGamePlay);
+            LoadingManager.Instance.ShowLoadingScreen(() => ChangeGameState(GameState.RestartGamePlay), 3f);
         }
     }
 }

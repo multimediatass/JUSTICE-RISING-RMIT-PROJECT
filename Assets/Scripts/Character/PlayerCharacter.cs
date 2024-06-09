@@ -17,8 +17,8 @@ namespace JusticeRising
         [SerializeField] private GameObject[] iconMaps;
         [SerializeField] private CutSceneAnimController animForCutScene;
         GameObject currentCharacter;
-
         private bool isTeleport = false;
+        public Transform defaultPosition;
 
 
         private void Awake()
@@ -166,6 +166,11 @@ namespace JusticeRising
             object[] arg = new object[3] { destination.position, destination.rotation, afterTeleFunct };
 
             StartCoroutine(nameof(Teleport), arg);
+        }
+
+        public void ResetPlayerPosition()
+        {
+            TeleportToDestination(defaultPosition);
         }
 
         IEnumerator Teleport(object[] parms)

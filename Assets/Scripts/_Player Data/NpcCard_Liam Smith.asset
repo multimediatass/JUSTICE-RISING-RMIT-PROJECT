@@ -24,8 +24,8 @@ MonoBehaviour:
     PlayerOpportunity: 2
     npcName: Liam Smith,MBA
     sectionList:
-    - Question: Welcome, Mr. Liam Smith. I am Charlotte Wilson, LLB Senior lawyer
-        in this law firm. Is there anything I can help. Tell me what happened.
+    - Question: Hello Mr. Liam Smith. I am Charlotte Wilson, LLB Senior lawyer in
+        this law firm. Is there anything I can help. Tell me what happened.
       Answer: Thank you sir. So I have a problem with the company Lizznet he just
         gave permission to its users to download and share film content illegally
         through the LizzNet network, but I object to copyright infringement by its
