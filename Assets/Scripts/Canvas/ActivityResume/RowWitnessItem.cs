@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Tproject;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,14 +14,23 @@ namespace JusticeRising.Canvas
         public NpcCard npcCardResume;
         [HideInInspector] public Transform detailResumeParent;
         public DetailResume detailResumePrefab;
+        public MenuController menuController;
+
+        void Start()
+        {
+            menuController = GetComponentInParent<MenuController>();
+        }
 
         public void ShowDetail()
         {
             DetailResume detailItem = Instantiate(detailResumePrefab);
             detailItem.npcCardDetail = npcCardResume;
+            detailItem.menuController = menuController;
             Debug.Log($"show detail for {npcCardResume.npcName} data");
 
             ResumeController.Instance.StartOpenResume?.Invoke();
+
+            menuController.hintTab.SetActive(false);
         }
 
     }

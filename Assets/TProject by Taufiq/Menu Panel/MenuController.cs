@@ -14,6 +14,7 @@ namespace Tproject
         public UnityEvent OnMenuOpen;
         public UnityEvent AfterMenuClose;
         [SerializeField] private bool isDetailOpened = false;
+        public GameObject hintTab;
 
 
         private void Update()
@@ -75,7 +76,6 @@ namespace Tproject
                 Debug.LogError("Page index out of range!");
             }
         }
-
 
         public void GoToPage(int pageIndex)
         {
@@ -164,6 +164,11 @@ namespace Tproject
         public void DetailOpenState(bool state)
         {
             isDetailOpened = state;
+        }
+
+        public void ShowHintTab()
+        {
+            if (LevelManager.instance.CurrentGameState == LevelManager.GameState.UIInteraction && !isDetailOpened) hintTab.SetActive(true);
         }
     }
 }
