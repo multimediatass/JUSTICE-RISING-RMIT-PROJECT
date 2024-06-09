@@ -48,7 +48,8 @@ namespace Tproject.Authentication
         [Header("Recovery Account Components")]
         public TextMeshProUGUI Reset_messageText;
         public TMP_InputField Reset_emailInput;
-        public TMP_InputField Reset_passwordInput;
+        public GameObject reset_inputPanel;
+        public GameObject reset_MessagePanel;
 
         private void Start()
         {
@@ -256,19 +257,28 @@ namespace Tproject.Authentication
             var request = new SendAccountRecoveryEmailRequest
             {
                 Email = Reset_emailInput.text,
-                TitleId = "70500"
+                TitleId = "72269"
             };
             PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnResetError);
         }
 
         private void OnPasswordReset(SendAccountRecoveryEmailResult result)
         {
-            Reset_messageText.text = "password reset mail sent";
+            // Debug.Log(result.ToJson());
+            Reset_messageText.text = $"We have sent a forgot password email to <color=#C6A03E>{Reset_emailInput.text}</color> account";
+
+            reset_MessagePanel.SetActive(true);
+            reset_inputPanel.SetActive(false);
         }
 
         private void OnResetError(PlayFabError error)
         {
+            Debug.Log(error.ErrorMessage);
+        }
 
+        public void OpenGmailPage()
+        {
+            Application.OpenURL("https://mail.google.com/mail/u/0/#inbox");
         }
         // End: Recovery section
 
