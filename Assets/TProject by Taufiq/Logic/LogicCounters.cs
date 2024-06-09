@@ -24,6 +24,12 @@ namespace Tproject
             UpdateScoreUI();
         }
 
+        public void ResetValue()
+        {
+            isScoreMaxReached = false;
+            currentScore = 0;
+        }
+
         public void Increase(int amount)
         {
             if (isScoreMaxReached)
