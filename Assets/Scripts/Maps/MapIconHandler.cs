@@ -10,6 +10,7 @@ namespace Tproject
         public bool isIntractable;
         public Transform teleportTarget;
         public Camera mapCamera;
+        public bool isPlayerPrespective = false;
 
         [Space]
         public GameObject targetCam;
@@ -32,6 +33,18 @@ namespace Tproject
 
                 float finalScale = initialScale + newScale;
                 transform.localScale = new Vector3(finalScale, finalScale, finalScale);
+
+                if (isPlayerPrespective)
+                {
+                    Quaternion mapCam = mapCamera.transform.rotation;
+                    Vector3 eRotation = new Vector3(90f, 0f, mapCam.eulerAngles.z);
+                    transform.localRotation = Quaternion.Euler(eRotation);
+                }
+                else
+                {
+                    transform.localRotation = Quaternion.Euler(90f, 0f, 90f);
+                }
+
             }
             else
             {

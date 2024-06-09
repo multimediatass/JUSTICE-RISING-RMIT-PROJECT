@@ -58,7 +58,7 @@ namespace Tproject
             if (LevelManager.instance.GetCurrentTimeFloat() >= 30f)
             {
                 btnTeleport.interactable = true;
-                btnTeleport.GetComponentInChildren<TextMeshProUGUI>().text = $"TALK TO THIS WITNESS";
+                btnTeleport.GetComponentInChildren<TextMeshProUGUI>().text = $"TALK TO THIS PERSON";
             }
             else
             {

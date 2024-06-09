@@ -13,7 +13,7 @@ namespace Tproject
         private bool isScoreMaxReached = false;
 
         [Space]
-        public UnityEvent OnScoreFinished;
+        [SerializeField] private UnityEvent OnScoreFinished;
         [Space]
 
         public TextMeshProUGUI scoreText;
@@ -41,7 +41,7 @@ namespace Tproject
             currentScore += amount;
             UpdateScoreUI();
 
-            // CheckScore();
+            // CheckCondition();
         }
 
         public void Decrease(int amount)
@@ -59,9 +59,11 @@ namespace Tproject
             }
             UpdateScoreUI();
 
-            // CheckScore();
+            // CheckCondition(); 
         }
 
+        // is called from component secondary camera controller
+        // there is bug if update on increase or decrease function
         public void CheckCondition()
         {
             if (currentScore >= scoreMax && !isScoreMaxReached)
