@@ -15,6 +15,7 @@ namespace JusticeRising
         [Header("Character Group")]
         [SerializeField] private GameObject[] charactersPrefabs;
         [SerializeField] private GameObject[] iconMaps;
+        [SerializeField] private GameObject[] introCharacterImg;
         [SerializeField] private CutSceneAnimController animForCutScene;
         GameObject currentCharacter;
         private bool isTeleport = false;
@@ -61,8 +62,15 @@ namespace JusticeRising
             for (int i = iconMaps.Length - 1; i >= 0; i--)
             {
                 if (i == charIndex)
+                {
                     iconMaps[i].SetActive(true);
-                else iconMaps[i].SetActive(false);
+                    introCharacterImg[i].SetActive(true);
+                }
+                else
+                {
+                    iconMaps[i].SetActive(false);
+                    introCharacterImg[i].SetActive(false);
+                }
             }
 
             // LoadingManager.instance.CloseLoadingPanel();

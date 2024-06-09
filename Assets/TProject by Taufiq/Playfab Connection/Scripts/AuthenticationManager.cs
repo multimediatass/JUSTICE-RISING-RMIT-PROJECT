@@ -36,7 +36,7 @@ namespace Tproject.Authentication
         public UnityEvent OnRegisterSuccessEvent;
         public UnityEvent OnRegisterFailedEvent;
 
-        [Header("Login Components")]
+        [Header("Login UI Components")]
         public TMP_InputField L_emailInput;
         public TMP_InputField L_passwordInput;
         [Space]

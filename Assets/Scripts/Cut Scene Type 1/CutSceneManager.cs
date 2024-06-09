@@ -61,6 +61,7 @@ namespace JusticeRising
         {
             // audioSource.PlayOneShot(backsound);
 
+            canSkipSceneHint.SetActive(false);
             m_canSkipScene = false;
             Invoke("CanSkipScene", minWatchDuration);
 
