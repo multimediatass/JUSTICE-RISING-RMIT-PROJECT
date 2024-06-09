@@ -21,7 +21,7 @@ public class ScreenCapture : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             CaptureScreenshot(1920, 1080);
         }
