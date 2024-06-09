@@ -19,7 +19,7 @@ namespace Tproject.Authentication
         [Header("Register Components")]
         public TMP_InputField R_FirstName;
         public TMP_InputField R_LastName;
-        public TextMeshProUGUI R_messageText;
+        // public TextMeshProUGUI R_messageText;
         public TMP_InputField R_Username;
         public TMP_InputField R_emailInput;
         public TMP_InputField R_passwordInput;
@@ -29,23 +29,26 @@ namespace Tproject.Authentication
         public string R_signUpGender;
         public Button[] R_genderButton;
         public Color buttonSelectedColor;
+        [Space]
+        public PopupMessage R_popupMessage;
 
         [Space]
         public UnityEvent OnRegisterSuccessEvent;
         public UnityEvent OnRegisterFailedEvent;
 
         [Header("Login Components")]
-        public TextMeshProUGUI L_messageText;
         public TMP_InputField L_emailInput;
         public TMP_InputField L_passwordInput;
+        [Space]
+        public PopupMessage L_popupMessage;
         [Space]
         public UnityEvent OnLoginSuccessEvent;
         public UnityEvent OnLoginFailedEvent;
 
         [Header("Recovery Account Components")]
-        [HideInInspector] public TextMeshProUGUI Reset_messageText;
-        [HideInInspector] public TMP_InputField Reset_emailInput;
-        [HideInInspector] public TMP_InputField Reset_passwordInput;
+        public TextMeshProUGUI Reset_messageText;
+        public TMP_InputField Reset_emailInput;
+        public TMP_InputField Reset_passwordInput;
 
         private void Start()
         {
@@ -94,21 +97,20 @@ namespace Tproject.Authentication
             if (string.IsNullOrEmpty(R_passwordInput.text) || string.IsNullOrEmpty(R_PasswordComfirmation.text)
                 || string.IsNullOrEmpty(R_Username.text) || string.IsNullOrEmpty(R_emailInput.text))
             {
-                // Debug.LogWarning("Please fill the blank");
-                R_messageText.text = "Please fill the blank";
+                R_popupMessage.ShowMessage(PopupMessage.MessageType.error, "Error", $"Please fill the blank");
                 return;
             }
 
             if (R_passwordInput.text != R_PasswordComfirmation.text)
             {
                 // Debug.LogWarning("comfirm your password");
-                R_messageText.text = "Please comfirm your password";
+                R_popupMessage.ShowMessage(PopupMessage.MessageType.error, "Error", $"Please comfirm your password");
                 return;
             }
 
             if (R_passwordInput.text.Length < 6)
             {
-                R_messageText.text = "Input password more than 6 characters";
+                R_popupMessage.ShowMessage(PopupMessage.MessageType.error, "Error", $"Input password more than 6 characters");
                 return;
             }
 
@@ -125,7 +127,7 @@ namespace Tproject.Authentication
 
         private void OnRegisterSuccess(RegisterPlayFabUserResult result)
         {
-            R_messageText.text = "Register Success!";
+            R_popupMessage.ShowMessage(PopupMessage.MessageType.success, "Success", $"Congratulations! Your account has been successfully created.");
 
             PlayerProfileDataMap playerData = new PlayerProfileDataMap
             {
@@ -171,7 +173,7 @@ namespace Tproject.Authentication
 
         private void OnRegisterError(PlayFabError error)
         {
-            R_messageText.text = error.ErrorMessage;
+            R_popupMessage.ShowMessage(PopupMessage.MessageType.success, "Error", error.ErrorMessage);
             Debug.Log($"{error.GenerateErrorReport()}");
             OnRegisterFailedEvent?.Invoke();
         }
@@ -203,14 +205,14 @@ namespace Tproject.Authentication
                 name = result.InfoResultPayload.PlayerProfile.DisplayName;
             }
 
-            L_messageText.text = $"player '{name}' has been successed login!";
+            L_popupMessage.ShowMessage(PopupMessage.MessageType.success, "Success", $"player '{name}' has successfully logged");
 
             GetUserData();
         }
 
         private void OnLoginError(PlayFabError error)
         {
-            L_messageText.text = error.ErrorMessage;
+            L_popupMessage.ShowMessage(PopupMessage.MessageType.error, "Error", $"{error.ErrorMessage}");
             Debug.Log($"{error.GenerateErrorReport()}");
 
             OnLoginFailedEvent?.Invoke();
