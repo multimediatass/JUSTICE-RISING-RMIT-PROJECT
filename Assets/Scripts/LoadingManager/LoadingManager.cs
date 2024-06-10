@@ -73,13 +73,13 @@ namespace Tproject
                      .setOnComplete(() => StartCoroutine(LoadSceneAsync(arg)));
         }
 
-        public void ShowLoadingScreen(Action _funct, float time)
+        public void ShowLoadingScreen(Action _funct, float time, Action _fuctOnLoading = null)
         {
             loadingBar.fillAmount = 0f;
             SelectRandomLoadingContent(); // Select new content before showing the panel
             loadingPanel.SetActive(true);
 
-            object[] arg = new object[2] { _funct, time };
+            object[] arg = new object[3] { _funct, time, _fuctOnLoading };
 
             LeanTween.alphaCanvas(loadingPanel.GetComponent<CanvasGroup>(), 1f, 0.5f)
                 .setOnComplete(() => StartCoroutine(DisplayLoadingPanel(arg)));
@@ -120,9 +120,11 @@ namespace Tproject
 
             Action onFinishFunction = (Action)parms[0];
             float time = (float)parms[1];
+            Action onLoadingFunction = (Action)parms[2];
 
             loadingBar.fillAmount = 0;
             float timer = 0;
+            onLoadingFunction?.Invoke();
             while (timer < time)
             {
                 timer += Time.deltaTime;

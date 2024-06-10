@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using Tproject;
 using UnityEngine;
 using System;
 
@@ -171,15 +171,26 @@ namespace JusticeRising
 
         public void TeleportToDestination(Transform destination, Action afterTeleFunct = null)
         {
-            object[] arg = new object[3] { destination.position, destination.rotation, afterTeleFunct };
+            LoadingManager.Instance.ShowLoadingScreen(afterTeleFunct, 3f, () => OnTeleport(destination));
+            // object[] arg = new object[3] { destination.position, destination.rotation, afterTeleFunct };
 
-            StartCoroutine(nameof(Teleport), arg);
+            // StartCoroutine(nameof(Teleport), arg);
         }
 
         public void ResetPlayerPosition()
         {
-            TeleportToDestination(defaultPosition);
+            OnTeleport(defaultPosition);
         }
+
+        public void OnTeleport(Transform _destination)
+        {
+            isTeleport = true;
+            this.transform.position = _destination.position;
+            this.transform.rotation = _destination.rotation;
+            Invoke("Teleported", 3f);
+        }
+
+        public void Teleported() => isTeleport = false;
 
         IEnumerator Teleport(object[] parms)
         {
