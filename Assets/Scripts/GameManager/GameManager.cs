@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using JusticeRising.GameData;
 
+using UnityEngine.Events;
+
 namespace JusticeRising
 {
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance;
         public PlayerData currentPlayerData;
+
+        public UnityEvent OnStartGame;
 
         private void Awake()
         {
@@ -23,6 +27,11 @@ namespace JusticeRising
             {
                 Destroy(this.gameObject);
             }
+        }
+
+        private void Start()
+        {
+            OnStartGame?.Invoke();
         }
 
         public void AddNpcCard(NpcCard newCard)

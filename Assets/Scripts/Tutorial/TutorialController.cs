@@ -29,7 +29,6 @@ public class TutorialController : MonoBehaviour
     public Button previousButton;
 
     [SerializeField] private List<ImageData> filteredList;
-    private string currentSection;
     private bool isOpenInMenu = false;
     private int tutorDefaultIndex = 0;
 
@@ -137,7 +136,6 @@ public class TutorialController : MonoBehaviour
 
     private void FilterBySection(string section)
     {
-        currentSection = section;
         filteredList = imageDataList.Where(imgData => imgData.Section == section).ToList();
         currentIndex = 0;
 

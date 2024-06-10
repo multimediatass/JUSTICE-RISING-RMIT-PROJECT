@@ -98,6 +98,15 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""059a2f47-69d4-4730-9b97-65d6e6f9b93f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -331,6 +340,17 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""action"": ""Maps"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd7f7886-1e72-47c6-ba42-06ee5d5e2beb"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -370,6 +390,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerControls_NextAction = m_PlayerControls.FindAction("NextAction", throwIfNotFound: true);
         m_PlayerControls_MenuPanel = m_PlayerControls.FindAction("MenuPanel", throwIfNotFound: true);
         m_PlayerControls_Maps = m_PlayerControls.FindAction("Maps", throwIfNotFound: true);
+        m_PlayerControls_Mouse = m_PlayerControls.FindAction("Mouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -439,6 +460,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_NextAction;
     private readonly InputAction m_PlayerControls_MenuPanel;
     private readonly InputAction m_PlayerControls_Maps;
+    private readonly InputAction m_PlayerControls_Mouse;
     public struct PlayerControlsActions
     {
         private @PlayerActions m_Wrapper;
@@ -451,6 +473,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @NextAction => m_Wrapper.m_PlayerControls_NextAction;
         public InputAction @MenuPanel => m_Wrapper.m_PlayerControls_MenuPanel;
         public InputAction @Maps => m_Wrapper.m_PlayerControls_Maps;
+        public InputAction @Mouse => m_Wrapper.m_PlayerControls_Mouse;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -484,6 +507,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Maps.started += instance.OnMaps;
             @Maps.performed += instance.OnMaps;
             @Maps.canceled += instance.OnMaps;
+            @Mouse.started += instance.OnMouse;
+            @Mouse.performed += instance.OnMouse;
+            @Mouse.canceled += instance.OnMouse;
         }
 
         private void UnregisterCallbacks(IPlayerControlsActions instance)
@@ -512,6 +538,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Maps.started -= instance.OnMaps;
             @Maps.performed -= instance.OnMaps;
             @Maps.canceled -= instance.OnMaps;
+            @Mouse.started -= instance.OnMouse;
+            @Mouse.performed -= instance.OnMouse;
+            @Mouse.canceled -= instance.OnMouse;
         }
 
         public void RemoveCallbacks(IPlayerControlsActions instance)
@@ -557,5 +586,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnNextAction(InputAction.CallbackContext context);
         void OnMenuPanel(InputAction.CallbackContext context);
         void OnMaps(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Tproject.VisualNovelV2;
 using JusticeRising.GameData;
+using Tproject;
 
 namespace JusticeRising.Canvas
 {
@@ -16,7 +17,7 @@ namespace JusticeRising.Canvas
         public List<RowItem> rowItems;
         public Transform optParent;
         public NpcCard npcCardDetail;
-        // public List<string> conversationList;
+        public MenuController menuController;
 
         private void Start()
         {
@@ -75,6 +76,8 @@ namespace JusticeRising.Canvas
         {
             StartCoroutine(DestroyTemp(this.gameObject));
             ResumeController.Instance.OnCloseResume();
+
+            menuController.ShowHintTab();
         }
         public void OnClickClose()
         {

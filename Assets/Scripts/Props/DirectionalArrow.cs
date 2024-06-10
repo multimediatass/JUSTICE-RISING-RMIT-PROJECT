@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace JusticeRising
@@ -29,8 +30,9 @@ namespace JusticeRising
         public void RequestLookingForTarget(Transform newTarget)
         {
             target = newTarget;
-
             isLookingForComplate = false;
+
+            Debug.Log($"isLookingForComplate: {isLookingForComplate}, target.transform.position");
         }
 
         private void Update()
@@ -58,6 +60,7 @@ namespace JusticeRising
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
+            if (targetList.Count == 0) return;
             GUI.color = Color.black;
             UnityEditor.Handles.Label(transform.position - (transform.position - target.position) / 2, distanceBetweenObjects.ToString());
         }

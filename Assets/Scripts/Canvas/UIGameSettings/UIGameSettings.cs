@@ -13,7 +13,7 @@ namespace JusticeRising.UIGameSetting
 
         private void Start()
         {
-            musicSlider.value = AudioManager.Instance.GetMusicVolume();
+            musicSlider.value = AudioManager.Instance.GetMasterVolume();
         }
 
         public void ToggleMuteMusic()
@@ -28,7 +28,7 @@ namespace JusticeRising.UIGameSetting
 
         public void MusicVolumeSetting()
         {
-            AudioManager.Instance.MusicVolume(musicSlider.value);
+            AudioManager.Instance.SetMasterVolume(musicSlider.value);
         }
 
         public void SFXVolumeSetting()

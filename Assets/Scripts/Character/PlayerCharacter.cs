@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using Tproject;
 using UnityEngine;
 using System;
 
@@ -15,9 +15,11 @@ namespace JusticeRising
         [Header("Character Group")]
         [SerializeField] private GameObject[] charactersPrefabs;
         [SerializeField] private GameObject[] iconMaps;
+        [SerializeField] private GameObject[] introCharacterImg;
         [SerializeField] private CutSceneAnimController animForCutScene;
-
+        GameObject currentCharacter;
         private bool isTeleport = false;
+        public Transform defaultPosition;
 
 
         private void Awake()
@@ -50,15 +52,25 @@ namespace JusticeRising
             for (int i = charactersPrefabs.Length - 1; i >= 0; i--)
             {
                 if (i == charIndex)
+                {
                     charactersPrefabs[i].SetActive(true);
+                    currentCharacter = charactersPrefabs[i];
+                }
                 else charactersPrefabs[i].SetActive(false);
             }
 
             for (int i = iconMaps.Length - 1; i >= 0; i--)
             {
                 if (i == charIndex)
+                {
                     iconMaps[i].SetActive(true);
-                else iconMaps[i].SetActive(false);
+                    introCharacterImg[i].SetActive(true);
+                }
+                else
+                {
+                    iconMaps[i].SetActive(false);
+                    introCharacterImg[i].SetActive(false);
+                }
             }
 
             // LoadingManager.instance.CloseLoadingPanel();
@@ -87,6 +99,11 @@ namespace JusticeRising
                 Jump();
                 // anim.SetBoolIsPlaying(true);
             }
+        }
+
+        public void CharacterVisibility(bool state)
+        {
+            currentCharacter.SetActive(state);
         }
 
         float animMoveSpeed = 0f;
@@ -154,19 +171,37 @@ namespace JusticeRising
 
         public void TeleportToDestination(Transform destination, Action afterTeleFunct = null)
         {
-            object[] arg = new object[2] { destination.position, afterTeleFunct };
+            LoadingManager.Instance.ShowLoadingScreen(afterTeleFunct, 3f, () => OnTeleport(destination));
+            // object[] arg = new object[3] { destination.position, destination.rotation, afterTeleFunct };
 
-            StartCoroutine(nameof(Teleport), arg);
+            // StartCoroutine(nameof(Teleport), arg);
         }
+
+        public void ResetPlayerPosition()
+        {
+            OnTeleport(defaultPosition);
+        }
+
+        public void OnTeleport(Transform _destination)
+        {
+            isTeleport = true;
+            this.transform.position = _destination.position;
+            this.transform.rotation = _destination.rotation;
+            Invoke("Teleported", 3f);
+        }
+
+        public void Teleported() => isTeleport = false;
 
         IEnumerator Teleport(object[] parms)
         {
-            Action af = (Action)parms[1];
+            Action af = (Action)parms[2];
+            Quaternion newRotate = (Quaternion)parms[1];
 
             // LoadingManager.instance.StartLoading();
             isTeleport = true;
             yield return new WaitForSeconds(0.5f);
             this.transform.position = (Vector3)parms[0];
+            this.transform.rotation = newRotate;
             yield return new WaitForSeconds(0.5f);
             // Debug.Log($"Player has been teleport {(Vector3)parms[0]}");
             // LoadingManager.instance.CloseLoadingPanel();

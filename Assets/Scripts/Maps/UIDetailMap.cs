@@ -33,6 +33,8 @@ namespace Tproject
 
         public void ShowDescription(string name, string title, string desc, Sprite img, Transform destination)
         {
+            if (panel.activeSelf) return;
+
             nameText.text = name;
             titleText.text = title;
             descriptionText.text = desc;
@@ -56,13 +58,20 @@ namespace Tproject
             if (LevelManager.instance.GetCurrentTimeFloat() >= 30f)
             {
                 btnTeleport.interactable = true;
-                btnTeleport.GetComponentInChildren<TextMeshProUGUI>().text = $"TALK TO THIS WITNESS";
+                btnTeleport.GetComponentInChildren<TextMeshProUGUI>().text = $"TALK TO THIS PERSON";
             }
             else
             {
                 btnTeleport.GetComponentInChildren<TextMeshProUGUI>().text = $"WAIT FOR 30 SEC";
                 btnTeleport.interactable = false;
             }
+        }
+
+        public void OnClickTeleportDirectly(Transform _transform)
+        {
+            character.TeleportToDestination(_transform);
+
+            LevelManager.instance.PlayGame();
         }
 
         public void OnClickTeleport()

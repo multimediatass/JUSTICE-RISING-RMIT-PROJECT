@@ -14,12 +14,13 @@ namespace Tproject
         public UnityEvent OnMenuOpen;
         public UnityEvent AfterMenuClose;
         [SerializeField] private bool isDetailOpened = false;
+        public GameObject hintTab;
 
 
         private void Update()
         {
             if (InputManager.instance.inputAction.PlayerControls.MenuPanel.triggered &&
-                !container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.Play)
+                !container.activeSelf && LevelManager.instance.CurrentGameState == LevelManager.GameState.Play && !LevelManager.isCooldownPressingUI)
             {
                 OnClickOpenMenu();
                 OnMenuOpen?.Invoke();
@@ -30,6 +31,8 @@ namespace Tproject
             {
                 OnCloseMenu();
                 AfterMenuClose?.Invoke();
+
+                // Debug.Log($"Close Menu");
             }
         }
 
@@ -73,7 +76,6 @@ namespace Tproject
                 Debug.LogError("Page index out of range!");
             }
         }
-
 
         public void GoToPage(int pageIndex)
         {
@@ -162,6 +164,11 @@ namespace Tproject
         public void DetailOpenState(bool state)
         {
             isDetailOpened = state;
+        }
+
+        public void ShowHintTab()
+        {
+            if (LevelManager.instance.CurrentGameState == LevelManager.GameState.UIInteraction && !isDetailOpened) hintTab.SetActive(true);
         }
     }
 }
